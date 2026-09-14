@@ -1,0 +1,6 @@
+node_modules/
+site/
+src/assets/data.js
+*.zip
+.cache/
+.DS_Store

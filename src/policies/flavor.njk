@@ -1,0 +1,47 @@
+---
+pagination:
+  data: policy.flavors
+  size: 1
+  alias: flavor
+eleventyComputed:
+  title: "{{ flavor.name }}: {{ flavor.label }}"
+  navSection: "policies"
+  navFlavorBase: "/policies"
+  navFlavor: "{{ flavor.id }}"
+permalink: "policies/{{ flavor.id }}/index.html"
+layout: base.njk
+---
+{% from "macros.njk" import dimensionChips with context %}
+
+<h1 class="flavor-chip flavor-chip--{{ flavor.id }}">
+  <span class="flavor-chip__name">{{ flavor.name }}: {{ flavor.label }}</span>
+</h1>
+<p class="lede flavor-chip flavor-chip--{{ flavor.id }}">{{ flavor.character }}</p>
+
+{{ dimensionChips(flavor.dimensions) }}
+
+<h2>Dimension definitions under {{ flavor.name }}</h2>
+<p class="lede">The active side for this flavor is highlighted.</p>
+{% for d in policy.dimensions %}
+<div class="dimension-def">
+  <h3>{{ d.name }}</h3>
+  <p class="dimension-def__question">{{ d.operativeQuestion }}</p>
+  <div class="hilo-pair">
+    <div class="{{ "is-active" if flavor.dimensions[d.id] == "Hi" }}"><h4>Hi</h4><p>{{ d.hi }}</p></div>
+    <div class="{{ "is-active" if flavor.dimensions[d.id] == "Lo" }}"><h4>Lo</h4><p>{{ d.lo }}</p></div>
+  </div>
+</div>
+{% endfor %}
+
+<h2>The four jobs under {{ flavor.name }}</h2>
+<ul class="plain summary-grid">
+{% for e in policy.employees %}
+<li class="summary-card">
+  <h3><a href="{{ ('/jobs/' + e.id + '/' + flavor.id + '/index.html') | rel }}">{{ e.name }}</a></h3>
+  <p>{{ e.role }}</p>
+  <span class="verdict-pill" data-state="{{ 'compliant' if flavor.id in e.compliantUnder else 'violation' }}">
+    {{ "Compliant" if flavor.id in e.compliantUnder else "Violation" }}
+  </span>
+</li>
+{% endfor %}
+</ul>

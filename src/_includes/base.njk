@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, follow">
+<title>{{ title }} | Herkimer County AI Roles</title>
+<link rel="stylesheet" href="{{ '/assets/styles.css' | rel }}">
+</head>
+<body{% if navFlavor %} class="flavor-{{ navFlavor }}"{% endif %}>
+<a class="skip" href="#main">Skip to content</a>
+{% include "nav.njk" %}
+<main id="main">
+{{ content | safe }}
+</main>
+{% include "footer.njk" %}
+{% if needsDiffScript %}
+<script src="{{ '/assets/data.js' | rel }}"></script>
+<script src="{{ '/assets/scripts.js' | rel }}"></script>
+{% endif %}
+</body>
+</html>

@@ -1,0 +1,45 @@
+---
+pagination:
+  data: policy.employees
+  size: 1
+  alias: employee
+eleventyComputed:
+  title: "{{ employee.name }}: compare flavors"
+  navSection: "jobs"
+  navJob: "{{ employee.id }}"
+  navFlavorBase: "/jobs/{{ employee.id }}"
+permalink: "jobs/{{ employee.id }}/index.html"
+layout: base.njk
+needsDiffScript: true
+---
+{% from "macros.njk" import dimensionChips, verdict, riskCallout, pdfLink, dimLabel with context %}
+
+<h1>{{ employee.name }}, {{ employee.role }}</h1>
+
+<div class="scenario">{{ employee.scenario }}</div>
+<p class="violation-question">{{ employee.violationQuestion }}</p>
+
+<p class="lede">
+  The same scenario, read against each of the four policy flavors in turn. Only the
+  policy changes from column to column; the facts do not.
+</p>
+
+<div class="compare-grid" data-job="{{ employee.id }}">
+  {% for f in policy.flavors %}
+  <section class="compare-column compare-column--{{ f.id }}" data-flavor="{{ f.id }}">
+    <h2>{{ f.name }} <span class="compare-column__label">{{ f.label }}</span></h2>
+    {{ dimensionChips(f.dimensions) }}
+    {{ verdict(f.id in employee.compliantUnder, employee.name) }}
+    {% for p in employee.policies[f.id].paragraphs %}
+    <h3 class="section-header">{{ dimLabel(p.dimension) }}</h3>
+    <p class="policy-para" data-para-index="{{ loop.index0 }}">{{ p.text }}</p>
+    {% endfor %}
+    {% set callout = riskCallouts[employee.id][f.id] %}
+    {% if callout %}
+    {{ riskCallout(callout) }}
+    {% endif %}
+  </section>
+  {% endfor %}
+</div>
+
+{{ pdfLink(employee.id + "-packet", "Download all four flavors as one PDF") }}

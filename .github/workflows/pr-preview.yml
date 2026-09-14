@@ -1,0 +1,51 @@
+name: PR preview
+
+# Runs the full build (including PDFs and the portability check) on every
+# pull request, but stops short of deploying: site/ is uploaded as a
+# workflow artifact instead. See docs/TOOLING-AND-DEPLOYMENT.md section 4.2.
+#
+# Because the portability requirement means site/ needs no server, a
+# reviewer can download the artifact and open index.html directly from disk
+# to review the real rendered site.
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
+      - run: npx playwright install --with-deps chromium
+
+      - name: Install deterministic print fonts
+        run: sudo apt-get install -y --no-install-recommends fonts-liberation
+
+      - run: npm run validate
+      - run: npm run build
+      - run: npm run pdfs
+      - run: npm run check
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: site-preview
+          path: site
+          retention-days: 14

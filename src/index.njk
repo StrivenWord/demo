@@ -1,0 +1,58 @@
+---
+layout: base.njk
+title: Overview
+navSection: overview
+permalink: index.html
+---
+
+<h1>Herkimer County AI Roles</h1>
+
+<p class="lede">
+  Four county jobs, each facing a scenario where an employee used an AI tool. Four
+  policy flavors, each a different balance of security, accountability, efficiency,
+  and innovation. The same scenario is a violation under some flavors and compliant
+  under others: the flavor in force determines the outcome, not the scenario alone.
+</p>
+
+<h2>The four jobs</h2>
+<p class="lede">
+  Pick a job to see its scenario judged against all four flavors, or start from a
+  single flavor to see how it treats every job.
+</p>
+
+<ul class="plain summary-grid">
+{% for e in policy.employees %}
+<li class="summary-card">
+  <h3><a href="{{ ('/jobs/' + e.id + '/index.html') | rel }}">{{ e.name }}</a></h3>
+  <p>{{ e.role }}</p>
+  <div class="summary-card__verdicts">
+    {% for f in policy.flavors %}
+    <a class="verdict-pill" data-state="{{ 'compliant' if f.id in e.compliantUnder else 'violation' }}"
+       href="{{ ('/jobs/' + e.id + '/' + f.id + '/index.html') | rel }}">
+      {{ f.name }}: {{ "Compliant" if f.id in e.compliantUnder else "Violation" }}
+    </a>
+    {% endfor %}
+  </div>
+</li>
+{% endfor %}
+</ul>
+
+<h2>The four policy flavors</h2>
+<p class="lede">
+  Every job is written against these same four configurations; nothing here is a
+  per-job variant.
+</p>
+
+<ul class="plain summary-grid">
+{% for f in policy.flavors %}
+<li class="summary-card flavor-chip flavor-chip--{{ f.id }}">
+  <h3><a href="{{ ('/policies/' + f.id + '/index.html') | rel }}">{{ f.name }}: {{ f.label }}</a></h3>
+  <p>{{ f.character }}</p>
+</li>
+{% endfor %}
+</ul>
+
+<p>
+  <a href="{{ '/policies/index.html' | rel }}">See the full dimension-by-flavor matrix</a>
+  and definitions for Security, Accountability, Efficiency, and Innovation.
+</p>

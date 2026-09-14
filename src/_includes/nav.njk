@@ -1,0 +1,40 @@
+{#
+  Three nav rows, DESIGN-SYSTEM.md section 4.1. Tabs are links with
+  aria-current="page", never role="tab" (section 4.2). Each row carries a
+  distinct aria-label.
+
+  Reads front-matter variables set by the calling page:
+    navSection    "overview" | "jobs" | "policies"
+    navJob        employee id, when navSection is "jobs"
+    navFlavorBase root-relative path prefix for flavor links, e.g. "/jobs/lux"
+                  or "/policies"; omit this row entirely when absent
+    navFlavor     flavor id of the current page, or unset on a compare/matrix page
+#}
+<nav aria-label="Section">
+  <ul>
+    <li><a href="{{ '/index.html' | rel }}"{% if navSection == "overview" %} aria-current="page"{% endif %}>Overview</a></li>
+    <li><a href="{{ '/jobs/lux/green/index.html' | rel }}"{% if navSection == "jobs" %} aria-current="page"{% endif %}>Jobs</a></li>
+    <li><a href="{{ '/policies/index.html' | rel }}"{% if navSection == "policies" %} aria-current="page"{% endif %}>Policies</a></li>
+  </ul>
+</nav>
+
+{% if navSection == "jobs" %}
+<nav aria-label="Job">
+  <ul>
+    {% for e in policy.employees %}
+    <li><a href="{{ ('/jobs/' + e.id + '/index.html') | rel }}"{% if e.id == navJob %} aria-current="page"{% endif %}>{{ e.name }}</a></li>
+    {% endfor %}
+  </ul>
+</nav>
+{% endif %}
+
+{% if navFlavorBase %}
+<nav aria-label="Policy flavor">
+  <ul>
+    {% for f in policy.flavors %}
+    <li><a class="flavor-tab flavor-tab--{{ f.id }}" href="{{ (navFlavorBase + '/' + f.id + '/index.html') | rel }}"{% if f.id == navFlavor %} aria-current="page"{% endif %}>{{ f.name }}</a></li>
+    {% endfor %}
+    <li><a href="{{ (navFlavorBase + '/index.html') | rel }}"{% if not navFlavor %} aria-current="page"{% endif %}>{{ "Compare" if navSection == "jobs" else "Matrix" }}</a></li>
+  </ul>
+</nav>
+{% endif %}

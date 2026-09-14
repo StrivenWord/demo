@@ -1,0 +1,77 @@
+{#
+  Shared rendering macros. See docs/DESIGN-SYSTEM.md sections 2.3, 2.4, 6.
+#}
+
+{% set dimAbbrev = { security: "Sec", accountability: "Acct", efficiency: "Eff", innovation: "Innov" } %}
+{% set dimFull = { security: "Security", accountability: "Accountability", efficiency: "Efficiency", innovation: "Innovation" } %}
+{% set dimOrder = ["security", "accountability", "efficiency", "innovation"] %}
+
+{# Full dimension name from its id, for use in headings outside this file. #}
+{% macro dimLabel(dim) %}{{- dimFull[dim] -}}{% endmacro %}
+
+{# Dimension row: four Hi/Lo chips, distinguished by fill (not color). #}
+{% macro dimensionChips(dimensions) %}
+<ul class="dim-row">
+  {% for dim in dimOrder %}
+  {% set val = dimensions[dim] %}
+  <li class="dim-chip dim-chip--{{ val | lower }}">
+    <span aria-hidden="true">{{ dimAbbrev[dim] }} {{ val }}</span>
+    <span class="visually-hidden">{{ dimFull[dim] }}: {{ "High" if val == "Hi" else "Low" }}.</span>
+  </li>
+  {% endfor %}
+</ul>
+{% endmacro %}
+
+{# Compliance verdict. Compliant and violation states differ in icon, label
+   word, and border style, not only color (DESIGN-SYSTEM 2.4, BUILD-SPEC 7.3). #}
+{% macro verdict(isCompliant, employeeName) %}
+<div class="verdict verdict--{{ "compliant" if isCompliant else "violation" }}" role="note" aria-label="Compliance verdict">
+  {% if isCompliant %}
+  <svg class="verdict__icon" aria-hidden="true" viewBox="0 0 24 24" width="22" height="22">
+    <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+    <path d="M7 12.5 10.5 16 17 8.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  {% else %}
+  <svg class="verdict__icon" aria-hidden="true" viewBox="0 0 24 24" width="22" height="22">
+    <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/>
+    <path d="M8.5 8.5 15.5 15.5M15.5 8.5 8.5 15.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+  {% endif %}
+  <div>
+    <p class="verdict__label">{{ "Compliant" if isCompliant else "Violation" }}</p>
+    <p class="verdict__text">
+      {% if isCompliant %}
+        Under this policy, {{ employeeName }}'s actions in the scenario do not violate the stated rules.
+      {% else %}
+        Under this policy, {{ employeeName }}'s actions in the scenario violate the stated rules.
+      {% endif %}
+    </p>
+  </div>
+</div>
+{% endmacro %}
+
+{# Risk callout, DESIGN-SYSTEM 6.3. Icon plus the word "Risk" so the meaning
+   survives grayscale printing. #}
+{% macro riskCallout(callout) %}
+<div class="risk-callout" role="note" aria-label="Risk: {{ callout.title }}">
+  <svg class="risk-callout__icon" aria-hidden="true" viewBox="0 0 24 24" width="20" height="20">
+    <path d="M12 3 1.5 21h21L12 3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M12 9.5v5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="12" cy="17.25" r="1.1" fill="currentColor"/>
+  </svg>
+  <div>
+    <p class="risk-callout__title">Risk: {{ callout.title }}</p>
+    <p class="risk-callout__text">{{ callout.description }}</p>
+  </div>
+</div>
+{% endmacro %}
+
+{# PDF download link, DESIGN-SYSTEM 6.5. Plain link, never a button; size is
+   filled in after Playwright renders the PDF (scripts/render-pdfs.mjs). #}
+{% macro pdfLink(pdfName, label) %}
+<p class="pdf-link">
+  <a href="{{ ('/pdf/' + pdfName + '.pdf') | rel }}" rel="nofollow">
+    {{ label or "Download PDF" }}<span class="pdf-size" data-pdf-size-for="{{ pdfName }}"></span>
+  </a>
+</p>
+{% endmacro %}

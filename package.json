@@ -1,0 +1,31 @@
+{
+  "name": "county-ai-roles",
+  "version": "5.0.0",
+  "description": "Herkimer County AI Roles: a fully static, offline-capable policy explorer",
+  "type": "module",
+  "private": true,
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "eleventy --serve --incremental",
+    "watch": "eleventy --watch",
+    "build": "eleventy",
+    "clean": "node -e \"require('node:fs').rmSync('site',{recursive:true,force:true})\"",
+
+    "extract": "node scripts/extract.mjs",
+    "validate": "node scripts/validate.mjs",
+    "pdfs": "node scripts/render-pdfs.mjs",
+    "check": "node scripts/check-portable.mjs",
+    "test": "node scripts/test-rel.mjs",
+
+    "all": "npm run build && npm run pdfs && npm run check",
+    "preview": "node scripts/preview.mjs",
+    "portable": "npm run all && node scripts/zip.mjs"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "playwright": "^1.48.0"
+  }
+}

@@ -1,0 +1,35 @@
+---
+pagination:
+  data: combos
+  size: 1
+  alias: combo
+eleventyComputed:
+  title: "{{ combo.employee.name }} under {{ combo.flavor.name }} (print)"
+  navFlavor: "{{ combo.flavorId }}"
+permalink: "print/{{ combo.jobId }}-{{ combo.flavorId }}/index.html"
+layout: print.njk
+---
+{% from "macros.njk" import dimensionChips, verdict, riskCallout, dimLabel with context %}
+
+<h1>{{ combo.employee.name }}, {{ combo.employee.role }}</h1>
+<p class="flavor-chip flavor-chip--{{ combo.flavorId }}">
+  <span class="flavor-chip__name">{{ combo.flavor.name }}: {{ combo.flavor.label }}</span><br>
+  <span class="flavor-chip__character">{{ combo.flavor.character }}</span>
+</p>
+
+<div class="scenario">{{ combo.employee.scenario }}</div>
+<p class="violation-question">{{ combo.employee.violationQuestion }}</p>
+
+{{ verdict(combo.flavorId in combo.employee.compliantUnder, combo.employee.name) }}
+
+{{ dimensionChips(combo.flavor.dimensions) }}
+
+{% for p in combo.employee.policies[combo.flavorId].paragraphs %}
+<h2 class="section-header">{{ dimLabel(p.dimension) }}</h2>
+<p class="policy-para">{{ p.text }}</p>
+{% endfor %}
+
+{% set callout = riskCallouts[combo.jobId][combo.flavorId] %}
+{% if callout %}
+{{ riskCallout(callout) }}
+{% endif %}

@@ -1,0 +1,34 @@
+---
+pagination:
+  data: policy.employees
+  size: 1
+  alias: employee
+eleventyComputed:
+  title: "{{ employee.name }} packet (print)"
+permalink: "print/{{ employee.id }}/index.html"
+layout: print.njk
+---
+{% from "macros.njk" import dimensionChips, verdict, riskCallout, dimLabel with context %}
+
+<div class="print-cover">
+  <h1>{{ employee.name }}, {{ employee.role }}</h1>
+  <div class="scenario">{{ employee.scenario }}</div>
+  <p class="violation-question">{{ employee.violationQuestion }}</p>
+  <p class="lede">All four policy flavors, in order: Green, Red, Blue, Yellow.</p>
+</div>
+
+{% for f in policy.flavors %}
+<section class="print-section compare-column compare-column--{{ f.id }}">
+  <h2>{{ f.name }}: {{ f.label }}</h2>
+  {{ dimensionChips(f.dimensions) }}
+  {{ verdict(f.id in employee.compliantUnder, employee.name) }}
+  {% for p in employee.policies[f.id].paragraphs %}
+  <h3 class="section-header">{{ dimLabel(p.dimension) }}</h3>
+  <p class="policy-para">{{ p.text }}</p>
+  {% endfor %}
+  {% set callout = riskCallouts[employee.id][f.id] %}
+  {% if callout %}
+  {{ riskCallout(callout) }}
+  {% endif %}
+</section>
+{% endfor %}

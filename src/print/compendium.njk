@@ -1,0 +1,66 @@
+---
+title: "Compendium (print)"
+permalink: "print/compendium/index.html"
+layout: print.njk
+---
+{% from "macros.njk" import dimensionChips, verdict, riskCallout, dimLabel with context %}
+
+<div class="print-cover">
+  <h1>Herkimer County AI Roles: Policy Compendium</h1>
+  <p class="lede">
+    All sixteen policy texts across four jobs and four flavors, plus the four
+    operational dimension definitions. {{ policy.meta.version }}, generated
+    {{ policy.meta.generated }}.
+  </p>
+</div>
+
+<nav aria-label="Table of contents" class="print-toc">
+  <h2>Contents</h2>
+  <ul class="plain">
+    {% for e in policy.employees %}
+    <li>
+      <strong>{{ e.name }}, {{ e.role }}</strong>
+      <ul class="plain">
+        {% for f in policy.flavors %}
+        <li><a href="#{{ e.id }}-{{ f.id }}">{{ f.name }}: {{ f.label }}</a></li>
+        {% endfor %}
+      </ul>
+    </li>
+    {% endfor %}
+    <li><a href="#dimension-definitions">Operational dimension definitions</a></li>
+  </ul>
+</nav>
+
+{% for e in policy.employees %}
+{% for f in policy.flavors %}
+<section id="{{ e.id }}-{{ f.id }}" class="print-section compare-column compare-column--{{ f.id }}">
+  <h2>{{ e.name }}, {{ e.role }}: {{ f.name }} ({{ f.label }})</h2>
+  <div class="scenario">{{ e.scenario }}</div>
+  <p class="violation-question">{{ e.violationQuestion }}</p>
+  {{ verdict(f.id in e.compliantUnder, e.name) }}
+  {{ dimensionChips(f.dimensions) }}
+  {% for p in e.policies[f.id].paragraphs %}
+  <h3 class="section-header">{{ dimLabel(p.dimension) }}</h3>
+  <p class="policy-para">{{ p.text }}</p>
+  {% endfor %}
+  {% set callout = riskCallouts[e.id][f.id] %}
+  {% if callout %}
+  {{ riskCallout(callout) }}
+  {% endif %}
+</section>
+{% endfor %}
+{% endfor %}
+
+<section id="dimension-definitions" class="print-section">
+  <h2>Operational dimension definitions</h2>
+  {% for d in policy.dimensions %}
+  <div class="dimension-def">
+    <h3>{{ d.name }}</h3>
+    <p class="dimension-def__question">{{ d.operativeQuestion }}</p>
+    <div class="hilo-pair">
+      <div><h4>Hi</h4><p>{{ d.hi }}</p></div>
+      <div><h4>Lo</h4><p>{{ d.lo }}</p></div>
+    </div>
+  </div>
+  {% endfor %}
+</section>

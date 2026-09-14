@@ -1,0 +1,567 @@
+/*
+ * county-ai-roles
+ *
+ * A monochrome slate interface in which the only color is the policy data.
+ * See docs/DESIGN-SYSTEM.md. Site chrome carries no hue; the four policy
+ * flavors (Green/Red/Blue/Yellow) are the sole source of color, so every
+ * colored pixel on the page is load-bearing.
+ */
+
+:root {
+  /* Neutrals, DESIGN-SYSTEM 2.1 */
+  --surface:         #ffffff;
+  --surface-sunken:  #f8fafc;
+  --surface-raised:  #f1f5f9;
+  --border:          #e2e8f0;
+  --border-strong:   #cbd5e1;
+  --text:            #1e293b;
+  --text-strong:     #0f172a;
+  --text-muted:      #475569;
+
+  /* Policy flavors, DESIGN-SYSTEM 2.2. The only color in the system. */
+  --flavor-green:    #047857;
+  --flavor-red:      #b91c1c;
+  --flavor-blue:     #0e7490;
+  --flavor-yellow:   #b45309;
+  --flavor-current:  var(--text-strong);
+
+  --measure: 65ch;
+  --radius: 6px;
+
+  --font-ui: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+             "Helvetica Neue", Arial, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --surface:        #0f172a;
+    --surface-sunken: #020617;
+    --surface-raised: #1e293b;
+    --border:         #334155;
+    --border-strong:  #475569;
+    --text:           #f1f5f9;
+    --text-strong:    #f8fafc;
+    --text-muted:     #94a3b8;
+
+    --flavor-green:   #34d399;
+    --flavor-red:     #f87171;
+    --flavor-blue:    #22d3ee;
+    --flavor-yellow:  #fbbf24;
+  }
+}
+
+/* --flavor-current tracks whichever single flavor the current page is about,
+   set via a body class (DESIGN-SYSTEM 2.2). Pages showing all four flavors
+   side by side (compare, matrix) leave this at its neutral default. */
+body.flavor-green  { --flavor-current: var(--flavor-green); }
+body.flavor-red    { --flavor-current: var(--flavor-red); }
+body.flavor-blue   { --flavor-current: var(--flavor-blue); }
+body.flavor-yellow { --flavor-current: var(--flavor-yellow); }
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+main {
+  max-width: 72rem;
+  margin-inline: auto;
+  padding: 2rem 1.25rem 4rem;
+}
+
+.measure { max-width: var(--measure); }
+
+h1, h2, h3, h4 { color: var(--text-strong); line-height: 1.25; }
+h1 { font-size: 1.75rem; margin: 0 0 0.5rem; }
+h2 { font-size: 1.25rem; margin: 2rem 0 0.75rem; }
+h3 { font-size: 1.05rem; margin: 1.5rem 0 0.5rem; }
+
+.lede {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  max-width: var(--measure);
+}
+
+p { max-width: var(--measure); }
+.compare-column p, .policy-detail p { max-width: none; }
+
+a { color: var(--text-strong); }
+a:not(.pdf-link a) { text-underline-offset: 0.15em; }
+
+ul.plain, ol.plain { list-style: none; margin: 0; padding: 0; }
+
+/* Focus indicator, DESIGN-SYSTEM 8. Slate, never a colored accent. */
+:focus-visible {
+  outline: 2px solid var(--text-strong);
+  outline-offset: 2px;
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+  z-index: 100;
+}
+.skip:focus {
+  left: 1rem;
+  top: 1rem;
+  background: var(--surface-raised);
+  color: var(--text-strong);
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
+/* ---------------------------------------------------------------------
+   Navigation, DESIGN-SYSTEM 4.1. Three rows, differentiated by weight.
+   Only the flavor row is ever colored, and only its active tab.
+   --------------------------------------------------------------------- */
+
+nav { border-bottom: 1px solid var(--border); background: var(--surface); }
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0 1.25rem;
+  max-width: 72rem;
+  margin-inline: auto;
+}
+nav a {
+  display: inline-block;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+nav[aria-label="Section"] a {
+  font-weight: 500;
+}
+nav[aria-label="Section"] a[aria-current="page"] {
+  color: var(--text-strong);
+  background: var(--surface-raised);
+  font-weight: 600;
+}
+
+nav[aria-label="Job"] a {
+  border-bottom: 2px solid transparent;
+  padding-top: 0.6rem;
+  padding-bottom: 0.55rem;
+}
+nav[aria-label="Job"] a[aria-current="page"] {
+  color: var(--text-strong);
+  font-weight: 600;
+  border-bottom-color: var(--border-strong);
+}
+
+nav[aria-label="Policy flavor"] a {
+  border-bottom: 3px solid transparent;
+  padding-top: 0.6rem;
+  padding-bottom: 0.55rem;
+}
+nav[aria-label="Policy flavor"] a[aria-current="page"] { font-weight: 600; }
+nav[aria-label="Policy flavor"] a.flavor-tab--green[aria-current="page"]  { color: var(--flavor-green);  border-bottom-color: var(--flavor-green); }
+nav[aria-label="Policy flavor"] a.flavor-tab--red[aria-current="page"]    { color: var(--flavor-red);    border-bottom-color: var(--flavor-red); }
+nav[aria-label="Policy flavor"] a.flavor-tab--blue[aria-current="page"]  { color: var(--flavor-blue);   border-bottom-color: var(--flavor-blue); }
+nav[aria-label="Policy flavor"] a.flavor-tab--yellow[aria-current="page"] { color: var(--flavor-yellow); border-bottom-color: var(--flavor-yellow); }
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 1.5rem 1.25rem 2.5rem;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+footer p { max-width: none; margin: 0; max-width: 72rem; margin-inline: auto; }
+
+/* ---------------------------------------------------------------------
+   Dimension chips, DESIGN-SYSTEM 2.3, 6.2.
+   --------------------------------------------------------------------- */
+
+.dim-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 1.5rem;
+}
+.dim-chip {
+  font-size: 0.75rem;
+  line-height: 1;
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+}
+.dim-chip--hi {
+  background: var(--surface-raised);
+  color: var(--text-strong);
+  font-weight: 600;
+}
+.dim-chip--lo {
+  background: transparent;
+  border: 1px solid var(--border-strong);
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+/* ---------------------------------------------------------------------
+   Verdict callout. Compliant vs. violation differ by icon, label word, and
+   border style, not color alone (DESIGN-SYSTEM 2.4).
+   --------------------------------------------------------------------- */
+
+.verdict {
+  display: flex;
+  gap: 0.85rem;
+  align-items: flex-start;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius);
+  background: var(--surface-sunken);
+  margin: 1.25rem 0 1.5rem;
+  max-width: var(--measure);
+}
+.verdict--compliant { border-left: 4px solid var(--text-strong); }
+.verdict--violation { border-left: 4px dashed var(--text-strong); }
+.verdict__icon { flex-shrink: 0; margin-top: 0.1rem; color: var(--text-strong); }
+.verdict__label {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  margin: 0 0 0.3rem;
+}
+.verdict__text { margin: 0; color: var(--text); }
+
+/* ---------------------------------------------------------------------
+   Risk callout, DESIGN-SYSTEM 6.3.
+   --------------------------------------------------------------------- */
+
+.risk-callout {
+  display: flex;
+  gap: 0.85rem;
+  border-left: 4px solid var(--flavor-red);
+  background: var(--surface-sunken);
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  max-width: var(--measure);
+}
+.risk-callout__icon { flex-shrink: 0; color: var(--flavor-red); margin-top: 0.15rem; }
+.risk-callout__title { font-weight: 700; margin: 0 0 0.3rem; }
+.risk-callout__text { margin: 0; }
+
+/* ---------------------------------------------------------------------
+   Scenario / violation question, DESIGN-SYSTEM 5.
+   --------------------------------------------------------------------- */
+
+.scenario {
+  color: var(--text-muted);
+  font-size: 0.94rem;
+  line-height: 1.65;
+  background: var(--surface-sunken);
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius);
+  max-width: var(--measure);
+}
+.violation-question {
+  font-size: 0.94rem;
+  line-height: 1.65;
+  font-weight: 600;
+  color: var(--text-strong);
+  max-width: var(--measure);
+}
+
+.section-header {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-strong);
+  margin: 1.5rem 0 0.4rem;
+}
+
+.policy-para { margin: 0 0 1rem; }
+
+/* ---------------------------------------------------------------------
+   Flavor chip, DESIGN-SYSTEM 6.1. Left border only; never a solid fill.
+   --------------------------------------------------------------------- */
+
+.flavor-chip {
+  border-left: 3px solid var(--border-strong);
+  padding-left: 0.85rem;
+}
+.flavor-chip--green  { border-left-color: var(--flavor-green); }
+.flavor-chip--red    { border-left-color: var(--flavor-red); }
+.flavor-chip--blue   { border-left-color: var(--flavor-blue); }
+.flavor-chip--yellow { border-left-color: var(--flavor-yellow); }
+.flavor-chip__name { font-weight: 700; color: var(--text-strong); }
+.flavor-chip__character { color: var(--text-muted); font-size: 0.9rem; margin: 0.15rem 0 0; }
+
+/* ---------------------------------------------------------------------
+   Job compare grid: four columns, collapsing responsively, and the target
+   of the diff-view progressive enhancement (BUILD-SPEC 9).
+   --------------------------------------------------------------------- */
+
+.compare-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 2rem;
+  align-items: start;
+  margin-top: 1.5rem;
+}
+@media (max-width: 900px) {
+  .compare-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .compare-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+.compare-column {
+  border-top: 3px solid var(--border-strong);
+  padding-top: 0.85rem;
+  min-width: 0;
+}
+.compare-column--green  { border-top-color: var(--flavor-green); }
+.compare-column--red    { border-top-color: var(--flavor-red); }
+.compare-column--blue   { border-top-color: var(--flavor-blue); }
+.compare-column--yellow { border-top-color: var(--flavor-yellow); }
+
+.compare-column h2 {
+  font-size: 1.05rem;
+  margin-top: 0;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.compare-column__label { font-size: 0.8rem; font-weight: 400; color: var(--text-muted); }
+
+.compare-column[hidden] { display: none; }
+
+/* Diff view, injected by scripts.js. Changed paragraphs get a left border
+   plus a visually-hidden "changed:" prefix, never color alone
+   (DESIGN-SYSTEM 6.4). */
+.diff-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--surface-sunken);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.85rem 1rem;
+  margin: 1.25rem 0;
+  font-size: 0.9rem;
+}
+.diff-controls label { display: flex; align-items: center; gap: 0.4rem; }
+.diff-controls select {
+  font: inherit;
+  font-size: 0.9rem;
+  padding: 0.3rem 0.5rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 4px;
+  background: var(--surface);
+  color: var(--text);
+}
+.diff-controls button {
+  font: inherit;
+  font-size: 0.85rem;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 4px;
+  background: var(--surface);
+  color: var(--text-strong);
+  cursor: pointer;
+}
+.diff-controls button:hover { background: var(--surface-raised); }
+
+.policy-para.diff-changed {
+  background: var(--surface-raised);
+  border-left: 3px solid var(--flavor-current);
+  padding: 0.6rem 0.85rem;
+  margin-left: -0.85rem;
+  border-radius: 0 4px 4px 0;
+}
+
+/* ---------------------------------------------------------------------
+   Policies matrix and detail pages.
+   --------------------------------------------------------------------- */
+
+.matrix-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0 2rem;
+  font-size: 0.95rem;
+}
+.matrix-table th, .matrix-table td {
+  border: 1px solid var(--border);
+  padding: 0.6rem 0.85rem;
+  text-align: left;
+  vertical-align: top;
+}
+.matrix-table thead th {
+  background: var(--surface-sunken);
+  color: var(--text-strong);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.matrix-table tbody th {
+  background: var(--surface-sunken);
+  font-weight: 700;
+}
+.overflow-wrap { overflow-x: auto; }
+
+.dimension-def {
+  border-top: 1px solid var(--border);
+  padding: 1.25rem 0;
+}
+.dimension-def:first-of-type { border-top: none; }
+.dimension-def__question {
+  font-style: italic;
+  color: var(--text-muted);
+  max-width: var(--measure);
+}
+.hilo-pair { display: grid; grid-template-columns: 1fr; gap: 0.75rem; max-width: var(--measure); }
+@media (min-width: 640px) {
+  .hilo-pair { grid-template-columns: 1fr 1fr; }
+}
+.hilo-pair > div {
+  border-radius: var(--radius);
+  padding: 0.75rem 0.9rem;
+  background: var(--surface-sunken);
+  border-left: 3px solid var(--border-strong);
+}
+.hilo-pair > div.is-active { border-left-color: var(--flavor-current); background: var(--surface-raised); }
+.hilo-pair h4 { margin: 0 0 0.3rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+/* ---------------------------------------------------------------------
+   Overview page.
+   --------------------------------------------------------------------- */
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin: 1.5rem 0 2.5rem;
+}
+.summary-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.25rem;
+}
+.summary-card h3 { margin-top: 0; }
+.summary-card p { color: var(--text-muted); font-size: 0.9rem; margin: 0.35rem 0 0.85rem; }
+.summary-card__verdicts { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.verdict-pill {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-strong);
+}
+.verdict-pill[data-state="compliant"] { border-style: solid; }
+.verdict-pill[data-state="violation"] { border-style: dashed; }
+
+/* ---------------------------------------------------------------------
+   PDF download link, DESIGN-SYSTEM 6.5. Plain link, never a button.
+   --------------------------------------------------------------------- */
+
+.pdf-link { margin: 1.75rem 0 0.5rem; }
+.pdf-link a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  text-decoration: underline;
+}
+.pdf-size { color: var(--text-muted); font-weight: 400; }
+
+/* ---------------------------------------------------------------------
+   Print pages, DESIGN-SYSTEM 7. Screen preview of the print templates
+   looks like a plain document; @media print governs the PDF output.
+   --------------------------------------------------------------------- */
+
+body.print-page main {
+  max-width: 7.5in;
+  padding: 0.5in 0.6in 1in;
+}
+body.print-page .compare-grid {
+  display: block;
+}
+
+/* A discrete printed unit: one flavor's text, or the dimension-definitions
+   block in the compendium. Each starts a fresh page except the first. */
+.print-section {
+  break-before: page;
+  margin-bottom: 2rem;
+}
+.print-section--first {
+  break-before: avoid;
+}
+.print-toc { margin: 1.5rem 0 2.5rem; }
+.print-toc ul { margin: 0.25rem 0 0.75rem 1.25rem; }
+.print-toc li { margin: 0.3rem 0; }
+.print-cover { margin-bottom: 2rem; }
+
+@media print {
+  :root {
+    /* Force the light token set for print, DESIGN-SYSTEM 7. */
+    --surface: #ffffff;
+    --surface-sunken: #f8fafc;
+    --surface-raised: #f1f5f9;
+    --border: #e2e8f0;
+    --border-strong: #cbd5e1;
+    --text: #000000;
+    --text-strong: #000000;
+    --text-muted: #334155;
+
+    --flavor-green:  #047857;
+    --flavor-red:    #b91c1c;
+    --flavor-blue:   #0e7490;
+    --flavor-yellow: #b45309;
+  }
+
+  /* Pinned for reproducible PDFs, DESIGN-SYSTEM 5.1. Never the screen stack:
+     system-ui resolves differently on the CI runner than on a developer Mac. */
+  body {
+    font-family: "Liberation Sans", "Helvetica Neue", Arial, sans-serif;
+    background: #ffffff;
+    color: #000000;
+    font-size: 11pt;
+    line-height: 1.5;
+  }
+
+  nav, footer, .skip, .pdf-link, .diff-controls { display: none !important; }
+
+  main { max-width: none; padding: 0; }
+  body.print-page main { max-width: none; padding: 0; }
+
+  .risk-callout, .dim-row, .verdict {
+    break-inside: avoid;
+  }
+  .print-section { break-before: page; }
+  .print-section--first { break-before: avoid; }
+
+  a { color: inherit; text-decoration: none; }
+  a[href]::after { content: none; }
+}

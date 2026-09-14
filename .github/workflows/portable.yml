@@ -1,0 +1,49 @@
+name: Portable archive
+
+# On every version tag, builds the site (with PDFs) and attaches the offline
+# zip to a GitHub release. This is also the only supported way to obtain a
+# complete archive including all 21 PDFs without running the build locally,
+# since PDFs are generated at build time and never committed.
+# See docs/TOOLING-AND-DEPLOYMENT.md section 5.3.
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
+      - run: npx playwright install --with-deps chromium
+
+      - name: Install deterministic print fonts
+        run: sudo apt-get install -y --no-install-recommends fonts-liberation
+
+      - run: npm run validate
+      - run: npm run build
+      - run: npm run pdfs
+      - run: npm run check
+      - run: node scripts/zip.mjs
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: "*.zip"
+          generate_release_notes: true

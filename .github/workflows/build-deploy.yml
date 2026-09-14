@@ -1,0 +1,67 @@
+name: Build and deploy
+
+# Deploys site/ to GitHub Pages on every push to main. See
+# docs/TOOLING-AND-DEPLOYMENT.md section 5.2. Hosting is a contingency, not
+# a hard requirement (section 5); this workflow only matters if Pages is the
+# chosen deployment target.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
+      - run: npx playwright install --with-deps chromium
+
+      # Pin the print typeface explicitly. --with-deps pulls in fonts
+      # transitively, and relying on a transitive dependency for typographic
+      # output is exactly how PDFs silently change between runs.
+      - name: Install deterministic print fonts
+        run: sudo apt-get install -y --no-install-recommends fonts-liberation
+
+      - run: npm run validate
+      - run: npm run build
+      - run: npm run pdfs
+      - run: npm run check
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@v4

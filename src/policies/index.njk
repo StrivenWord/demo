@@ -1,0 +1,60 @@
+---
+title: Policy Matrix
+navSection: policies
+navFlavorBase: /policies
+layout: base.njk
+---
+{% from "macros.njk" import pdfLink with context %}
+
+<h1>Policy Matrix</h1>
+<p class="lede">
+  Four policy flavors, each a fixed configuration across four operational dimensions.
+  There are four flavors, not sixteen independent combinations: every job is written
+  against the same four configurations below.
+</p>
+
+<div class="overflow-wrap">
+<table class="matrix-table">
+<caption class="visually-hidden">Dimension configuration by policy flavor</caption>
+<thead>
+<tr>
+  <th scope="col">Flavor</th>
+  <th scope="col">Security</th>
+  <th scope="col">Accountability</th>
+  <th scope="col">Efficiency</th>
+  <th scope="col">Innovation</th>
+</tr>
+</thead>
+<tbody>
+{% for f in policy.flavors %}
+<tr>
+  <th scope="row">
+    <a class="flavor-chip flavor-chip--{{ f.id }}" href="{{ ('/policies/' + f.id + '/index.html') | rel }}">
+      <span class="flavor-chip__name">{{ f.name }}: {{ f.label }}</span>
+    </a>
+  </th>
+  {% for dim in ["security", "accountability", "efficiency", "innovation"] %}
+  <td><span class="dim-chip dim-chip--{{ f.dimensions[dim] | lower }}">{{ f.dimensions[dim] }}</span></td>
+  {% endfor %}
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+
+<h2>The four operational dimensions</h2>
+<p class="lede">
+  County-calibrated definitions. See each flavor's page for which side of Hi/Lo it takes.
+</p>
+{% for d in policy.dimensions %}
+<div class="dimension-def">
+  <h3>{{ d.name }}</h3>
+  <p class="dimension-def__question">{{ d.operativeQuestion }}</p>
+  <div class="hilo-pair">
+    <div><h4>Hi</h4><p>{{ d.hi }}</p></div>
+    <div><h4>Lo</h4><p>{{ d.lo }}</p></div>
+  </div>
+</div>
+{% endfor %}
+
+{{ pdfLink("compendium", "Download all 16 policy texts and dimension definitions as one PDF") }}
