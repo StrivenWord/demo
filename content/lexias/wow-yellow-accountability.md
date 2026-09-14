@@ -2,9 +2,9 @@
 id: wow-yellow-accountability
 employee: wow
 flavor: yellow
-posture: exposed
+posture: enable
 dimension: accountability
-setting: Lo
+setting: Hi
 
 status: unreviewed
 reviewer: ""
@@ -14,13 +14,13 @@ notes: |
 tags:
   - employee/wow
   - flavor/yellow
-  - posture/exposed
+  - posture/enable
   - dimension/accountability
-  - setting/lo
+  - setting/hi
   - arc/pivot
-  - verdict/compliant
+  - verdict/violation
 
 rationale: |
 implementation_note: |
 ---
-No AI-specific logging is required. The staffer, not the AI tool, is responsible for the determination.
+Every AI-assisted drafting session is logged with the staffer's staff ID, the tool name, and a timestamp. The log is retained as part of the determination record. A named staffer is responsible for the accuracy of the notice. The AI draft is an input; the staffer, not the AI tool, is responsible for the determination.

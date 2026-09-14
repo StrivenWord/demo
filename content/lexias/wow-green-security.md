@@ -2,9 +2,9 @@
 id: wow-green-security
 employee: wow
 flavor: green
-posture: guardrails
+posture: exposed
 dimension: security
-setting: Hi
+setting: Lo
 
 status: unreviewed
 reviewer: ""
@@ -14,13 +14,13 @@ notes: |
 tags:
   - employee/wow
   - flavor/green
-  - posture/guardrails
+  - posture/exposed
   - dimension/security
-  - setting/hi
+  - setting/lo
   - arc/pivot
-  - verdict/violation
+  - verdict/compliant
 
 rationale: |
 implementation_note: |
 ---
-The staffer may use the county's designated AI drafting tool to generate a draft benefits denial notice. The tool must appear on the county's approved AI tool list. Applicant information and case data must not leave county systems; the staffer may not use any tool that transmits legal work product or applicant information to an outside server or third party. All approved tools are auditable by IT.
+The staffer may use any available AI drafting tool, including commercially available tools, to assist with drafting benefits denial notices. The staffer is responsible for appropriate handling of any applicant information entered into non-county tools. Legal work product and applicant information entered into commercial tools may be processed outside county systems; the staffer exercises professional judgment about what information to enter.

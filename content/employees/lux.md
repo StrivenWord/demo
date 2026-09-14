@@ -4,7 +4,7 @@ number: 1
 name: Lux
 role: DSS Caseworker
 violatedDimension: security
-compliantUnder: [yellow]
+compliantUnder: [green]
 ---
 
 ## Scenario

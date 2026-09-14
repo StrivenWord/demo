@@ -59,12 +59,12 @@ These supersede the spec's section 4.1 hex values. The originals were chosen for
 identity, not contrast, and three of the four failed AA for text on white (green 3.77,
 blue 3.68, yellow 3.19). These are the same hues moved to accessible steps.
 
-| Flavor | Label | Light | Ratio | Dark | Ratio |
+| Colour | Posture (since 2026-07-08) | Light | Ratio | Dark | Ratio |
 |---|---|---|---|---|---|
-| Green | Guardrails | `#047857` | 5.48 | `#34d399` | 9.29 |
-| Red | Enable | `#b91c1c` | 6.47 | `#f87171` | 6.45 |
+| Red | Guardrails | `#b91c1c` | 6.47 | `#f87171` | 6.45 |
+| Yellow | Enable | `#b45309` | 5.02 | `#fbbf24` | 10.69 |
 | Blue | Light-touch | `#0e7490` | 5.36 | `#22d3ee` | 9.88 |
-| Yellow | Exposed | `#b45309` | 5.02 | `#fbbf24` | 10.69 |
+| Green | Exposed | `#047857` | 5.48 | `#34d399` | 9.29 |
 
 All four clear AA for normal text in both themes. Exposed as
 `--flavor-green`, `--flavor-red`, `--flavor-blue`, `--flavor-yellow`, plus a
@@ -79,9 +79,10 @@ coordinates. Which colour labels which posture is a separate, movable fact: upst
 reassigned it on 2026-07-08 to a restriction-to-autonomy gradient, and this repo will
 follow. `content/flavors.json` is the single place that pairing is written down.
 
-When it moves, **the hex values stay with the colour name** -- `--flavor-red` stays red.
-Only the pairing in the table above changes. Nothing in this section needs recalculating,
-because the contrast ratios belong to the hues, not to the postures.
+When it moved on 2026-07-08, **the hex values stayed with the colour name** --
+`--flavor-red` is still red. Only the pairing changed, and nothing here needed
+recalculating, because the contrast ratios belong to the hues rather than to the postures.
+The table is now listed in gradient order, most governed to least.
 
 ### 2.3 Dimension colors
 
@@ -274,12 +275,10 @@ Efficiency: Low. Innovation: Low."
 sprite). Heading is the word "Risk" plus the callout title, so the meaning survives
 grayscale.
 
-**Known conflict, to resolve at the colour reassignment.** The callout borrows
-`--flavor-red` as a generic danger accent. Under the June pairing red means Enable, so
-this is merely arbitrary; under the July pairing red means Guardrails, the *most* governed
-posture, and a red-bordered warning on the least governed page reads backwards. Split a
-dedicated `--accent-danger` token out of `--flavor-red` (same hex initially) so the two
-meanings stop sharing a variable.
+**Resolved at the colour reassignment.** The callout used to borrow `--flavor-red` as a
+generic danger accent. Once red came to mean Guardrails, the *most* governed posture, a
+red-bordered warning on the least governed page read backwards. `--accent-danger` is now
+a separate token, same hex, so the two meanings no longer share a variable.
 
 ### 6.3a Review components
 

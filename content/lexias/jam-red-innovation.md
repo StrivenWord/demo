@@ -2,9 +2,9 @@
 id: jam-red-innovation
 employee: jam
 flavor: red
-posture: enable
+posture: guardrails
 dimension: innovation
-setting: Hi
+setting: Lo
 
 status: unreviewed
 reviewer: ""
@@ -14,12 +14,12 @@ notes: |
 tags:
   - employee/jam
   - flavor/red
-  - posture/enable
+  - posture/guardrails
   - dimension/innovation
-  - setting/hi
+  - setting/lo
   - verdict/violation
 
 rationale: |
 implementation_note: |
 ---
-The nurse is encouraged to identify and pilot new AI tools within defined parameters. Tools that meet county security and operational standards may be adopted.
+The nurse may not adopt or pilot any AI tool not on the county's approved list. Tool selection is centralized.

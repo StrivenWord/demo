@@ -2,9 +2,9 @@
 id: puk-red-efficiency
 employee: puk
 flavor: red
-posture: enable
+posture: guardrails
 dimension: efficiency
-setting: Hi
+setting: Lo
 
 status: unreviewed
 reviewer: ""
@@ -14,13 +14,13 @@ notes: |
 tags:
   - employee/puk
   - flavor/red
-  - posture/enable
+  - posture/guardrails
   - dimension/efficiency
-  - setting/hi
+  - setting/lo
   - arc/pivot
-  - verdict/compliant
+  - verdict/violation
 
 rationale: |
 implementation_note: |
 ---
-The deputy may act directly on the AI-generated record flag after his own review, without waiting for dispatch confirmation. When operational circumstances require immediate action, the deputy proceeds on his own judgment.
+The deputy may not act directly on an AI-generated record flag without first confirming the result through an independent channel -- dispatch, a backup terminal, or a second officer. The AI output is a preliminary indicator only. The deputy proceeds based on confirmed information, not the AI result alone.

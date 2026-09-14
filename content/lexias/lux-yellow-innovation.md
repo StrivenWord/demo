@@ -2,7 +2,7 @@
 id: lux-yellow-innovation
 employee: lux
 flavor: yellow
-posture: exposed
+posture: enable
 dimension: innovation
 setting: Hi
 
@@ -14,12 +14,12 @@ notes: |
 tags:
   - employee/lux
   - flavor/yellow
-  - posture/exposed
+  - posture/enable
   - dimension/innovation
   - setting/hi
-  - verdict/compliant
+  - verdict/violation
 
 rationale: |
 implementation_note: |
 ---
-The caseworker may identify and use new AI tools based on her own assessment of their usefulness. Formal county approval is not required before a tool is used.
+The caseworker is encouraged to identify and pilot new AI tools within defined parameters. Tools that meet county security and operational standards may be adopted by the department.

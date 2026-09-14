@@ -2,7 +2,7 @@
 id: puk-red-accountability
 employee: puk
 flavor: red
-posture: enable
+posture: guardrails
 dimension: accountability
 setting: Hi
 
@@ -14,10 +14,10 @@ notes: |
 tags:
   - employee/puk
   - flavor/red
-  - posture/enable
+  - posture/guardrails
   - dimension/accountability
   - setting/hi
-  - verdict/compliant
+  - verdict/violation
 
 rationale: |
 implementation_note: |

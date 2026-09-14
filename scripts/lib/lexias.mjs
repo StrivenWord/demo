@@ -20,7 +20,7 @@ import { readFileSync, writeFileSync, readdirSync, existsSync } from "node:fs";
 import matter from "gray-matter";
 import { PARAGRAPH_ORDER, EMPLOYEE_IDS } from "./taxonomy.mjs";
 import { splitFrontmatter } from "./frontmatter.mjs";
-import { parseViolationArc, parseEmployees } from "./parse-v5.mjs";
+import { parseViolationArc, parseEmployees, V5_COLOUR_TO_POSTURE } from "./parse-v5.mjs";
 
 export const CONTENT_DIR = "content";
 export const LEXIA_DIR = `${CONTENT_DIR}/lexias`;
@@ -123,9 +123,15 @@ export function dateOnly(value) {
 }
 
 /**
- * The 64 original paragraph texts from the frozen v5 workshop document, keyed by lexia id.
- * Returns null when the document is absent, so a checkout without it still builds.
+ * The 64 original paragraph texts from the frozen v5 workshop document, keyed
+ * `<employee>-<posture>-<dimension>`.
  *
+ * Keyed by POSTURE, not colour. The frozen document uses the June 2026 colour convention
+ * and the tree now uses the July one; keying by colour would compare Guardrails text
+ * against Exposed text and report 41 spurious changes. Posture is the stable identity --
+ * that is the whole reason the validator pins its expectations to it too.
+ *
+ * Returns null when the document is absent, so a checkout without it still builds.
  * Used to badge each lexia identical/changed in review.json, and by scripts/drift.mjs.
  */
 export function readFrozenV5() {
@@ -135,12 +141,19 @@ export function readFrozenV5() {
   const original = new Map();
   for (const e of parseEmployees(body, parseViolationArc(frontmatter))) {
     for (const [flavorId, policy] of Object.entries(e.policies)) {
+      const posture = V5_COLOUR_TO_POSTURE[flavorId];
+      if (!posture) throw new Error(`Unknown colour "${flavorId}" in the frozen document.`);
       for (const p of policy.paragraphs) {
-        original.set(lexiaId(e.id, flavorId, p.dimension), p.text);
+        original.set(`${e.id}-${posture}-${p.dimension}`, p.text);
       }
     }
   }
   return original;
+}
+
+/** The key `readFrozenV5()` uses for a lexia, given its posture. */
+export function frozenKey(lexia) {
+  return `${lexia.employee}-${lexia.posture}-${lexia.dimension}`;
 }
 
 /**

@@ -2,9 +2,9 @@
 id: wow-green-innovation
 employee: wow
 flavor: green
-posture: guardrails
+posture: exposed
 dimension: innovation
-setting: Lo
+setting: Hi
 
 status: unreviewed
 reviewer: ""
@@ -14,13 +14,13 @@ notes: |
 tags:
   - employee/wow
   - flavor/green
-  - posture/guardrails
+  - posture/exposed
   - dimension/innovation
-  - setting/lo
+  - setting/hi
   - arc/pivot
-  - verdict/violation
+  - verdict/compliant
 
 rationale: |
 implementation_note: |
 ---
-The staffer may not adopt or pilot any AI drafting tool not on the county's approved list. Tool selection is centralized.
+The staffer may identify and use new AI drafting tools based on her own assessment. Formal county approval is not required.

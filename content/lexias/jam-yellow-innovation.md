@@ -2,7 +2,7 @@
 id: jam-yellow-innovation
 employee: jam
 flavor: yellow
-posture: exposed
+posture: enable
 dimension: innovation
 setting: Hi
 
@@ -14,12 +14,12 @@ notes: |
 tags:
   - employee/jam
   - flavor/yellow
-  - posture/exposed
+  - posture/enable
   - dimension/innovation
   - setting/hi
-  - verdict/compliant
+  - verdict/violation
 
 rationale: |
 implementation_note: |
 ---
-The nurse may identify and use new AI tools based on her own assessment of their usefulness. Formal county approval is not required.
+The nurse is encouraged to identify and pilot new AI tools within defined parameters. Tools that meet county security and operational standards may be adopted.

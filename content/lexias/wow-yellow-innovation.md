@@ -2,7 +2,7 @@
 id: wow-yellow-innovation
 employee: wow
 flavor: yellow
-posture: exposed
+posture: enable
 dimension: innovation
 setting: Hi
 
@@ -14,13 +14,13 @@ notes: |
 tags:
   - employee/wow
   - flavor/yellow
-  - posture/exposed
+  - posture/enable
   - dimension/innovation
   - setting/hi
   - arc/pivot
-  - verdict/compliant
+  - verdict/violation
 
 rationale: |
 implementation_note: |
 ---
-The staffer may identify and use new AI drafting tools based on her own assessment. Formal county approval is not required.
+The staffer is encouraged to identify and pilot new AI drafting tools within defined parameters. Tools that meet county security and operational standards may be adopted.

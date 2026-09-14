@@ -26,7 +26,7 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { pathToFileURL } from "node:url";
 import { parseDimensions } from "./lib/parse-definitions.mjs";
 import { PARAGRAPH_ORDER } from "./lib/taxonomy.mjs";
-import { readFlavors, readEmployees, readLexias, policiesFor, readFrozenV5 } from "./lib/lexias.mjs";
+import { readFlavors, readEmployees, readLexias, policiesFor, readFrozenV5, frozenKey } from "./lib/lexias.mjs";
 import { groupLexias } from "./lib/groups.mjs";
 
 const DEFS_FILE = "src/sources/operational-dimension-definitions.md";
@@ -81,10 +81,11 @@ export function buildReview({ lexias, flavorDefs }) {
   // glance which paragraphs are still the room's own words. `npm run drift` reports the
   // same comparison in detail.
   const frozen = readFrozenV5();
-  const driftOf = (id, text) => {
+  const driftOf = (lexia) => {
     if (!frozen) return "unknown";
-    if (!frozen.has(id)) return "added";
-    return frozen.get(id) === text ? "identical" : "changed";
+    const key = frozenKey(lexia);
+    if (!frozen.has(key)) return "added";
+    return frozen.get(key) === lexia.text ? "identical" : "changed";
   };
 
   const rows = [...lexias.values()]
@@ -105,7 +106,7 @@ export function buildReview({ lexias, flavorDefs }) {
       text: l.text,
       words: l.text.split(/\s+/).filter(Boolean).length,
       groupId: groupOf.get(l.id) ?? null,
-      driftFromV5: driftOf(l.id, l.text)
+      driftFromV5: driftOf(l)
     }))
     .sort((a, b) => a.id.localeCompare(b.id));
 

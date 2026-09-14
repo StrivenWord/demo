@@ -2,9 +2,9 @@
 id: jam-green-innovation
 employee: jam
 flavor: green
-posture: guardrails
+posture: exposed
 dimension: innovation
-setting: Lo
+setting: Hi
 
 status: unreviewed
 reviewer: ""
@@ -14,12 +14,12 @@ notes: |
 tags:
   - employee/jam
   - flavor/green
-  - posture/guardrails
+  - posture/exposed
   - dimension/innovation
-  - setting/lo
-  - verdict/violation
+  - setting/hi
+  - verdict/compliant
 
 rationale: |
 implementation_note: |
 ---
-The nurse may not adopt or pilot any AI tool not on the county's approved list. Tool selection is centralized.
+The nurse may identify and use new AI tools based on her own assessment of their usefulness. Formal county approval is not required.

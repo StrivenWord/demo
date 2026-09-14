@@ -2,9 +2,9 @@
 id: jam-green-efficiency
 employee: jam
 flavor: green
-posture: guardrails
+posture: exposed
 dimension: efficiency
-setting: Lo
+setting: Hi
 
 status: unreviewed
 reviewer: ""
@@ -14,12 +14,12 @@ notes: |
 tags:
   - employee/jam
   - flavor/green
-  - posture/guardrails
+  - posture/exposed
   - dimension/efficiency
-  - setting/lo
-  - verdict/violation
+  - setting/hi
+  - verdict/compliant
 
 rationale: |
 implementation_note: |
 ---
-The nurse may not implement the AI-ranked schedule without first reviewing it with her supervisor. The supervisor confirms or adjusts the day's priorities before the nurse begins her rounds. The nurse documents that supervisor review occurred and notes any departures from the AI ranking.
+The nurse may act directly on the AI-generated ranking and organize her day accordingly. The nurse applies her clinical judgment and may reorder visits where her professional assessment differs from the AI output.

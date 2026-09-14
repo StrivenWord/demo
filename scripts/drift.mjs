@@ -24,10 +24,8 @@
  *   npm run drift -- --fail-on-drift   exit 1 if anything has changed
  *   npm run drift -- --json            machine-readable output
  */
-import { readFileSync, existsSync } from "node:fs";
-import { splitFrontmatter } from "./lib/frontmatter.mjs";
-import { parseViolationArc, parseEmployees } from "./lib/parse-v5.mjs";
-import { readLexias, lexiaId } from "./lib/lexias.mjs";
+import { existsSync } from "node:fs";
+import { readLexias, readFrozenV5, frozenKey } from "./lib/lexias.mjs";
 import { wordDiff, formatDelta } from "./lib/word-diff.mjs";
 
 const FROZEN_V5 = "src/sources/workshop-1-policy-texts-v5.md";
@@ -44,18 +42,13 @@ if (!existsSync(FROZEN_V5)) {
 
 // ---------------------------------------------------------------------------
 // Build the original 64 cells from the frozen document.
+//
+// Keyed by POSTURE, not colour. The frozen document uses the June 2026 colour convention
+// and the tree uses the July one, so comparing by colour would line Guardrails text up
+// against Exposed text and report every cell as changed.
 // ---------------------------------------------------------------------------
 
-const { frontmatter, body } = splitFrontmatter(readFileSync(FROZEN_V5, "utf8"));
-const original = new Map();
-for (const e of parseEmployees(body, parseViolationArc(frontmatter))) {
-  for (const [flavorId, policy] of Object.entries(e.policies)) {
-    for (const p of policy.paragraphs) {
-      original.set(lexiaId(e.id, flavorId, p.dimension), p.text);
-    }
-  }
-}
-
+const original = readFrozenV5();
 const current = readLexias();
 
 // ---------------------------------------------------------------------------
@@ -67,17 +60,20 @@ const changed = [];
 const added = [];
 const removed = [];
 
-for (const [id, text] of original) {
-  const lexia = current.get(id);
-  if (!lexia) {
-    removed.push(id);
+const seen = new Set();
+for (const lexia of current.values()) {
+  const key = frozenKey(lexia);
+  seen.add(key);
+  if (!original.has(key)) {
+    added.push(lexia.id);
     continue;
   }
-  if (lexia.text === text) identical.push(id);
-  else changed.push({ id, from: text, to: lexia.text, delta: formatDelta(text, lexia.text) });
+  const text = original.get(key);
+  if (lexia.text === text) identical.push(lexia.id);
+  else changed.push({ id: lexia.id, from: text, to: lexia.text, delta: formatDelta(text, lexia.text) });
 }
-for (const id of current.keys()) {
-  if (!original.has(id)) added.push(id);
+for (const key of original.keys()) {
+  if (!seen.has(key)) removed.push(key);
 }
 
 identical.sort();

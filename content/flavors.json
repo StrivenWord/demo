@@ -1,7 +1,7 @@
 [
   {
-    "id": "green",
-    "name": "Green",
+    "id": "red",
+    "name": "Red",
     "label": "Guardrails",
     "posture": "guardrails",
     "character": "Most restrictive; maximum oversight",
@@ -13,8 +13,8 @@
     }
   },
   {
-    "id": "red",
-    "name": "Red",
+    "id": "yellow",
+    "name": "Yellow",
     "label": "Enable",
     "posture": "enable",
     "character": "Fast and safe; strong logging, open tool adoption",
@@ -39,8 +39,8 @@
     }
   },
   {
-    "id": "yellow",
-    "name": "Yellow",
+    "id": "green",
+    "name": "Green",
     "label": "Exposed",
     "posture": "exposed",
     "character": "Least constrained; highest exposure",

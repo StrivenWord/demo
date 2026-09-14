@@ -4,7 +4,7 @@ number: 3
 name: Jam
 role: Public Health Nurse
 violatedDimension: accountability
-compliantUnder: [blue, yellow]
+compliantUnder: [blue, green]
 ---
 
 ## Scenario

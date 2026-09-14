@@ -4,7 +4,7 @@ number: 2
 name: Puk
 role: "Sheriff's Deputy"
 violatedDimension: efficiency
-compliantUnder: [red, blue, yellow]
+compliantUnder: [yellow, blue, green]
 ---
 
 ## Scenario

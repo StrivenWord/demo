@@ -2,7 +2,7 @@
 id: lux-red-accountability
 employee: lux
 flavor: red
-posture: enable
+posture: guardrails
 dimension: accountability
 setting: Hi
 
@@ -14,7 +14,7 @@ notes: |
 tags:
   - employee/lux
   - flavor/red
-  - posture/enable
+  - posture/guardrails
   - dimension/accountability
   - setting/hi
   - verdict/violation

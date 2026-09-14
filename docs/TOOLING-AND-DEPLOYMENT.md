@@ -231,6 +231,36 @@ directly. Tagging triggers the portable zip workflow, so every tagged version ha
 downloadable offline archive permanently attached to it. That archive is the thing
 you send colleagues, and it is reproducible years later.
 
+### 4.5a The 2026-07-08 colour reassignment (v6.0)
+
+Upstream reassigned the flavor colours to a restriction-to-autonomy gradient, leaving the
+four postures and their Hi/Lo coordinates untouched. This repo followed at v6.0.
+
+| Posture | Colour before | Colour now |
+|---|---|---|
+| Guardrails | Green | **Red** |
+| Enable | Red | **Yellow** |
+| Light-touch | Blue | Blue |
+| Exposed | Yellow | **Green** |
+
+The mapping is a 3-cycle, not a swap, so `scripts/recolour.mjs` performs it through
+sentinels; a sequential find-and-replace carries green round to green and destroys the
+data.
+
+**The consequence to understand is that URLs did not break -- they changed meaning.**
+`jobs/lux/green/` resolved to Guardrails before and resolves to Exposed now. A stale
+bookmark, an emailed PDF or an old `#diff=` link does not 404; it silently shows the
+opposite policy. There is no code fix for that. The mitigations are:
+
+- every PDF footer names its posture, so a photocopied sheet identifies itself
+- `/transition/index.html` states the mapping, linked from the footer and the about page
+- the about page tells readers to go by the policy name, not the colour
+- the v5.0.0 archive is retained, so the June material stays retrievable
+
+Nothing in `scripts/validate.mjs` needed changing, because its expectations are keyed by
+posture rather than colour. That was deliberate groundwork, and it is why the migration
+touched content and presentation only.
+
 ### 4.6 .gitignore
 
 ```gitignore

@@ -2,7 +2,7 @@
 id: lux-yellow-efficiency
 employee: lux
 flavor: yellow
-posture: exposed
+posture: enable
 dimension: efficiency
 setting: Hi
 
@@ -14,12 +14,12 @@ notes: |
 tags:
   - employee/lux
   - flavor/yellow
-  - posture/exposed
+  - posture/enable
   - dimension/efficiency
   - setting/hi
-  - verdict/compliant
+  - verdict/violation
 
 rationale: |
 implementation_note: |
 ---
-The caseworker may act directly on the AI assessment after her own review. No additional approval step is required.
+The caseworker may act directly on the AI assessment after her own review, without a separate supervisor sign-off step. No additional approval step is required before the case moves forward.

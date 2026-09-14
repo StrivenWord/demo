@@ -4,7 +4,7 @@ number: 4
 name: Wow
 role: Administration Staffer
 violatedDimension: all
-compliantUnder: [yellow]
+compliantUnder: [green]
 ---
 
 ## Scenario

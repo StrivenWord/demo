@@ -2,9 +2,9 @@
 id: lux-green-efficiency
 employee: lux
 flavor: green
-posture: guardrails
+posture: exposed
 dimension: efficiency
-setting: Lo
+setting: Hi
 
 status: unreviewed
 reviewer: ""
@@ -14,12 +14,12 @@ notes: |
 tags:
   - employee/lux
   - flavor/green
-  - posture/guardrails
+  - posture/exposed
   - dimension/efficiency
-  - setting/lo
-  - verdict/violation
+  - setting/hi
+  - verdict/compliant
 
 rationale: |
 implementation_note: |
 ---
-Before any case is moved forward based on an AI-generated output, the assessment must be reviewed and confirmed by a supervisor or a second caseworker. The caseworker documents the AI tool used, the date, and the outcome of the supervisor review in the case record.
+The caseworker may act directly on the AI assessment after her own review. No additional approval step is required.

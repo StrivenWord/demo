@@ -27,7 +27,9 @@
  */
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "node:fs";
 import { CONFIG_LINE_ORDER, PARAGRAPH_ORDER } from "./lib/taxonomy.mjs";
-import { readFlavors, readEmployees, readLexias, lexiaId } from "./lib/lexias.mjs";
+import { readFlavors, readEmployees, readLexias, lexiaId, readFrozenV5 } from "./lib/lexias.mjs";
+import { splitFrontmatter } from "./lib/frontmatter.mjs";
+import { parseViolationArc, parseEmployees } from "./lib/parse-v5.mjs";
 
 const FROZEN_V5 = "src/sources/workshop-1-policy-texts-v5.md";
 const OUT_DIR = "dist";
@@ -144,67 +146,77 @@ if (!check) {
 }
 
 // --- Regression check -------------------------------------------------------
+//
+// Compares the POLICY TEXT of the rendered document against the frozen v5 document,
+// keyed by (employee, posture, dimension).
+//
+// It used to be a line-by-line byte comparison, which held while the colour convention
+// matched. It cannot now: the colours were reassigned on 2026-07-08, so the sixteen
+// section headings, the five violation-arc lines, and the order the sections appear in
+// all legitimately differ from June. Comparing lines would report those as failures and
+// bury the thing actually worth guarding.
+//
+// The property that matters is unchanged, and is what this asserts: the renderer loses
+// no policy text. A lossy renderer would mean the printed packet is not the same document
+// as the website.
 
 if (!existsSync(FROZEN_V5)) {
   console.error(`Missing ${FROZEN_V5}; nothing to check against.`);
   process.exit(1);
 }
 
-const frozen = readFileSync(FROZEN_V5, "utf8");
-const ours = text;
+const frozen = readFrozenV5();
 
-const IGNORABLE = [
-  /^\s*Zip:/, // no employee block, so no file in content/employees/
-  /^version:/, // now from content/meta.json
-  /^date:/ // now from content/meta.json
-];
-
-const a = frozen.split("\n");
-const b = ours.split("\n");
-const diffs = [];
-for (let i = 0; i < Math.max(a.length, b.length); i++) {
-  const x = a[i] ?? "<missing>";
-  const y = b[i] ?? "<missing>";
-  if (x === y) continue;
-  if (IGNORABLE.some((re) => re.test(x) || re.test(y))) continue;
-  diffs.push({ line: i + 1, frozen: x, ours: y });
-}
-
-// The Zip line means our output is one line shorter; tolerate that offset only if every
-// other line matches after removing ignorable lines.
-if (diffs.length) {
-  const strip = (lines) => lines.filter((l) => !IGNORABLE.some((re) => re.test(l)));
-  const sa = strip(a);
-  const sb = strip(b);
-  const realDiffs = [];
-  for (let i = 0; i < Math.max(sa.length, sb.length); i++) {
-    if ((sa[i] ?? "<missing>") !== (sb[i] ?? "<missing>")) {
-      realDiffs.push({ line: i + 1, frozen: sa[i] ?? "<missing>", ours: sb[i] ?? "<missing>" });
+// Parse our own rendered output back, mapping its colours to postures through the
+// CURRENT convention in content/flavors.json.
+const flavors = readFlavors();
+const postureByColour = new Map(flavors.map((f) => [f.id, f.posture]));
+const { frontmatter: ourFm, body: ourBody } = splitFrontmatter(text);
+const ours = new Map();
+for (const e of parseEmployees(ourBody, parseViolationArc(ourFm))) {
+  for (const [colour, policy] of Object.entries(e.policies)) {
+    const posture = postureByColour.get(colour);
+    if (!posture) {
+      console.error(`Rendered document names an unknown flavor "${colour}".`);
+      process.exit(1);
+    }
+    for (const p of policy.paragraphs) {
+      ours.set(`${e.id}-${posture}-${p.dimension}`, p.text);
     }
   }
-  if (!realDiffs.length) {
-    console.log(
-      "Round-trip OK: the rendered document matches the frozen v5 document,\n" +
-      "apart from the Zip arc line and the version/date fields."
+}
+
+const problems = [];
+for (const [key, expected] of frozen) {
+  if (!ours.has(key)) {
+    problems.push(`  ${key}: missing from the rendered document`);
+    continue;
+  }
+  if (ours.get(key) !== expected) {
+    problems.push(
+      `  ${key}: text differs\n    frozen: ${clip(expected)}\n    ours:   ${clip(ours.get(key))}`
     );
-    process.exit(0);
   }
+}
+for (const key of ours.keys()) {
+  if (!frozen.has(key)) problems.push(`  ${key}: present in the rendered document but not the frozen one`);
+}
+
+if (problems.length) {
   console.error(
-    `\nRendered document differs from ${FROZEN_V5} in ${realDiffs.length} line(s) ` +
-    `beyond the expected version/date/Zip differences:\n`
+    `\nThe rendered document does not reproduce the policy text of ${FROZEN_V5}:\n`
   );
-  for (const d of realDiffs.slice(0, 12)) {
-    console.error(`  line ${d.line}`);
-    console.error(`    frozen: ${JSON.stringify(clip(d.frozen))}`);
-    console.error(`    ours:   ${JSON.stringify(clip(d.ours))}`);
-  }
-  if (realDiffs.length > 12) console.error(`  ... and ${realDiffs.length - 12} more`);
+  for (const p of problems.slice(0, 12)) console.error(p);
+  if (problems.length > 12) console.error(`  ... and ${problems.length - 12} more`);
   console.error("");
   process.exit(1);
 }
 
-console.log("Round-trip OK: the rendered document matches the frozen v5 document exactly.");
+console.log(
+  `Round-trip OK: all ${frozen.size} policy paragraphs reproduce the frozen v5 document\n` +
+  `exactly, matched by posture. Colour labels and section order differ by design.`
+);
 
 function clip(s, n = 96) {
-  return s.length <= n ? s : s.slice(0, n - 1) + "…";
+  return s.length <= n ? s : s.slice(0, n - 1) + "\u2026";
 }

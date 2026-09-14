@@ -2,7 +2,7 @@
 id: wow-yellow-efficiency
 employee: wow
 flavor: yellow
-posture: exposed
+posture: enable
 dimension: efficiency
 setting: Hi
 
@@ -14,13 +14,13 @@ notes: |
 tags:
   - employee/wow
   - flavor/yellow
-  - posture/exposed
+  - posture/enable
   - dimension/efficiency
   - setting/hi
   - arc/pivot
-  - verdict/compliant
+  - verdict/violation
 
 rationale: |
 implementation_note: |
 ---
-The staffer may route the draft notice for signature after her own review. Before routing, the staffer verifies every factual claim, regulatory citation, deadline, and appeal rights statement against the source documents. The AI tool cannot supply facts, deadlines, or citations; the staffer confirms each element independently.
+The staffer may route the draft notice for signature after her own review, without a separate supervisor sign-off step. Before routing, the staffer verifies every factual claim, regulatory citation, deadline, and appeal rights statement against the source documents. The AI tool cannot supply facts, deadlines, or citations; the staffer confirms each element independently.

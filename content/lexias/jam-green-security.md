@@ -2,9 +2,9 @@
 id: jam-green-security
 employee: jam
 flavor: green
-posture: guardrails
+posture: exposed
 dimension: security
-setting: Hi
+setting: Lo
 
 status: unreviewed
 reviewer: ""
@@ -14,12 +14,12 @@ notes: |
 tags:
   - employee/jam
   - flavor/green
-  - posture/guardrails
+  - posture/exposed
   - dimension/security
-  - setting/hi
-  - verdict/violation
+  - setting/lo
+  - verdict/compliant
 
 rationale: |
 implementation_note: |
 ---
-The nurse may use the county's designated AI prioritization tool to receive a ranked caseload for the day. The tool must be county-procured and appear on the county's approved AI tool list. Resident health information processed by the tool must not leave county systems. All approved tools are auditable by IT.
+The nurse may use any available AI prioritization tool, including commercially available tools, to assist with caseload management. The nurse is responsible for appropriate handling of any resident data entered into non-county tools.

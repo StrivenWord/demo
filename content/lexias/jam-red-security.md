@@ -2,7 +2,7 @@
 id: jam-red-security
 employee: jam
 flavor: red
-posture: enable
+posture: guardrails
 dimension: security
 setting: Hi
 
@@ -14,7 +14,7 @@ notes: |
 tags:
   - employee/jam
   - flavor/red
-  - posture/enable
+  - posture/guardrails
   - dimension/security
   - setting/hi
   - verdict/violation

@@ -20,6 +20,25 @@
  */
 import { PARAGRAPH_ORDER } from "./taxonomy.mjs";
 
+/**
+ * The colour convention the frozen document uses (June 2026).
+ *
+ * This belongs here, with the document it describes, and must never be "corrected" to
+ * match whatever content/flavors.json currently says. The frozen file's headings read
+ * "Employee 1 / Green: Guardrails"; that is a fact about the document, not a claim about
+ * the present.
+ *
+ * Anything comparing the frozen document against the current tree has to go through
+ * posture, because the colours have been reassigned since (2026-07-08) and comparing by
+ * colour would line Guardrails text up against Exposed text and call it a difference.
+ */
+export const V5_COLOUR_TO_POSTURE = {
+  green: "guardrails",
+  red: "enable",
+  blue: "lighttouch",
+  yellow: "exposed"
+};
+
 // ---------------------------------------------------------------------------
 // The violation arc (BUILD-SPEC 4.2). Lines under "violation arc:" of the form
 // "  Name: <dimension text> -- clean on <list>".

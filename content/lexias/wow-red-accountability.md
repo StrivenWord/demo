@@ -2,7 +2,7 @@
 id: wow-red-accountability
 employee: wow
 flavor: red
-posture: enable
+posture: guardrails
 dimension: accountability
 setting: Hi
 
@@ -14,7 +14,7 @@ notes: |
 tags:
   - employee/wow
   - flavor/red
-  - posture/enable
+  - posture/guardrails
   - dimension/accountability
   - setting/hi
   - arc/pivot

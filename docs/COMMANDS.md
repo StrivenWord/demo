@@ -46,6 +46,10 @@ npm run dev          # start working
 | `npm run scaffold` | Regenerates derived tags on every lexia | After changing employees or flavors |
 | `npm run migrate` | One-shot: rebuilds `content/lexias/` from the frozen v5 document | Never, ordinarily |
 
+`scripts/recolour.mjs` applied the 2026-07-08 colour reassignment and is kept as the
+record of it. It is not wired to an npm script; running it again would rotate the colours
+a second time. See TOOLING-AND-DEPLOYMENT 4.5a.
+
 `npm run extract` still works as a deprecated alias for `npm run build:data` and prints
 a warning.
 

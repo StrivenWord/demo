@@ -2,9 +2,9 @@
 id: puk-red-innovation
 employee: puk
 flavor: red
-posture: enable
+posture: guardrails
 dimension: innovation
-setting: Hi
+setting: Lo
 
 status: unreviewed
 reviewer: ""
@@ -14,12 +14,12 @@ notes: |
 tags:
   - employee/puk
   - flavor/red
-  - posture/enable
+  - posture/guardrails
   - dimension/innovation
-  - setting/hi
-  - verdict/compliant
+  - setting/lo
+  - verdict/violation
 
 rationale: |
 implementation_note: |
 ---
-The deputy is encouraged to identify and pilot new AI tools within defined parameters. Tools that meet department security and CJIS standards may be adopted.
+The deputy may not adopt, download, or pilot any AI tool not on the department's approved list. Tool selection is centralized.

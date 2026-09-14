@@ -2,7 +2,7 @@
 id: puk-yellow-efficiency
 employee: puk
 flavor: yellow
-posture: exposed
+posture: enable
 dimension: efficiency
 setting: Hi
 
@@ -14,7 +14,7 @@ notes: |
 tags:
   - employee/puk
   - flavor/yellow
-  - posture/exposed
+  - posture/enable
   - dimension/efficiency
   - setting/hi
   - arc/pivot
@@ -23,4 +23,4 @@ tags:
 rationale: |
 implementation_note: |
 ---
-The deputy may act directly on the AI-generated result after his own review. No confirmation step is required before action.
+The deputy may act directly on the AI-generated record flag after his own review, without waiting for dispatch confirmation. When operational circumstances require immediate action, the deputy proceeds on his own judgment.

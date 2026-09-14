@@ -2,9 +2,9 @@
 id: wow-red-innovation
 employee: wow
 flavor: red
-posture: enable
+posture: guardrails
 dimension: innovation
-setting: Hi
+setting: Lo
 
 status: unreviewed
 reviewer: ""
@@ -14,13 +14,13 @@ notes: |
 tags:
   - employee/wow
   - flavor/red
-  - posture/enable
+  - posture/guardrails
   - dimension/innovation
-  - setting/hi
+  - setting/lo
   - arc/pivot
   - verdict/violation
 
 rationale: |
 implementation_note: |
 ---
-The staffer is encouraged to identify and pilot new AI drafting tools within defined parameters. Tools that meet county security and operational standards may be adopted.
+The staffer may not adopt or pilot any AI drafting tool not on the county's approved list. Tool selection is centralized.

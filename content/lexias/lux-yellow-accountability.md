@@ -2,9 +2,9 @@
 id: lux-yellow-accountability
 employee: lux
 flavor: yellow
-posture: exposed
+posture: enable
 dimension: accountability
-setting: Lo
+setting: Hi
 
 status: unreviewed
 reviewer: ""
@@ -14,12 +14,12 @@ notes: |
 tags:
   - employee/lux
   - flavor/yellow
-  - posture/exposed
+  - posture/enable
   - dimension/accountability
-  - setting/lo
-  - verdict/compliant
+  - setting/hi
+  - verdict/violation
 
 rationale: |
 implementation_note: |
 ---
-No AI-specific logging is required. The caseworker, not the AI tool, makes the determination.
+Every AI-assisted intake interaction is logged with the caseworker's staff ID, the tool name, and a timestamp. Logs are retained for a minimum of 90 days. A named caseworker is responsible for every determination. The AI assessment is an input to that determination; the caseworker, not the AI tool, makes the determination.

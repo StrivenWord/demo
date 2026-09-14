@@ -2,9 +2,9 @@
 id: puk-green-innovation
 employee: puk
 flavor: green
-posture: guardrails
+posture: exposed
 dimension: innovation
-setting: Lo
+setting: Hi
 
 status: unreviewed
 reviewer: ""
@@ -14,12 +14,12 @@ notes: |
 tags:
   - employee/puk
   - flavor/green
-  - posture/guardrails
+  - posture/exposed
   - dimension/innovation
-  - setting/lo
-  - verdict/violation
+  - setting/hi
+  - verdict/compliant
 
 rationale: |
 implementation_note: |
 ---
-The deputy may not adopt, download, or pilot any AI tool not on the department's approved list. Tool selection is centralized.
+The deputy may identify and use new AI tools based on his own assessment of their usefulness in the field. Formal department approval is not required.

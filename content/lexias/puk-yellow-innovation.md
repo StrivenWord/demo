@@ -2,7 +2,7 @@
 id: puk-yellow-innovation
 employee: puk
 flavor: yellow
-posture: exposed
+posture: enable
 dimension: innovation
 setting: Hi
 
@@ -14,7 +14,7 @@ notes: |
 tags:
   - employee/puk
   - flavor/yellow
-  - posture/exposed
+  - posture/enable
   - dimension/innovation
   - setting/hi
   - verdict/compliant
@@ -22,4 +22,4 @@ tags:
 rationale: |
 implementation_note: |
 ---
-The deputy may identify and use new AI tools based on his own assessment of their usefulness in the field. Formal department approval is not required.
+The deputy is encouraged to identify and pilot new AI tools within defined parameters. Tools that meet department security and CJIS standards may be adopted.

@@ -2,7 +2,7 @@
 id: puk-red-security
 employee: puk
 flavor: red
-posture: enable
+posture: guardrails
 dimension: security
 setting: Hi
 
@@ -14,10 +14,10 @@ notes: |
 tags:
   - employee/puk
   - flavor/red
-  - posture/enable
+  - posture/guardrails
   - dimension/security
   - setting/hi
-  - verdict/compliant
+  - verdict/violation
 
 rationale: |
 implementation_note: |

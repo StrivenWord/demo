@@ -2,9 +2,9 @@
 id: wow-green-efficiency
 employee: wow
 flavor: green
-posture: guardrails
+posture: exposed
 dimension: efficiency
-setting: Lo
+setting: Hi
 
 status: unreviewed
 reviewer: ""
@@ -14,13 +14,13 @@ notes: |
 tags:
   - employee/wow
   - flavor/green
-  - posture/guardrails
+  - posture/exposed
   - dimension/efficiency
-  - setting/lo
+  - setting/hi
   - arc/pivot
-  - verdict/violation
+  - verdict/compliant
 
 rationale: |
 implementation_note: |
 ---
-The staffer may not route the draft notice for signature without supervisor sign-off. Before routing, the staffer verifies every factual claim, regulatory citation, deadline, and appeal rights statement against the source documents. The AI tool cannot supply facts, deadlines, or citations; the staffer confirms each element independently. The routing slip notes that AI was used in drafting and that verification is complete.
+The staffer may route the draft notice for signature after her own review. Before routing, the staffer verifies every factual claim, regulatory citation, deadline, and appeal rights statement against the source documents. The AI tool cannot supply facts, deadlines, or citations; the staffer confirms each element independently.

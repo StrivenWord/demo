@@ -25,6 +25,12 @@
   --flavor-yellow:   #b45309;
   --flavor-current:  var(--text-strong);
 
+  /* Danger accent, deliberately separate from --flavor-red. Under the July 2026 colour
+     convention red labels Guardrails, the MOST governed posture, so a red-bordered
+     warning drawn from --flavor-red would read backwards on the least governed page.
+     Same hex today; the point is that the two meanings no longer share a variable. */
+  --accent-danger:   #b91c1c;
+
   --measure: 65ch;
   --radius: 6px;
 
@@ -47,6 +53,7 @@
     --flavor-red:     #f87171;
     --flavor-blue:    #22d3ee;
     --flavor-yellow:  #fbbf24;
+    --accent-danger:  #f87171;
   }
 }
 
@@ -258,14 +265,14 @@ footer p { max-width: none; margin: 0; max-width: 72rem; margin-inline: auto; }
 .risk-callout {
   display: flex;
   gap: 0.85rem;
-  border-left: 4px solid var(--flavor-red);
+  border-left: 4px solid var(--accent-danger);
   background: var(--surface-sunken);
   padding: 1rem 1.25rem;
   margin: 1.5rem 0;
   border-radius: 0 var(--radius) var(--radius) 0;
   max-width: var(--measure);
 }
-.risk-callout__icon { flex-shrink: 0; color: var(--flavor-red); margin-top: 0.15rem; }
+.risk-callout__icon { flex-shrink: 0; color: var(--accent-danger); margin-top: 0.15rem; }
 .risk-callout__title { font-weight: 700; margin: 0 0 0.3rem; }
 .risk-callout__text { margin: 0; }
 

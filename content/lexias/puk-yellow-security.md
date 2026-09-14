@@ -2,9 +2,9 @@
 id: puk-yellow-security
 employee: puk
 flavor: yellow
-posture: exposed
+posture: enable
 dimension: security
-setting: Lo
+setting: Hi
 
 status: unreviewed
 reviewer: ""
@@ -14,12 +14,12 @@ notes: |
 tags:
   - employee/puk
   - flavor/yellow
-  - posture/exposed
+  - posture/enable
   - dimension/security
-  - setting/lo
+  - setting/hi
   - verdict/compliant
 
 rationale: |
 implementation_note: |
 ---
-The deputy may use any available AI tool for field identification tasks, including personally owned devices and commercially available applications. The deputy is responsible for appropriate handling of any data entered into non-department tools. Criminal justice data entered into commercial tools may be processed outside county or state-authorized systems; the deputy exercises professional judgment about what information to enter.
+The deputy may use only department-issued, security-vetted AI tools for field identification tasks including plate recognition. The tool must appear on the department's approved list and must comply with CJIS security requirements. Criminal justice data processed by the tool must not leave county or state-authorized systems. All approved tools are auditable by IT.
