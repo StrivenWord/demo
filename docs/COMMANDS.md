@@ -24,18 +24,33 @@ npm run dev          # start working
 | `npm run watch` | Rebuilds `site/` on change, no server | Watching output files directly |
 | `npm run build` | One-shot build to `site/` | Before checking or deploying |
 | `npm run clean` | Deletes `site/` | When output looks stale |
-| `npm test` | Unit test for the `rel` filter | After touching URL handling |
+| `npm test` | `rel` units, workshop-doc round-trip, divergence lockfile, tag freshness | After touching URLs, content, or tags |
 | `npm run check` | Portability lint over built output | Before every release |
 | `npm run preview` | Opens `site/index.html` as a **file://** URL | The real offline test |
-| `npm run extract` | Sources to `data.json` and `src/assets/data.js` | After editing `src/sources/` |
-| `npm run validate` | Consistency checks on `data.json` | After extract |
+| `npm run build:data` | `content/` to `data.json`, `review.json`, `src/assets/data.js` | After editing `content/` |
+| `npm run validate` | 17 consistency checks on `content/` and `data.json` | After build:data |
 | `npm run pdfs` | Playwright renders 21 PDFs into `site/pdf/` | Before release |
 | `npm run all` | `build` + `pdfs` + `check` | Full local build |
 | `npm run portable` | `all` + zips to `county-ai-roles-v5.0.0.zip` | Sending to a colleague |
 
-Commands marked as producing `data.json` or PDFs depend on `scripts/extract.mjs`,
-`scripts/validate.mjs`, and `scripts/render-pdfs.mjs`, which are specified in
-`BUILD-SPEC.md` sections 5 and 8 and not yet written.
+**Review and provenance**
+
+| Command | What it does | When |
+|---|---|---|
+| `npm run lint:lexias` | Which of the 64 paragraphs agree with each other, and which do not | Reviewing; after editing a paragraph |
+| `npm run lint:lexias -- --fail-on-change` | Fails if the divergence shape moved from the lockfile | CI; runs inside `npm test` |
+| `npm run lint:lexias -- --write-lock` | Records the current shape as intended | After a deliberate divergence change |
+| `npm run drift` | How far `content/` has moved from the frozen v5 workshop document | Before presenting the material |
+| `npm run drift -- --full` | The same, with complete word-level diffs | Investigating a change |
+| `npm run workshop-doc` | Rebuilds the single printable document into `dist/` | Printing a packet |
+| `npm run scaffold` | Regenerates derived tags on every lexia | After changing employees or flavors |
+| `npm run migrate` | One-shot: rebuilds `content/lexias/` from the frozen v5 document | Never, ordinarily |
+
+`npm run extract` still works as a deprecated alias for `npm run build:data` and prints
+a warning.
+
+`npm run migrate --force` overwrites the whole lexia tree, discarding review state and
+any edits. It exists as the record of how the tree was produced, not as a routine command.
 
 ## 2. The one thing to understand about this project
 
@@ -96,9 +111,13 @@ Serves on `http://localhost:8080` and rebuilds on save. `--incremental` means on
 changed templates rebuild, so saves are near-instant.
 
 Watched automatically: everything under `src/`. Watched explicitly via
-`eleventy.config.js`: `data.json`, which lives at the repo root and would otherwise be
-invisible to the watcher. That matters because editing a source document and running
-`npm run extract` in a second terminal will correctly trigger a rebuild.
+`eleventy.config.js`: `data.json`, `review.json` and `content/`, all of which live
+outside the Eleventy input directory and would otherwise be invisible to the watcher.
+
+Note what this does and does not give you. Editing a lexia triggers a rebuild, but the
+rebuild reads `data.json`, which has not changed yet -- so the page will not update
+until you run `npm run build:data`. That is deliberate: an edit visibly doing nothing is
+a clearer signal than a stale page that looks fresh.
 
 Stop with `Ctrl-C`. Change the port with `npx eleventy --serve --port=3000`, or edit
 `setServerOptions` in `eleventy.config.js`.
@@ -113,18 +132,30 @@ npm run clean && npm run all && npm run preview
 failure. `preview` then opens the result as a `file://` URL so you see what the
 recipient sees. Click through every section, including the diff view.
 
-### 3.3 Content changed in `herk`
+### 3.3 Changing a policy paragraph
+
+Policy text is authored **in this repo**, one paragraph per file. It is no longer edited
+upstream in `herk` and copied in.
 
 ```bash
-# copy the updated markdown into src/sources/ first
-npm run extract
-git diff data.json     # the reviewable record of what actually changed
-npm run validate
+# edit content/lexias/<employee>-<flavor>-<dimension>.md
+npm run build:data
+git diff content/ data.json   # the reviewable record of what actually changed
+npm run validate              # 0 errors, 1 expected "Zip" warning
+npm run lint:lexias           # did paragraphs that should agree stop agreeing?
+npm run drift                 # how far is this from the workshop text now?
 npm run dev
 ```
 
-`data.json` is committed deliberately, so its diff is the review artifact for a
-content change. See TOOLING-AND-DEPLOYMENT.md section 4.4.
+Both diffs are review artifacts: `content/` shows the prose in context, `data.json`
+shows it structurally. See TOOLING-AND-DEPLOYMENT.md section 4.4.
+
+Watch for two things. Editors autocorrect ` -- ` into an em dash and straight quotes
+into curly ones; `npm run validate` fails on both. And `compliantUnder` in
+`content/employees/*.md` drives every Compliant/Violation verdict on the site.
+
+Dimension definitions are different: `src/sources/operational-dimension-definitions.md`
+is still vendored from `herk`. Copy a newer version in by hand, then `npm run build:data`.
 
 ### 3.4 Shipping the offline folder
 
@@ -183,25 +214,34 @@ county-ai-roles/
 ├── package.json            # the commands in section 1
 ├── eleventy.config.js      # section 4
 ├── .gitignore  .nojekyll
+├── content/                # THE SOURCE OF TRUTH
+│   ├── lexias/             # 64 policy paragraphs, one per file
+│   ├── employees/          # 4 employees: scenario, question, verdicts
+│   ├── flavors.json        # flavor / posture / Hi-Lo authority
+│   ├── meta.json           # version and date of the material
+│   └── variant-groups.lock.json
 ├── scripts/
-│   ├── lib/rel.mjs         # relative URL resolution
+│   ├── lib/                # taxonomy, frontmatter, parse-v5, lexias, groups, word-diff, rel
+│   ├── build-data.mjs      # content/ -> data.json + review.json
+│   ├── validate.mjs        # 17 checks
+│   ├── lint-lexias.mjs  drift.mjs  render-workshop-doc.mjs  scaffold-template.mjs
+│   ├── migrate-lexias.mjs  # one-shot, kept as the record of the split
 │   ├── test-rel.mjs        # 9/9 passing
-│   ├── check-portable.mjs  # portability lint
-│   ├── preview.mjs         # file:// preview
-│   └── zip.mjs             # offline archive
+│   ├── check-portable.mjs  preview.mjs  zip.mjs  render-pdfs.mjs
 ├── src/
-│   ├── _includes/base.njk  # minimal layout
-│   ├── _data/              # empty; combos.js goes here (BUILD-SPEC 6.1)
-│   ├── sources/            # empty; vendored markdown goes here (BUILD-SPEC 2.4)
-│   ├── assets/styles.css   # design tokens, base typography
-│   └── index.njk           # placeholder landing page
+│   ├── _includes/          # base, nav, footer, macros, print
+│   ├── _data/              # policy, combos, review, reviewStatuses, riskCallouts
+│   ├── sources/            # frozen v5 document + vendored dimension definitions
+│   ├── assets/             # styles.css, scripts.js
+│   ├── index.njk  about.njk
+│   ├── jobs/  policies/  print/  review/
 └── docs/
 ```
 
-`npm install` adds 132 packages. A build currently takes about 0.2 seconds.
+`npm install` adds 132 packages. A full build writes 150 pages in about 1.2 seconds.
 
-Not yet written, all specified in `BUILD-SPEC.md`: `extract.mjs`, `validate.mjs`,
-`render-pdfs.mjs`, the 26 content pages, the 21 print pages, and the client JS.
+Built and verified: 26 content pages, 21 print pages, 102 review pages, 21 PDFs, and the
+client diff view.
 
 ## 6. Troubleshooting
 

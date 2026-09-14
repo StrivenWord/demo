@@ -1,7 +1,7 @@
 ---
 title: Design System
 project: county-ai-roles
-date: 2026-09-13
+date: 2026-09-14
 status: Decided
 supersedes: COUNTY_AI_ROLES_DESIGN_SPEC.md sections 4.1, 4.2, 4.3
 ---
@@ -72,6 +72,16 @@ All four clear AA for normal text in both themes. Exposed as
 
 **Yellow is amber-700 / amber-400.** This is deliberate and is the palette's one
 warm note.
+
+**The Label column is a pairing, not an identity.** The four *postures* -- Guardrails,
+Enable, Light-touch, Exposed -- are fixed, and each is defined by its four Hi/Lo
+coordinates. Which colour labels which posture is a separate, movable fact: upstream
+reassigned it on 2026-07-08 to a restriction-to-autonomy gradient, and this repo will
+follow. `content/flavors.json` is the single place that pairing is written down.
+
+When it moves, **the hex values stay with the colour name** -- `--flavor-red` stays red.
+Only the pairing in the table above changes. Nothing in this section needs recalculating,
+because the contrast ratios belong to the hues, not to the postures.
 
 ### 2.3 Dimension colors
 
@@ -263,6 +273,30 @@ Efficiency: Low. Innovation: Low."
 `--surface-sunken`, warning glyph inlined as SVG (not an icon font, not an external
 sprite). Heading is the word "Risk" plus the callout title, so the meaning survives
 grayscale.
+
+**Known conflict, to resolve at the colour reassignment.** The callout borrows
+`--flavor-red` as a generic danger accent. Under the June pairing red means Enable, so
+this is merely arbitrary; under the July pairing red means Guardrails, the *most* governed
+posture, and a red-bordered warning on the least governed page reads backwards. Split a
+dedicated `--accent-danger` token out of `--flavor-red` (same hex initially) so the two
+meanings stop sharing a variable.
+
+### 6.3a Review components
+
+Used only under `/review/`. **Deliberately monochrome.** Section 2.2 reserves colour for
+the four policy flavors, and an editorial layer with its own palette would compete with
+the material it exists to review.
+
+- **Status chip** — `unreviewed | in-review | approved | flagged`. Distinguished by a
+  leading glyph (`○ ◑ ● △`), the label word, and border weight or style. Never by fill
+  alone.
+- **Drift chip** — "As written at the workshop" or "Edited since the workshop". Wording
+  carries the meaning; weight reinforces it.
+- **Diff runs** — `<ins>` and `<del>`, each carrying a visually hidden "added: " or
+  "removed: " prefix, so the distinction survives without styling. Insertions take an
+  underline and a raised background rather than colour; deletions take reduced opacity.
+  The runs are computed at build time and baked into the HTML, so the comparison works
+  with JavaScript disabled (BUILD-SPEC section 0).
 
 ### 6.4 Diff highlight
 
