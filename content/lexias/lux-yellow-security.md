@@ -11,7 +11,14 @@ reviewer: ""
 reviewed: ""
 notes: |
 
-tags: []
+tags:
+  - employee/lux
+  - flavor/yellow
+  - posture/exposed
+  - dimension/security
+  - setting/lo
+  - arc/pivot
+  - verdict/compliant
 
 rationale: |
 implementation_note: |

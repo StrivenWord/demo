@@ -11,7 +11,13 @@ reviewer: ""
 reviewed: ""
 notes: |
 
-tags: []
+tags:
+  - employee/lux
+  - flavor/green
+  - posture/guardrails
+  - dimension/accountability
+  - setting/hi
+  - verdict/violation
 
 rationale: |
 implementation_note: |

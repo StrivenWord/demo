@@ -11,7 +11,14 @@ reviewer: ""
 reviewed: ""
 notes: |
 
-tags: []
+tags:
+  - employee/wow
+  - flavor/yellow
+  - posture/exposed
+  - dimension/efficiency
+  - setting/hi
+  - arc/pivot
+  - verdict/compliant
 
 rationale: |
 implementation_note: |

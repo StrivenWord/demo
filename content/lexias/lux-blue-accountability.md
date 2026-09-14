@@ -11,7 +11,13 @@ reviewer: ""
 reviewed: ""
 notes: |
 
-tags: []
+tags:
+  - employee/lux
+  - flavor/blue
+  - posture/lighttouch
+  - dimension/accountability
+  - setting/lo
+  - verdict/violation
 
 rationale: |
 implementation_note: |

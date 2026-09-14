@@ -11,7 +11,13 @@ reviewer: ""
 reviewed: ""
 notes: |
 
-tags: []
+tags:
+  - employee/jam
+  - flavor/green
+  - posture/guardrails
+  - dimension/efficiency
+  - setting/lo
+  - verdict/violation
 
 rationale: |
 implementation_note: |

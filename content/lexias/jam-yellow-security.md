@@ -11,7 +11,13 @@ reviewer: ""
 reviewed: ""
 notes: |
 
-tags: []
+tags:
+  - employee/jam
+  - flavor/yellow
+  - posture/exposed
+  - dimension/security
+  - setting/lo
+  - verdict/compliant
 
 rationale: |
 implementation_note: |

@@ -11,7 +11,14 @@ reviewer: ""
 reviewed: ""
 notes: |
 
-tags: []
+tags:
+  - employee/wow
+  - flavor/green
+  - posture/guardrails
+  - dimension/innovation
+  - setting/lo
+  - arc/pivot
+  - verdict/violation
 
 rationale: |
 implementation_note: |

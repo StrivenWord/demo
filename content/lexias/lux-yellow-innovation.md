@@ -11,7 +11,13 @@ reviewer: ""
 reviewed: ""
 notes: |
 
-tags: []
+tags:
+  - employee/lux
+  - flavor/yellow
+  - posture/exposed
+  - dimension/innovation
+  - setting/hi
+  - verdict/compliant
 
 rationale: |
 implementation_note: |

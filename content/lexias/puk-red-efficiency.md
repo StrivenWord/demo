@@ -11,7 +11,14 @@ reviewer: ""
 reviewed: ""
 notes: |
 
-tags: []
+tags:
+  - employee/puk
+  - flavor/red
+  - posture/enable
+  - dimension/efficiency
+  - setting/hi
+  - arc/pivot
+  - verdict/compliant
 
 rationale: |
 implementation_note: |

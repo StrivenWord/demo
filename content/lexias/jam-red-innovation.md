@@ -11,7 +11,13 @@ reviewer: ""
 reviewed: ""
 notes: |
 
-tags: []
+tags:
+  - employee/jam
+  - flavor/red
+  - posture/enable
+  - dimension/innovation
+  - setting/hi
+  - verdict/violation
 
 rationale: |
 implementation_note: |

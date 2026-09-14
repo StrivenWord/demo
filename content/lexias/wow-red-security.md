@@ -11,7 +11,14 @@ reviewer: ""
 reviewed: ""
 notes: |
 
-tags: []
+tags:
+  - employee/wow
+  - flavor/red
+  - posture/enable
+  - dimension/security
+  - setting/hi
+  - arc/pivot
+  - verdict/violation
 
 rationale: |
 implementation_note: |
