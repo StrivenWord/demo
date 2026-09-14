@@ -1,0 +1,3759 @@
+{
+  "meta": {
+    "lexiaCount": 64,
+    "groupCount": 32,
+    "identicalGroups": 19,
+    "divergentGroups": 13
+  },
+  "statusCounts": {
+    "unreviewed": 64
+  },
+  "lexias": [
+    {
+      "id": "jam-blue-accountability",
+      "employee": "jam",
+      "flavor": "blue",
+      "posture": "lighttouch",
+      "dimension": "accountability",
+      "setting": "Lo",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "No AI-specific logging of prioritization tool use is required beyond what existing case record and supervisory practices already capture. The nurse, not the AI tool, determines the day's priorities.",
+      "words": 29,
+      "groupId": "jam-accountability-lo",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "jam-blue-efficiency",
+      "employee": "jam",
+      "flavor": "blue",
+      "posture": "lighttouch",
+      "dimension": "efficiency",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The nurse may act directly on the AI-generated ranking and organize her day accordingly, without a separate supervisor confirmation step.",
+      "words": 20,
+      "groupId": "jam-efficiency-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "jam-blue-innovation",
+      "employee": "jam",
+      "flavor": "blue",
+      "posture": "lighttouch",
+      "dimension": "innovation",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The nurse is encouraged to identify and pilot new AI tools within defined parameters. Tools that meet county security and operational standards may be adopted.",
+      "words": 25,
+      "groupId": "jam-innovation-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "jam-blue-security",
+      "employee": "jam",
+      "flavor": "blue",
+      "posture": "lighttouch",
+      "dimension": "security",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The nurse may use the county's designated AI prioritization tool to receive a ranked caseload for the day. The tool must be county-procured and appear on the county's approved AI tool list. Resident health information processed by the tool must not leave county systems. All approved tools are auditable by IT.",
+      "words": 51,
+      "groupId": "jam-security-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "jam-green-accountability",
+      "employee": "jam",
+      "flavor": "green",
+      "posture": "guardrails",
+      "dimension": "accountability",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "Every use of the AI prioritization tool is logged with the nurse's staff ID, the tool name, and a timestamp. Logs are retained for a minimum of 90 days. The supervisor is the named responsible party for the confirmed daily schedule. The AI ranking is an input to that schedule; the nurse and supervisor, not the AI tool, determine the day's priorities.",
+      "words": 62,
+      "groupId": "jam-accountability-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "jam-green-efficiency",
+      "employee": "jam",
+      "flavor": "green",
+      "posture": "guardrails",
+      "dimension": "efficiency",
+      "setting": "Lo",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The nurse may not implement the AI-ranked schedule without first reviewing it with her supervisor. The supervisor confirms or adjusts the day's priorities before the nurse begins her rounds. The nurse documents that supervisor review occurred and notes any departures from the AI ranking.",
+      "words": 44,
+      "groupId": "jam-efficiency-lo",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "jam-green-innovation",
+      "employee": "jam",
+      "flavor": "green",
+      "posture": "guardrails",
+      "dimension": "innovation",
+      "setting": "Lo",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The nurse may not adopt or pilot any AI tool not on the county's approved list. Tool selection is centralized.",
+      "words": 20,
+      "groupId": "jam-innovation-lo",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "jam-green-security",
+      "employee": "jam",
+      "flavor": "green",
+      "posture": "guardrails",
+      "dimension": "security",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The nurse may use the county's designated AI prioritization tool to receive a ranked caseload for the day. The tool must be county-procured and appear on the county's approved AI tool list. Resident health information processed by the tool must not leave county systems. All approved tools are auditable by IT.",
+      "words": 51,
+      "groupId": "jam-security-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "jam-red-accountability",
+      "employee": "jam",
+      "flavor": "red",
+      "posture": "enable",
+      "dimension": "accountability",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "Every use of the AI prioritization tool is logged with the nurse's staff ID, the tool name, and a timestamp. Logs are retained for a minimum of 90 days. The nurse is the named responsible party for the daily schedule she works. The AI ranking is an input to that schedule; the nurse, not the AI tool, determines the day's priorities.",
+      "words": 61,
+      "groupId": "jam-accountability-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "jam-red-efficiency",
+      "employee": "jam",
+      "flavor": "red",
+      "posture": "enable",
+      "dimension": "efficiency",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The nurse may act directly on the AI-generated ranking and organize her day accordingly, without a separate supervisor confirmation step. The nurse applies her clinical judgment and may reorder visits where her professional assessment differs from the AI output.",
+      "words": 39,
+      "groupId": "jam-efficiency-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "jam-red-innovation",
+      "employee": "jam",
+      "flavor": "red",
+      "posture": "enable",
+      "dimension": "innovation",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The nurse is encouraged to identify and pilot new AI tools within defined parameters. Tools that meet county security and operational standards may be adopted.",
+      "words": 25,
+      "groupId": "jam-innovation-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "jam-red-security",
+      "employee": "jam",
+      "flavor": "red",
+      "posture": "enable",
+      "dimension": "security",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The nurse may use the county's designated AI prioritization tool to receive a ranked caseload for the day. The tool must be county-procured and appear on the county's approved AI tool list. Resident health information processed by the tool must not leave county systems. All approved tools are auditable by IT.",
+      "words": 51,
+      "groupId": "jam-security-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "jam-yellow-accountability",
+      "employee": "jam",
+      "flavor": "yellow",
+      "posture": "exposed",
+      "dimension": "accountability",
+      "setting": "Lo",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "No AI-specific logging is required. The nurse, not the AI tool, determines the day's priorities.",
+      "words": 15,
+      "groupId": "jam-accountability-lo",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "jam-yellow-efficiency",
+      "employee": "jam",
+      "flavor": "yellow",
+      "posture": "exposed",
+      "dimension": "efficiency",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The nurse may act directly on the AI-generated ranking and organize her day accordingly. The nurse applies her clinical judgment and may reorder visits where her professional assessment differs from the AI output.",
+      "words": 33,
+      "groupId": "jam-efficiency-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "jam-yellow-innovation",
+      "employee": "jam",
+      "flavor": "yellow",
+      "posture": "exposed",
+      "dimension": "innovation",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The nurse may identify and use new AI tools based on her own assessment of their usefulness. Formal county approval is not required.",
+      "words": 23,
+      "groupId": "jam-innovation-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "jam-yellow-security",
+      "employee": "jam",
+      "flavor": "yellow",
+      "posture": "exposed",
+      "dimension": "security",
+      "setting": "Lo",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The nurse may use any available AI prioritization tool, including commercially available tools, to assist with caseload management. The nurse is responsible for appropriate handling of any resident data entered into non-county tools.",
+      "words": 33,
+      "groupId": "jam-security-lo",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "lux-blue-accountability",
+      "employee": "lux",
+      "flavor": "blue",
+      "posture": "lighttouch",
+      "dimension": "accountability",
+      "setting": "Lo",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "No AI-specific logging is required beyond what existing supervisory and case record practices already capture. The caseworker, not the AI tool, makes the determination.",
+      "words": 24,
+      "groupId": "lux-accountability-lo",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "lux-blue-efficiency",
+      "employee": "lux",
+      "flavor": "blue",
+      "posture": "lighttouch",
+      "dimension": "efficiency",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The caseworker may act directly on the AI assessment after her own review, without a separate supervisor sign-off step.",
+      "words": 19,
+      "groupId": "lux-efficiency-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "lux-blue-innovation",
+      "employee": "lux",
+      "flavor": "blue",
+      "posture": "lighttouch",
+      "dimension": "innovation",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The caseworker is encouraged to identify and pilot new AI tools within defined parameters. Tools that meet county security and operational standards may be adopted by the department.",
+      "words": 28,
+      "groupId": "lux-innovation-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "lux-blue-security",
+      "employee": "lux",
+      "flavor": "blue",
+      "posture": "lighttouch",
+      "dimension": "security",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The caseworker may use the county's designated AI screening tool to generate a preliminary eligibility or risk assessment during a benefits intake. The tool must appear on the county's approved AI tool list. Client data entered into or generated by the tool must not leave county systems. The caseworker may not transmit client information -- including case summaries, household data, income records, or AI-generated assessments -- to any personal account, personal device, or outside server. All approved tools are auditable by IT.",
+      "words": 82,
+      "groupId": "lux-security-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "lux-green-accountability",
+      "employee": "lux",
+      "flavor": "green",
+      "posture": "guardrails",
+      "dimension": "accountability",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "Every AI-assisted intake interaction is logged with the caseworker's staff ID, the tool name, and a timestamp. Logs are retained for a minimum of 90 days. A named caseworker is responsible for every determination. The AI assessment is an input to that determination; the caseworker, not the AI tool, makes the determination.",
+      "words": 52,
+      "groupId": "lux-accountability-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "lux-green-efficiency",
+      "employee": "lux",
+      "flavor": "green",
+      "posture": "guardrails",
+      "dimension": "efficiency",
+      "setting": "Lo",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "Before any case is moved forward based on an AI-generated output, the assessment must be reviewed and confirmed by a supervisor or a second caseworker. The caseworker documents the AI tool used, the date, and the outcome of the supervisor review in the case record.",
+      "words": 45,
+      "groupId": "lux-efficiency-lo",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "lux-green-innovation",
+      "employee": "lux",
+      "flavor": "green",
+      "posture": "guardrails",
+      "dimension": "innovation",
+      "setting": "Lo",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The caseworker may not adopt, download, or pilot any AI tool not on the county's approved list. Tool selection is centralized.",
+      "words": 21,
+      "groupId": "lux-innovation-lo",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "lux-green-security",
+      "employee": "lux",
+      "flavor": "green",
+      "posture": "guardrails",
+      "dimension": "security",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The caseworker may use the county's designated AI screening tool to generate a preliminary eligibility or risk assessment during a benefits intake. The tool must appear on the county's approved AI tool list. Client data entered into or generated by the tool must not leave county systems. The caseworker may not transmit client information -- including case summaries, household data, income records, or AI-generated assessments -- to any personal account, personal device, or outside server. All approved tools are auditable by IT.",
+      "words": 82,
+      "groupId": "lux-security-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "lux-red-accountability",
+      "employee": "lux",
+      "flavor": "red",
+      "posture": "enable",
+      "dimension": "accountability",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "Every AI-assisted intake interaction is logged with the caseworker's staff ID, the tool name, and a timestamp. Logs are retained for a minimum of 90 days. A named caseworker is responsible for every determination. The AI assessment is an input to that determination; the caseworker, not the AI tool, makes the determination.",
+      "words": 52,
+      "groupId": "lux-accountability-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "lux-red-efficiency",
+      "employee": "lux",
+      "flavor": "red",
+      "posture": "enable",
+      "dimension": "efficiency",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The caseworker may act directly on the AI assessment after her own review, without a separate supervisor sign-off step. No additional approval step is required before the case moves forward.",
+      "words": 30,
+      "groupId": "lux-efficiency-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "lux-red-innovation",
+      "employee": "lux",
+      "flavor": "red",
+      "posture": "enable",
+      "dimension": "innovation",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The caseworker is encouraged to identify and pilot new AI tools within defined parameters. Tools that meet county security and operational standards may be adopted by the department.",
+      "words": 28,
+      "groupId": "lux-innovation-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "lux-red-security",
+      "employee": "lux",
+      "flavor": "red",
+      "posture": "enable",
+      "dimension": "security",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The caseworker may use the county's designated AI screening tool to generate a preliminary eligibility or risk assessment during a benefits intake. The tool must appear on the county's approved AI tool list. Client data entered into or generated by the tool must not leave county systems. The caseworker may not transmit client information -- including case summaries, household data, income records, or AI-generated assessments -- to any personal account, personal device, or outside server. All approved tools are auditable by IT.",
+      "words": 82,
+      "groupId": "lux-security-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "lux-yellow-accountability",
+      "employee": "lux",
+      "flavor": "yellow",
+      "posture": "exposed",
+      "dimension": "accountability",
+      "setting": "Lo",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "No AI-specific logging is required. The caseworker, not the AI tool, makes the determination.",
+      "words": 14,
+      "groupId": "lux-accountability-lo",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "lux-yellow-efficiency",
+      "employee": "lux",
+      "flavor": "yellow",
+      "posture": "exposed",
+      "dimension": "efficiency",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The caseworker may act directly on the AI assessment after her own review. No additional approval step is required.",
+      "words": 19,
+      "groupId": "lux-efficiency-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "lux-yellow-innovation",
+      "employee": "lux",
+      "flavor": "yellow",
+      "posture": "exposed",
+      "dimension": "innovation",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The caseworker may identify and use new AI tools based on her own assessment of their usefulness. Formal county approval is not required before a tool is used.",
+      "words": 28,
+      "groupId": "lux-innovation-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "lux-yellow-security",
+      "employee": "lux",
+      "flavor": "yellow",
+      "posture": "exposed",
+      "dimension": "security",
+      "setting": "Lo",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The caseworker may use any available AI screening tool, including commercially available tools, to assist with benefits intake. The caseworker is responsible for appropriate data handling when using tools that are not county-designated. Client data and case summaries may be transmitted to personal accounts or devices when necessary for the caseworker to complete work; the caseworker exercises professional judgment about what information to transmit and how it is handled.",
+      "words": 69,
+      "groupId": "lux-security-lo",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "puk-blue-accountability",
+      "employee": "puk",
+      "flavor": "blue",
+      "posture": "lighttouch",
+      "dimension": "accountability",
+      "setting": "Lo",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "No AI-specific logging of field queries is required beyond what existing incident reporting and supervisory practices already capture. The deputy, not the AI tool, makes the determination.",
+      "words": 27,
+      "groupId": "puk-accountability-lo",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "puk-blue-efficiency",
+      "employee": "puk",
+      "flavor": "blue",
+      "posture": "lighttouch",
+      "dimension": "efficiency",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The deputy may act directly on the AI-generated record flag after his own review, without waiting for dispatch confirmation.",
+      "words": 19,
+      "groupId": "puk-efficiency-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "puk-blue-innovation",
+      "employee": "puk",
+      "flavor": "blue",
+      "posture": "lighttouch",
+      "dimension": "innovation",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The deputy is encouraged to identify and pilot new AI tools within defined parameters. Tools that meet department security and CJIS standards may be adopted.",
+      "words": 25,
+      "groupId": "puk-innovation-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "puk-blue-security",
+      "employee": "puk",
+      "flavor": "blue",
+      "posture": "lighttouch",
+      "dimension": "security",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The deputy may use only department-issued, security-vetted AI tools for field identification tasks including plate recognition. The tool must appear on the department's approved list and must comply with CJIS security requirements. Criminal justice data processed by the tool must not leave county or state-authorized systems. All approved tools are auditable by IT.",
+      "words": 53,
+      "groupId": "puk-security-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "puk-green-accountability",
+      "employee": "puk",
+      "flavor": "green",
+      "posture": "guardrails",
+      "dimension": "accountability",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "Every AI-assisted field query is logged with the deputy's badge number, the tool name, and a timestamp. Logs are retained for a minimum of 90 days. The deputy is the named responsible officer for each stop. The AI tool result is an input to the deputy's field judgment; the deputy, not the AI tool, makes the determination.",
+      "words": 57,
+      "groupId": "puk-accountability-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "puk-green-efficiency",
+      "employee": "puk",
+      "flavor": "green",
+      "posture": "guardrails",
+      "dimension": "efficiency",
+      "setting": "Lo",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The deputy may not act directly on an AI-generated record flag without first confirming the result through an independent channel -- dispatch, a backup terminal, or a second officer. The AI output is a preliminary indicator only. The deputy proceeds based on confirmed information, not the AI result alone.",
+      "words": 49,
+      "groupId": "puk-efficiency-lo",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "puk-green-innovation",
+      "employee": "puk",
+      "flavor": "green",
+      "posture": "guardrails",
+      "dimension": "innovation",
+      "setting": "Lo",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The deputy may not adopt, download, or pilot any AI tool not on the department's approved list. Tool selection is centralized.",
+      "words": 21,
+      "groupId": "puk-innovation-lo",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "puk-green-security",
+      "employee": "puk",
+      "flavor": "green",
+      "posture": "guardrails",
+      "dimension": "security",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The deputy may use only department-issued, security-vetted AI tools for field identification tasks including plate recognition. The tool must appear on the department's approved list and must comply with CJIS security requirements. Criminal justice data processed by the tool must not leave county or state-authorized systems. All approved tools are auditable by IT.",
+      "words": 53,
+      "groupId": "puk-security-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "puk-red-accountability",
+      "employee": "puk",
+      "flavor": "red",
+      "posture": "enable",
+      "dimension": "accountability",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "Every AI-assisted field query is logged with the deputy's badge number, the tool name, and a timestamp. Logs are retained for a minimum of 90 days. The deputy is the named responsible officer for each stop. The AI tool result is an input to the deputy's field judgment; the deputy, not the AI tool, makes the determination.",
+      "words": 57,
+      "groupId": "puk-accountability-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "puk-red-efficiency",
+      "employee": "puk",
+      "flavor": "red",
+      "posture": "enable",
+      "dimension": "efficiency",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The deputy may act directly on the AI-generated record flag after his own review, without waiting for dispatch confirmation. When operational circumstances require immediate action, the deputy proceeds on his own judgment.",
+      "words": 32,
+      "groupId": "puk-efficiency-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "puk-red-innovation",
+      "employee": "puk",
+      "flavor": "red",
+      "posture": "enable",
+      "dimension": "innovation",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The deputy is encouraged to identify and pilot new AI tools within defined parameters. Tools that meet department security and CJIS standards may be adopted.",
+      "words": 25,
+      "groupId": "puk-innovation-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "puk-red-security",
+      "employee": "puk",
+      "flavor": "red",
+      "posture": "enable",
+      "dimension": "security",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The deputy may use only department-issued, security-vetted AI tools for field identification tasks including plate recognition. The tool must appear on the department's approved list and must comply with CJIS security requirements. Criminal justice data processed by the tool must not leave county or state-authorized systems. All approved tools are auditable by IT.",
+      "words": 53,
+      "groupId": "puk-security-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "puk-yellow-accountability",
+      "employee": "puk",
+      "flavor": "yellow",
+      "posture": "exposed",
+      "dimension": "accountability",
+      "setting": "Lo",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "No AI-specific logging is required. The deputy, not the AI tool, makes the determination.",
+      "words": 14,
+      "groupId": "puk-accountability-lo",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "puk-yellow-efficiency",
+      "employee": "puk",
+      "flavor": "yellow",
+      "posture": "exposed",
+      "dimension": "efficiency",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The deputy may act directly on the AI-generated result after his own review. No confirmation step is required before action.",
+      "words": 20,
+      "groupId": "puk-efficiency-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "puk-yellow-innovation",
+      "employee": "puk",
+      "flavor": "yellow",
+      "posture": "exposed",
+      "dimension": "innovation",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The deputy may identify and use new AI tools based on his own assessment of their usefulness in the field. Formal department approval is not required.",
+      "words": 26,
+      "groupId": "puk-innovation-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "puk-yellow-security",
+      "employee": "puk",
+      "flavor": "yellow",
+      "posture": "exposed",
+      "dimension": "security",
+      "setting": "Lo",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The deputy may use any available AI tool for field identification tasks, including personally owned devices and commercially available applications. The deputy is responsible for appropriate handling of any data entered into non-department tools. Criminal justice data entered into commercial tools may be processed outside county or state-authorized systems; the deputy exercises professional judgment about what information to enter.",
+      "words": 59,
+      "groupId": "puk-security-lo",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "wow-blue-accountability",
+      "employee": "wow",
+      "flavor": "blue",
+      "posture": "lighttouch",
+      "dimension": "accountability",
+      "setting": "Lo",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "No AI-specific logging is required beyond what existing records practices already capture. The staffer, not the AI tool, is responsible for the determination.",
+      "words": 23,
+      "groupId": "wow-accountability-lo",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "wow-blue-efficiency",
+      "employee": "wow",
+      "flavor": "blue",
+      "posture": "lighttouch",
+      "dimension": "efficiency",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The staffer may route the draft notice for signature after her own review, without a separate supervisor sign-off step. Before routing, the staffer verifies every factual claim, regulatory citation, deadline, and appeal rights statement against the source documents. The AI tool cannot supply facts, deadlines, or citations; the staffer confirms each element independently.",
+      "words": 53,
+      "groupId": "wow-efficiency-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "wow-blue-innovation",
+      "employee": "wow",
+      "flavor": "blue",
+      "posture": "lighttouch",
+      "dimension": "innovation",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The staffer is encouraged to identify and pilot new AI drafting tools within defined parameters. Tools that meet county security and operational standards may be adopted.",
+      "words": 26,
+      "groupId": "wow-innovation-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "wow-blue-security",
+      "employee": "wow",
+      "flavor": "blue",
+      "posture": "lighttouch",
+      "dimension": "security",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The staffer may use the county's designated AI drafting tool to generate a draft benefits denial notice. The tool must appear on the county's approved AI tool list. Applicant information and case data must not leave county systems; the staffer may not use any tool that transmits legal work product or applicant information to an outside server or third party. All approved tools are auditable by IT.",
+      "words": 67,
+      "groupId": "wow-security-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "wow-green-accountability",
+      "employee": "wow",
+      "flavor": "green",
+      "posture": "guardrails",
+      "dimension": "accountability",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "Every AI-assisted drafting session is logged with the staffer's staff ID, the tool name, and a timestamp. The log is retained as part of the determination record. A named staffer is responsible for the accuracy of the notice. The AI draft is an input; the staffer, not the AI tool, is responsible for the determination.",
+      "words": 55,
+      "groupId": "wow-accountability-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "wow-green-efficiency",
+      "employee": "wow",
+      "flavor": "green",
+      "posture": "guardrails",
+      "dimension": "efficiency",
+      "setting": "Lo",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The staffer may not route the draft notice for signature without supervisor sign-off. Before routing, the staffer verifies every factual claim, regulatory citation, deadline, and appeal rights statement against the source documents. The AI tool cannot supply facts, deadlines, or citations; the staffer confirms each element independently. The routing slip notes that AI was used in drafting and that verification is complete.",
+      "words": 62,
+      "groupId": "wow-efficiency-lo",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "wow-green-innovation",
+      "employee": "wow",
+      "flavor": "green",
+      "posture": "guardrails",
+      "dimension": "innovation",
+      "setting": "Lo",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The staffer may not adopt or pilot any AI drafting tool not on the county's approved list. Tool selection is centralized.",
+      "words": 21,
+      "groupId": "wow-innovation-lo",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "wow-green-security",
+      "employee": "wow",
+      "flavor": "green",
+      "posture": "guardrails",
+      "dimension": "security",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The staffer may use the county's designated AI drafting tool to generate a draft benefits denial notice. The tool must appear on the county's approved AI tool list. Applicant information and case data must not leave county systems; the staffer may not use any tool that transmits legal work product or applicant information to an outside server or third party. All approved tools are auditable by IT.",
+      "words": 67,
+      "groupId": "wow-security-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "wow-red-accountability",
+      "employee": "wow",
+      "flavor": "red",
+      "posture": "enable",
+      "dimension": "accountability",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "Every AI-assisted drafting session is logged with the staffer's staff ID, the tool name, and a timestamp. The log is retained as part of the determination record. A named staffer is responsible for the accuracy of the notice. The AI draft is an input; the staffer, not the AI tool, is responsible for the determination.",
+      "words": 55,
+      "groupId": "wow-accountability-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "wow-red-efficiency",
+      "employee": "wow",
+      "flavor": "red",
+      "posture": "enable",
+      "dimension": "efficiency",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The staffer may route the draft notice for signature after her own review, without a separate supervisor sign-off step. Before routing, the staffer verifies every factual claim, regulatory citation, deadline, and appeal rights statement against the source documents. The AI tool cannot supply facts, deadlines, or citations; the staffer confirms each element independently.",
+      "words": 53,
+      "groupId": "wow-efficiency-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "wow-red-innovation",
+      "employee": "wow",
+      "flavor": "red",
+      "posture": "enable",
+      "dimension": "innovation",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The staffer is encouraged to identify and pilot new AI drafting tools within defined parameters. Tools that meet county security and operational standards may be adopted.",
+      "words": 26,
+      "groupId": "wow-innovation-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "wow-red-security",
+      "employee": "wow",
+      "flavor": "red",
+      "posture": "enable",
+      "dimension": "security",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The staffer may use the county's designated AI drafting tool to generate a draft benefits denial notice. The tool must appear on the county's approved AI tool list. Applicant information and case data must not leave county systems; the staffer may not use any tool that transmits legal work product or applicant information to an outside server or third party. All approved tools are auditable by IT.",
+      "words": 67,
+      "groupId": "wow-security-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "wow-yellow-accountability",
+      "employee": "wow",
+      "flavor": "yellow",
+      "posture": "exposed",
+      "dimension": "accountability",
+      "setting": "Lo",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "No AI-specific logging is required. The staffer, not the AI tool, is responsible for the determination.",
+      "words": 16,
+      "groupId": "wow-accountability-lo",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "wow-yellow-efficiency",
+      "employee": "wow",
+      "flavor": "yellow",
+      "posture": "exposed",
+      "dimension": "efficiency",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The staffer may route the draft notice for signature after her own review. Before routing, the staffer verifies every factual claim, regulatory citation, deadline, and appeal rights statement against the source documents. The AI tool cannot supply facts, deadlines, or citations; the staffer confirms each element independently.",
+      "words": 47,
+      "groupId": "wow-efficiency-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "wow-yellow-innovation",
+      "employee": "wow",
+      "flavor": "yellow",
+      "posture": "exposed",
+      "dimension": "innovation",
+      "setting": "Hi",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The staffer may identify and use new AI drafting tools based on her own assessment. Formal county approval is not required.",
+      "words": 21,
+      "groupId": "wow-innovation-hi",
+      "driftFromV5": "identical"
+    },
+    {
+      "id": "wow-yellow-security",
+      "employee": "wow",
+      "flavor": "yellow",
+      "posture": "exposed",
+      "dimension": "security",
+      "setting": "Lo",
+      "status": "unreviewed",
+      "reviewer": "",
+      "reviewed": "",
+      "notes": "",
+      "tags": [],
+      "rationale": "",
+      "implementationNote": "",
+      "text": "The staffer may use any available AI drafting tool, including commercially available tools, to assist with drafting benefits denial notices. The staffer is responsible for appropriate handling of any applicant information entered into non-county tools. Legal work product and applicant information entered into commercial tools may be processed outside county systems; the staffer exercises professional judgment about what information to enter.",
+      "words": 61,
+      "groupId": "wow-security-lo",
+      "driftFromV5": "identical"
+    }
+  ],
+  "groups": [
+    {
+      "id": "jam-accountability-hi",
+      "employee": "jam",
+      "dimension": "accountability",
+      "setting": "Hi",
+      "members": [
+        {
+          "id": "jam-green-accountability",
+          "employee": "jam",
+          "flavor": "green",
+          "posture": "guardrails",
+          "dimension": "accountability",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "Every use of the AI prioritization tool is logged with the nurse's staff ID, the tool name, and a timestamp. Logs are retained for a minimum of 90 days. The supervisor is the named responsible party for the confirmed daily schedule. The AI ranking is an input to that schedule; the nurse and supervisor, not the AI tool, determine the day's priorities.",
+          "file": "content/lexias/jam-green-accountability.md",
+          "stem": "jam-green-accountability"
+        },
+        {
+          "id": "jam-red-accountability",
+          "employee": "jam",
+          "flavor": "red",
+          "posture": "enable",
+          "dimension": "accountability",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "Every use of the AI prioritization tool is logged with the nurse's staff ID, the tool name, and a timestamp. Logs are retained for a minimum of 90 days. The nurse is the named responsible party for the daily schedule she works. The AI ranking is an input to that schedule; the nurse, not the AI tool, determines the day's priorities.",
+          "file": "content/lexias/jam-red-accountability.md",
+          "stem": "jam-red-accountability"
+        }
+      ],
+      "memberIds": [
+        "jam-green-accountability",
+        "jam-red-accountability"
+      ],
+      "variantCount": 2,
+      "identical": false,
+      "variants": [
+        {
+          "text": "Every use of the AI prioritization tool is logged with the nurse's staff ID, the tool name, and a timestamp. Logs are retained for a minimum of 90 days. The supervisor is the named responsible party for the confirmed daily schedule. The AI ranking is an input to that schedule; the nurse and supervisor, not the AI tool, determine the day's priorities.",
+          "flavors": [
+            "green"
+          ],
+          "diffVsFirst": null,
+          "deltaVsFirst": null
+        },
+        {
+          "text": "Every use of the AI prioritization tool is logged with the nurse's staff ID, the tool name, and a timestamp. Logs are retained for a minimum of 90 days. The nurse is the named responsible party for the daily schedule she works. The AI ranking is an input to that schedule; the nurse, not the AI tool, determines the day's priorities.",
+          "flavors": [
+            "red"
+          ],
+          "diffVsFirst": [
+            {
+              "op": "same",
+              "text": "Every use of the AI prioritization tool is logged with the nurse's staff ID, the tool name, and a timestamp. Logs are retained for a minimum of 90 days. The "
+            },
+            {
+              "op": "del",
+              "text": "supervisor "
+            },
+            {
+              "op": "ins",
+              "text": "nurse "
+            },
+            {
+              "op": "same",
+              "text": "is the named responsible party for the "
+            },
+            {
+              "op": "del",
+              "text": "confirmed "
+            },
+            {
+              "op": "same",
+              "text": "daily "
+            },
+            {
+              "op": "del",
+              "text": "schedule. "
+            },
+            {
+              "op": "ins",
+              "text": "schedule she works. "
+            },
+            {
+              "op": "same",
+              "text": "The AI ranking is an input to that schedule; the "
+            },
+            {
+              "op": "del",
+              "text": "nurse and supervisor, "
+            },
+            {
+              "op": "ins",
+              "text": "nurse, "
+            },
+            {
+              "op": "same",
+              "text": "not the AI tool, "
+            },
+            {
+              "op": "del",
+              "text": "determine "
+            },
+            {
+              "op": "ins",
+              "text": "determines "
+            },
+            {
+              "op": "same",
+              "text": "the day's priorities."
+            }
+          ],
+          "deltaVsFirst": "-7 +6 words"
+        }
+      ]
+    },
+    {
+      "id": "jam-accountability-lo",
+      "employee": "jam",
+      "dimension": "accountability",
+      "setting": "Lo",
+      "members": [
+        {
+          "id": "jam-blue-accountability",
+          "employee": "jam",
+          "flavor": "blue",
+          "posture": "lighttouch",
+          "dimension": "accountability",
+          "setting": "Lo",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "No AI-specific logging of prioritization tool use is required beyond what existing case record and supervisory practices already capture. The nurse, not the AI tool, determines the day's priorities.",
+          "file": "content/lexias/jam-blue-accountability.md",
+          "stem": "jam-blue-accountability"
+        },
+        {
+          "id": "jam-yellow-accountability",
+          "employee": "jam",
+          "flavor": "yellow",
+          "posture": "exposed",
+          "dimension": "accountability",
+          "setting": "Lo",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "No AI-specific logging is required. The nurse, not the AI tool, determines the day's priorities.",
+          "file": "content/lexias/jam-yellow-accountability.md",
+          "stem": "jam-yellow-accountability"
+        }
+      ],
+      "memberIds": [
+        "jam-blue-accountability",
+        "jam-yellow-accountability"
+      ],
+      "variantCount": 2,
+      "identical": false,
+      "variants": [
+        {
+          "text": "No AI-specific logging of prioritization tool use is required beyond what existing case record and supervisory practices already capture. The nurse, not the AI tool, determines the day's priorities.",
+          "flavors": [
+            "blue"
+          ],
+          "diffVsFirst": null,
+          "deltaVsFirst": null
+        },
+        {
+          "text": "No AI-specific logging is required. The nurse, not the AI tool, determines the day's priorities.",
+          "flavors": [
+            "yellow"
+          ],
+          "diffVsFirst": [
+            {
+              "op": "same",
+              "text": "No AI-specific logging "
+            },
+            {
+              "op": "del",
+              "text": "of prioritization tool use "
+            },
+            {
+              "op": "same",
+              "text": "is "
+            },
+            {
+              "op": "del",
+              "text": "required beyond what existing case record and supervisory practices already capture. "
+            },
+            {
+              "op": "ins",
+              "text": "required. "
+            },
+            {
+              "op": "same",
+              "text": "The nurse, not the AI tool, determines the day's priorities."
+            }
+          ],
+          "deltaVsFirst": "-15 +1 words"
+        }
+      ]
+    },
+    {
+      "id": "jam-efficiency-hi",
+      "employee": "jam",
+      "dimension": "efficiency",
+      "setting": "Hi",
+      "members": [
+        {
+          "id": "jam-red-efficiency",
+          "employee": "jam",
+          "flavor": "red",
+          "posture": "enable",
+          "dimension": "efficiency",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The nurse may act directly on the AI-generated ranking and organize her day accordingly, without a separate supervisor confirmation step. The nurse applies her clinical judgment and may reorder visits where her professional assessment differs from the AI output.",
+          "file": "content/lexias/jam-red-efficiency.md",
+          "stem": "jam-red-efficiency"
+        },
+        {
+          "id": "jam-blue-efficiency",
+          "employee": "jam",
+          "flavor": "blue",
+          "posture": "lighttouch",
+          "dimension": "efficiency",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The nurse may act directly on the AI-generated ranking and organize her day accordingly, without a separate supervisor confirmation step.",
+          "file": "content/lexias/jam-blue-efficiency.md",
+          "stem": "jam-blue-efficiency"
+        },
+        {
+          "id": "jam-yellow-efficiency",
+          "employee": "jam",
+          "flavor": "yellow",
+          "posture": "exposed",
+          "dimension": "efficiency",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The nurse may act directly on the AI-generated ranking and organize her day accordingly. The nurse applies her clinical judgment and may reorder visits where her professional assessment differs from the AI output.",
+          "file": "content/lexias/jam-yellow-efficiency.md",
+          "stem": "jam-yellow-efficiency"
+        }
+      ],
+      "memberIds": [
+        "jam-red-efficiency",
+        "jam-blue-efficiency",
+        "jam-yellow-efficiency"
+      ],
+      "variantCount": 3,
+      "identical": false,
+      "variants": [
+        {
+          "text": "The nurse may act directly on the AI-generated ranking and organize her day accordingly, without a separate supervisor confirmation step. The nurse applies her clinical judgment and may reorder visits where her professional assessment differs from the AI output.",
+          "flavors": [
+            "red"
+          ],
+          "diffVsFirst": null,
+          "deltaVsFirst": null
+        },
+        {
+          "text": "The nurse may act directly on the AI-generated ranking and organize her day accordingly, without a separate supervisor confirmation step.",
+          "flavors": [
+            "blue"
+          ],
+          "diffVsFirst": [
+            {
+              "op": "same",
+              "text": "The nurse may act directly on the AI-generated ranking and organize her day accordingly, without a separate supervisor confirmation "
+            },
+            {
+              "op": "del",
+              "text": "step. The nurse applies her clinical judgment and may reorder visits where her professional assessment differs from the AI output."
+            },
+            {
+              "op": "ins",
+              "text": "step."
+            }
+          ],
+          "deltaVsFirst": "-20 +1 words"
+        },
+        {
+          "text": "The nurse may act directly on the AI-generated ranking and organize her day accordingly. The nurse applies her clinical judgment and may reorder visits where her professional assessment differs from the AI output.",
+          "flavors": [
+            "yellow"
+          ],
+          "diffVsFirst": [
+            {
+              "op": "same",
+              "text": "The nurse may act directly on the AI-generated ranking and organize her day "
+            },
+            {
+              "op": "del",
+              "text": "accordingly, without a separate supervisor confirmation step. "
+            },
+            {
+              "op": "ins",
+              "text": "accordingly. "
+            },
+            {
+              "op": "same",
+              "text": "The nurse applies her clinical judgment and may reorder visits where her professional assessment differs from the AI output."
+            }
+          ],
+          "deltaVsFirst": "-7 +1 words"
+        }
+      ]
+    },
+    {
+      "id": "jam-innovation-hi",
+      "employee": "jam",
+      "dimension": "innovation",
+      "setting": "Hi",
+      "members": [
+        {
+          "id": "jam-red-innovation",
+          "employee": "jam",
+          "flavor": "red",
+          "posture": "enable",
+          "dimension": "innovation",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The nurse is encouraged to identify and pilot new AI tools within defined parameters. Tools that meet county security and operational standards may be adopted.",
+          "file": "content/lexias/jam-red-innovation.md",
+          "stem": "jam-red-innovation"
+        },
+        {
+          "id": "jam-blue-innovation",
+          "employee": "jam",
+          "flavor": "blue",
+          "posture": "lighttouch",
+          "dimension": "innovation",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The nurse is encouraged to identify and pilot new AI tools within defined parameters. Tools that meet county security and operational standards may be adopted.",
+          "file": "content/lexias/jam-blue-innovation.md",
+          "stem": "jam-blue-innovation"
+        },
+        {
+          "id": "jam-yellow-innovation",
+          "employee": "jam",
+          "flavor": "yellow",
+          "posture": "exposed",
+          "dimension": "innovation",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The nurse may identify and use new AI tools based on her own assessment of their usefulness. Formal county approval is not required.",
+          "file": "content/lexias/jam-yellow-innovation.md",
+          "stem": "jam-yellow-innovation"
+        }
+      ],
+      "memberIds": [
+        "jam-red-innovation",
+        "jam-blue-innovation",
+        "jam-yellow-innovation"
+      ],
+      "variantCount": 2,
+      "identical": false,
+      "variants": [
+        {
+          "text": "The nurse is encouraged to identify and pilot new AI tools within defined parameters. Tools that meet county security and operational standards may be adopted.",
+          "flavors": [
+            "red",
+            "blue"
+          ],
+          "diffVsFirst": null,
+          "deltaVsFirst": null
+        },
+        {
+          "text": "The nurse may identify and use new AI tools based on her own assessment of their usefulness. Formal county approval is not required.",
+          "flavors": [
+            "yellow"
+          ],
+          "diffVsFirst": [
+            {
+              "op": "same",
+              "text": "The nurse "
+            },
+            {
+              "op": "del",
+              "text": "is encouraged to "
+            },
+            {
+              "op": "ins",
+              "text": "may "
+            },
+            {
+              "op": "same",
+              "text": "identify and "
+            },
+            {
+              "op": "del",
+              "text": "pilot "
+            },
+            {
+              "op": "ins",
+              "text": "use "
+            },
+            {
+              "op": "same",
+              "text": "new AI tools "
+            },
+            {
+              "op": "del",
+              "text": "within defined parameters. Tools that meet "
+            },
+            {
+              "op": "ins",
+              "text": "based on her own assessment of their usefulness. Formal "
+            },
+            {
+              "op": "same",
+              "text": "county "
+            },
+            {
+              "op": "del",
+              "text": "security and operational standards may be adopted."
+            },
+            {
+              "op": "ins",
+              "text": "approval is not required."
+            }
+          ],
+          "deltaVsFirst": "-17 +15 words"
+        }
+      ]
+    },
+    {
+      "id": "lux-accountability-lo",
+      "employee": "lux",
+      "dimension": "accountability",
+      "setting": "Lo",
+      "members": [
+        {
+          "id": "lux-blue-accountability",
+          "employee": "lux",
+          "flavor": "blue",
+          "posture": "lighttouch",
+          "dimension": "accountability",
+          "setting": "Lo",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "No AI-specific logging is required beyond what existing supervisory and case record practices already capture. The caseworker, not the AI tool, makes the determination.",
+          "file": "content/lexias/lux-blue-accountability.md",
+          "stem": "lux-blue-accountability"
+        },
+        {
+          "id": "lux-yellow-accountability",
+          "employee": "lux",
+          "flavor": "yellow",
+          "posture": "exposed",
+          "dimension": "accountability",
+          "setting": "Lo",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "No AI-specific logging is required. The caseworker, not the AI tool, makes the determination.",
+          "file": "content/lexias/lux-yellow-accountability.md",
+          "stem": "lux-yellow-accountability"
+        }
+      ],
+      "memberIds": [
+        "lux-blue-accountability",
+        "lux-yellow-accountability"
+      ],
+      "variantCount": 2,
+      "identical": false,
+      "variants": [
+        {
+          "text": "No AI-specific logging is required beyond what existing supervisory and case record practices already capture. The caseworker, not the AI tool, makes the determination.",
+          "flavors": [
+            "blue"
+          ],
+          "diffVsFirst": null,
+          "deltaVsFirst": null
+        },
+        {
+          "text": "No AI-specific logging is required. The caseworker, not the AI tool, makes the determination.",
+          "flavors": [
+            "yellow"
+          ],
+          "diffVsFirst": [
+            {
+              "op": "same",
+              "text": "No AI-specific logging is "
+            },
+            {
+              "op": "del",
+              "text": "required beyond what existing supervisory and case record practices already capture. "
+            },
+            {
+              "op": "ins",
+              "text": "required. "
+            },
+            {
+              "op": "same",
+              "text": "The caseworker, not the AI tool, makes the determination."
+            }
+          ],
+          "deltaVsFirst": "-11 +1 words"
+        }
+      ]
+    },
+    {
+      "id": "lux-efficiency-hi",
+      "employee": "lux",
+      "dimension": "efficiency",
+      "setting": "Hi",
+      "members": [
+        {
+          "id": "lux-red-efficiency",
+          "employee": "lux",
+          "flavor": "red",
+          "posture": "enable",
+          "dimension": "efficiency",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The caseworker may act directly on the AI assessment after her own review, without a separate supervisor sign-off step. No additional approval step is required before the case moves forward.",
+          "file": "content/lexias/lux-red-efficiency.md",
+          "stem": "lux-red-efficiency"
+        },
+        {
+          "id": "lux-blue-efficiency",
+          "employee": "lux",
+          "flavor": "blue",
+          "posture": "lighttouch",
+          "dimension": "efficiency",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The caseworker may act directly on the AI assessment after her own review, without a separate supervisor sign-off step.",
+          "file": "content/lexias/lux-blue-efficiency.md",
+          "stem": "lux-blue-efficiency"
+        },
+        {
+          "id": "lux-yellow-efficiency",
+          "employee": "lux",
+          "flavor": "yellow",
+          "posture": "exposed",
+          "dimension": "efficiency",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The caseworker may act directly on the AI assessment after her own review. No additional approval step is required.",
+          "file": "content/lexias/lux-yellow-efficiency.md",
+          "stem": "lux-yellow-efficiency"
+        }
+      ],
+      "memberIds": [
+        "lux-red-efficiency",
+        "lux-blue-efficiency",
+        "lux-yellow-efficiency"
+      ],
+      "variantCount": 3,
+      "identical": false,
+      "variants": [
+        {
+          "text": "The caseworker may act directly on the AI assessment after her own review, without a separate supervisor sign-off step. No additional approval step is required before the case moves forward.",
+          "flavors": [
+            "red"
+          ],
+          "diffVsFirst": null,
+          "deltaVsFirst": null
+        },
+        {
+          "text": "The caseworker may act directly on the AI assessment after her own review, without a separate supervisor sign-off step.",
+          "flavors": [
+            "blue"
+          ],
+          "diffVsFirst": [
+            {
+              "op": "same",
+              "text": "The caseworker may act directly on the AI assessment after her own review, without a separate supervisor sign-off "
+            },
+            {
+              "op": "del",
+              "text": "step. No additional approval step is required before the case moves forward."
+            },
+            {
+              "op": "ins",
+              "text": "step."
+            }
+          ],
+          "deltaVsFirst": "-12 +1 words"
+        },
+        {
+          "text": "The caseworker may act directly on the AI assessment after her own review. No additional approval step is required.",
+          "flavors": [
+            "yellow"
+          ],
+          "diffVsFirst": [
+            {
+              "op": "same",
+              "text": "The caseworker may act directly on the AI assessment after her own "
+            },
+            {
+              "op": "del",
+              "text": "review, without a separate supervisor sign-off step. "
+            },
+            {
+              "op": "ins",
+              "text": "review. "
+            },
+            {
+              "op": "same",
+              "text": "No additional approval step is "
+            },
+            {
+              "op": "del",
+              "text": "required before the case moves forward."
+            },
+            {
+              "op": "ins",
+              "text": "required."
+            }
+          ],
+          "deltaVsFirst": "-13 +2 words"
+        }
+      ]
+    },
+    {
+      "id": "lux-innovation-hi",
+      "employee": "lux",
+      "dimension": "innovation",
+      "setting": "Hi",
+      "members": [
+        {
+          "id": "lux-red-innovation",
+          "employee": "lux",
+          "flavor": "red",
+          "posture": "enable",
+          "dimension": "innovation",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The caseworker is encouraged to identify and pilot new AI tools within defined parameters. Tools that meet county security and operational standards may be adopted by the department.",
+          "file": "content/lexias/lux-red-innovation.md",
+          "stem": "lux-red-innovation"
+        },
+        {
+          "id": "lux-blue-innovation",
+          "employee": "lux",
+          "flavor": "blue",
+          "posture": "lighttouch",
+          "dimension": "innovation",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The caseworker is encouraged to identify and pilot new AI tools within defined parameters. Tools that meet county security and operational standards may be adopted by the department.",
+          "file": "content/lexias/lux-blue-innovation.md",
+          "stem": "lux-blue-innovation"
+        },
+        {
+          "id": "lux-yellow-innovation",
+          "employee": "lux",
+          "flavor": "yellow",
+          "posture": "exposed",
+          "dimension": "innovation",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The caseworker may identify and use new AI tools based on her own assessment of their usefulness. Formal county approval is not required before a tool is used.",
+          "file": "content/lexias/lux-yellow-innovation.md",
+          "stem": "lux-yellow-innovation"
+        }
+      ],
+      "memberIds": [
+        "lux-red-innovation",
+        "lux-blue-innovation",
+        "lux-yellow-innovation"
+      ],
+      "variantCount": 2,
+      "identical": false,
+      "variants": [
+        {
+          "text": "The caseworker is encouraged to identify and pilot new AI tools within defined parameters. Tools that meet county security and operational standards may be adopted by the department.",
+          "flavors": [
+            "red",
+            "blue"
+          ],
+          "diffVsFirst": null,
+          "deltaVsFirst": null
+        },
+        {
+          "text": "The caseworker may identify and use new AI tools based on her own assessment of their usefulness. Formal county approval is not required before a tool is used.",
+          "flavors": [
+            "yellow"
+          ],
+          "diffVsFirst": [
+            {
+              "op": "same",
+              "text": "The caseworker "
+            },
+            {
+              "op": "del",
+              "text": "is encouraged to "
+            },
+            {
+              "op": "ins",
+              "text": "may "
+            },
+            {
+              "op": "same",
+              "text": "identify and "
+            },
+            {
+              "op": "del",
+              "text": "pilot "
+            },
+            {
+              "op": "ins",
+              "text": "use "
+            },
+            {
+              "op": "same",
+              "text": "new AI tools "
+            },
+            {
+              "op": "del",
+              "text": "within defined parameters. Tools that meet "
+            },
+            {
+              "op": "ins",
+              "text": "based on her own assessment of their usefulness. Formal "
+            },
+            {
+              "op": "same",
+              "text": "county "
+            },
+            {
+              "op": "del",
+              "text": "security and operational standards may be adopted by the department."
+            },
+            {
+              "op": "ins",
+              "text": "approval is not required before a tool is used."
+            }
+          ],
+          "deltaVsFirst": "-20 +20 words"
+        }
+      ]
+    },
+    {
+      "id": "puk-accountability-lo",
+      "employee": "puk",
+      "dimension": "accountability",
+      "setting": "Lo",
+      "members": [
+        {
+          "id": "puk-blue-accountability",
+          "employee": "puk",
+          "flavor": "blue",
+          "posture": "lighttouch",
+          "dimension": "accountability",
+          "setting": "Lo",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "No AI-specific logging of field queries is required beyond what existing incident reporting and supervisory practices already capture. The deputy, not the AI tool, makes the determination.",
+          "file": "content/lexias/puk-blue-accountability.md",
+          "stem": "puk-blue-accountability"
+        },
+        {
+          "id": "puk-yellow-accountability",
+          "employee": "puk",
+          "flavor": "yellow",
+          "posture": "exposed",
+          "dimension": "accountability",
+          "setting": "Lo",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "No AI-specific logging is required. The deputy, not the AI tool, makes the determination.",
+          "file": "content/lexias/puk-yellow-accountability.md",
+          "stem": "puk-yellow-accountability"
+        }
+      ],
+      "memberIds": [
+        "puk-blue-accountability",
+        "puk-yellow-accountability"
+      ],
+      "variantCount": 2,
+      "identical": false,
+      "variants": [
+        {
+          "text": "No AI-specific logging of field queries is required beyond what existing incident reporting and supervisory practices already capture. The deputy, not the AI tool, makes the determination.",
+          "flavors": [
+            "blue"
+          ],
+          "diffVsFirst": null,
+          "deltaVsFirst": null
+        },
+        {
+          "text": "No AI-specific logging is required. The deputy, not the AI tool, makes the determination.",
+          "flavors": [
+            "yellow"
+          ],
+          "diffVsFirst": [
+            {
+              "op": "same",
+              "text": "No AI-specific logging "
+            },
+            {
+              "op": "del",
+              "text": "of field queries "
+            },
+            {
+              "op": "same",
+              "text": "is "
+            },
+            {
+              "op": "del",
+              "text": "required beyond what existing incident reporting and supervisory practices already capture. "
+            },
+            {
+              "op": "ins",
+              "text": "required. "
+            },
+            {
+              "op": "same",
+              "text": "The deputy, not the AI tool, makes the determination."
+            }
+          ],
+          "deltaVsFirst": "-14 +1 words"
+        }
+      ]
+    },
+    {
+      "id": "puk-efficiency-hi",
+      "employee": "puk",
+      "dimension": "efficiency",
+      "setting": "Hi",
+      "members": [
+        {
+          "id": "puk-red-efficiency",
+          "employee": "puk",
+          "flavor": "red",
+          "posture": "enable",
+          "dimension": "efficiency",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The deputy may act directly on the AI-generated record flag after his own review, without waiting for dispatch confirmation. When operational circumstances require immediate action, the deputy proceeds on his own judgment.",
+          "file": "content/lexias/puk-red-efficiency.md",
+          "stem": "puk-red-efficiency"
+        },
+        {
+          "id": "puk-blue-efficiency",
+          "employee": "puk",
+          "flavor": "blue",
+          "posture": "lighttouch",
+          "dimension": "efficiency",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The deputy may act directly on the AI-generated record flag after his own review, without waiting for dispatch confirmation.",
+          "file": "content/lexias/puk-blue-efficiency.md",
+          "stem": "puk-blue-efficiency"
+        },
+        {
+          "id": "puk-yellow-efficiency",
+          "employee": "puk",
+          "flavor": "yellow",
+          "posture": "exposed",
+          "dimension": "efficiency",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The deputy may act directly on the AI-generated result after his own review. No confirmation step is required before action.",
+          "file": "content/lexias/puk-yellow-efficiency.md",
+          "stem": "puk-yellow-efficiency"
+        }
+      ],
+      "memberIds": [
+        "puk-red-efficiency",
+        "puk-blue-efficiency",
+        "puk-yellow-efficiency"
+      ],
+      "variantCount": 3,
+      "identical": false,
+      "variants": [
+        {
+          "text": "The deputy may act directly on the AI-generated record flag after his own review, without waiting for dispatch confirmation. When operational circumstances require immediate action, the deputy proceeds on his own judgment.",
+          "flavors": [
+            "red"
+          ],
+          "diffVsFirst": null,
+          "deltaVsFirst": null
+        },
+        {
+          "text": "The deputy may act directly on the AI-generated record flag after his own review, without waiting for dispatch confirmation.",
+          "flavors": [
+            "blue"
+          ],
+          "diffVsFirst": [
+            {
+              "op": "same",
+              "text": "The deputy may act directly on the AI-generated record flag after his own review, without waiting for dispatch "
+            },
+            {
+              "op": "del",
+              "text": "confirmation. When operational circumstances require immediate action, the deputy proceeds on his own judgment."
+            },
+            {
+              "op": "ins",
+              "text": "confirmation."
+            }
+          ],
+          "deltaVsFirst": "-14 +1 words"
+        },
+        {
+          "text": "The deputy may act directly on the AI-generated result after his own review. No confirmation step is required before action.",
+          "flavors": [
+            "yellow"
+          ],
+          "diffVsFirst": [
+            {
+              "op": "same",
+              "text": "The deputy may act directly on the AI-generated "
+            },
+            {
+              "op": "del",
+              "text": "record flag "
+            },
+            {
+              "op": "ins",
+              "text": "result "
+            },
+            {
+              "op": "same",
+              "text": "after his own "
+            },
+            {
+              "op": "del",
+              "text": "review, without waiting for dispatch confirmation. When operational circumstances require immediate action, the deputy proceeds on his own judgment."
+            },
+            {
+              "op": "ins",
+              "text": "review. No confirmation step is required before action."
+            }
+          ],
+          "deltaVsFirst": "-21 +9 words"
+        }
+      ]
+    },
+    {
+      "id": "puk-innovation-hi",
+      "employee": "puk",
+      "dimension": "innovation",
+      "setting": "Hi",
+      "members": [
+        {
+          "id": "puk-red-innovation",
+          "employee": "puk",
+          "flavor": "red",
+          "posture": "enable",
+          "dimension": "innovation",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The deputy is encouraged to identify and pilot new AI tools within defined parameters. Tools that meet department security and CJIS standards may be adopted.",
+          "file": "content/lexias/puk-red-innovation.md",
+          "stem": "puk-red-innovation"
+        },
+        {
+          "id": "puk-blue-innovation",
+          "employee": "puk",
+          "flavor": "blue",
+          "posture": "lighttouch",
+          "dimension": "innovation",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The deputy is encouraged to identify and pilot new AI tools within defined parameters. Tools that meet department security and CJIS standards may be adopted.",
+          "file": "content/lexias/puk-blue-innovation.md",
+          "stem": "puk-blue-innovation"
+        },
+        {
+          "id": "puk-yellow-innovation",
+          "employee": "puk",
+          "flavor": "yellow",
+          "posture": "exposed",
+          "dimension": "innovation",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The deputy may identify and use new AI tools based on his own assessment of their usefulness in the field. Formal department approval is not required.",
+          "file": "content/lexias/puk-yellow-innovation.md",
+          "stem": "puk-yellow-innovation"
+        }
+      ],
+      "memberIds": [
+        "puk-red-innovation",
+        "puk-blue-innovation",
+        "puk-yellow-innovation"
+      ],
+      "variantCount": 2,
+      "identical": false,
+      "variants": [
+        {
+          "text": "The deputy is encouraged to identify and pilot new AI tools within defined parameters. Tools that meet department security and CJIS standards may be adopted.",
+          "flavors": [
+            "red",
+            "blue"
+          ],
+          "diffVsFirst": null,
+          "deltaVsFirst": null
+        },
+        {
+          "text": "The deputy may identify and use new AI tools based on his own assessment of their usefulness in the field. Formal department approval is not required.",
+          "flavors": [
+            "yellow"
+          ],
+          "diffVsFirst": [
+            {
+              "op": "same",
+              "text": "The deputy "
+            },
+            {
+              "op": "del",
+              "text": "is encouraged to "
+            },
+            {
+              "op": "ins",
+              "text": "may "
+            },
+            {
+              "op": "same",
+              "text": "identify and "
+            },
+            {
+              "op": "del",
+              "text": "pilot "
+            },
+            {
+              "op": "ins",
+              "text": "use "
+            },
+            {
+              "op": "same",
+              "text": "new AI tools "
+            },
+            {
+              "op": "del",
+              "text": "within defined parameters. Tools that meet "
+            },
+            {
+              "op": "ins",
+              "text": "based on his own assessment of their usefulness in the field. Formal "
+            },
+            {
+              "op": "same",
+              "text": "department "
+            },
+            {
+              "op": "del",
+              "text": "security and CJIS standards may be adopted."
+            },
+            {
+              "op": "ins",
+              "text": "approval is not required."
+            }
+          ],
+          "deltaVsFirst": "-17 +18 words"
+        }
+      ]
+    },
+    {
+      "id": "wow-accountability-lo",
+      "employee": "wow",
+      "dimension": "accountability",
+      "setting": "Lo",
+      "members": [
+        {
+          "id": "wow-blue-accountability",
+          "employee": "wow",
+          "flavor": "blue",
+          "posture": "lighttouch",
+          "dimension": "accountability",
+          "setting": "Lo",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "No AI-specific logging is required beyond what existing records practices already capture. The staffer, not the AI tool, is responsible for the determination.",
+          "file": "content/lexias/wow-blue-accountability.md",
+          "stem": "wow-blue-accountability"
+        },
+        {
+          "id": "wow-yellow-accountability",
+          "employee": "wow",
+          "flavor": "yellow",
+          "posture": "exposed",
+          "dimension": "accountability",
+          "setting": "Lo",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "No AI-specific logging is required. The staffer, not the AI tool, is responsible for the determination.",
+          "file": "content/lexias/wow-yellow-accountability.md",
+          "stem": "wow-yellow-accountability"
+        }
+      ],
+      "memberIds": [
+        "wow-blue-accountability",
+        "wow-yellow-accountability"
+      ],
+      "variantCount": 2,
+      "identical": false,
+      "variants": [
+        {
+          "text": "No AI-specific logging is required beyond what existing records practices already capture. The staffer, not the AI tool, is responsible for the determination.",
+          "flavors": [
+            "blue"
+          ],
+          "diffVsFirst": null,
+          "deltaVsFirst": null
+        },
+        {
+          "text": "No AI-specific logging is required. The staffer, not the AI tool, is responsible for the determination.",
+          "flavors": [
+            "yellow"
+          ],
+          "diffVsFirst": [
+            {
+              "op": "same",
+              "text": "No AI-specific logging is "
+            },
+            {
+              "op": "del",
+              "text": "required beyond what existing records practices already capture. "
+            },
+            {
+              "op": "ins",
+              "text": "required. "
+            },
+            {
+              "op": "same",
+              "text": "The staffer, not the AI tool, is responsible for the determination."
+            }
+          ],
+          "deltaVsFirst": "-8 +1 words"
+        }
+      ]
+    },
+    {
+      "id": "wow-efficiency-hi",
+      "employee": "wow",
+      "dimension": "efficiency",
+      "setting": "Hi",
+      "members": [
+        {
+          "id": "wow-red-efficiency",
+          "employee": "wow",
+          "flavor": "red",
+          "posture": "enable",
+          "dimension": "efficiency",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The staffer may route the draft notice for signature after her own review, without a separate supervisor sign-off step. Before routing, the staffer verifies every factual claim, regulatory citation, deadline, and appeal rights statement against the source documents. The AI tool cannot supply facts, deadlines, or citations; the staffer confirms each element independently.",
+          "file": "content/lexias/wow-red-efficiency.md",
+          "stem": "wow-red-efficiency"
+        },
+        {
+          "id": "wow-blue-efficiency",
+          "employee": "wow",
+          "flavor": "blue",
+          "posture": "lighttouch",
+          "dimension": "efficiency",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The staffer may route the draft notice for signature after her own review, without a separate supervisor sign-off step. Before routing, the staffer verifies every factual claim, regulatory citation, deadline, and appeal rights statement against the source documents. The AI tool cannot supply facts, deadlines, or citations; the staffer confirms each element independently.",
+          "file": "content/lexias/wow-blue-efficiency.md",
+          "stem": "wow-blue-efficiency"
+        },
+        {
+          "id": "wow-yellow-efficiency",
+          "employee": "wow",
+          "flavor": "yellow",
+          "posture": "exposed",
+          "dimension": "efficiency",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The staffer may route the draft notice for signature after her own review. Before routing, the staffer verifies every factual claim, regulatory citation, deadline, and appeal rights statement against the source documents. The AI tool cannot supply facts, deadlines, or citations; the staffer confirms each element independently.",
+          "file": "content/lexias/wow-yellow-efficiency.md",
+          "stem": "wow-yellow-efficiency"
+        }
+      ],
+      "memberIds": [
+        "wow-red-efficiency",
+        "wow-blue-efficiency",
+        "wow-yellow-efficiency"
+      ],
+      "variantCount": 2,
+      "identical": false,
+      "variants": [
+        {
+          "text": "The staffer may route the draft notice for signature after her own review, without a separate supervisor sign-off step. Before routing, the staffer verifies every factual claim, regulatory citation, deadline, and appeal rights statement against the source documents. The AI tool cannot supply facts, deadlines, or citations; the staffer confirms each element independently.",
+          "flavors": [
+            "red",
+            "blue"
+          ],
+          "diffVsFirst": null,
+          "deltaVsFirst": null
+        },
+        {
+          "text": "The staffer may route the draft notice for signature after her own review. Before routing, the staffer verifies every factual claim, regulatory citation, deadline, and appeal rights statement against the source documents. The AI tool cannot supply facts, deadlines, or citations; the staffer confirms each element independently.",
+          "flavors": [
+            "yellow"
+          ],
+          "diffVsFirst": [
+            {
+              "op": "same",
+              "text": "The staffer may route the draft notice for signature after her own "
+            },
+            {
+              "op": "del",
+              "text": "review, without a separate supervisor sign-off step. "
+            },
+            {
+              "op": "ins",
+              "text": "review. "
+            },
+            {
+              "op": "same",
+              "text": "Before routing, the staffer verifies every factual claim, regulatory citation, deadline, and appeal rights statement against the source documents. The AI tool cannot supply facts, deadlines, or citations; the staffer confirms each element independently."
+            }
+          ],
+          "deltaVsFirst": "-7 +1 words"
+        }
+      ]
+    },
+    {
+      "id": "wow-innovation-hi",
+      "employee": "wow",
+      "dimension": "innovation",
+      "setting": "Hi",
+      "members": [
+        {
+          "id": "wow-red-innovation",
+          "employee": "wow",
+          "flavor": "red",
+          "posture": "enable",
+          "dimension": "innovation",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The staffer is encouraged to identify and pilot new AI drafting tools within defined parameters. Tools that meet county security and operational standards may be adopted.",
+          "file": "content/lexias/wow-red-innovation.md",
+          "stem": "wow-red-innovation"
+        },
+        {
+          "id": "wow-blue-innovation",
+          "employee": "wow",
+          "flavor": "blue",
+          "posture": "lighttouch",
+          "dimension": "innovation",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The staffer is encouraged to identify and pilot new AI drafting tools within defined parameters. Tools that meet county security and operational standards may be adopted.",
+          "file": "content/lexias/wow-blue-innovation.md",
+          "stem": "wow-blue-innovation"
+        },
+        {
+          "id": "wow-yellow-innovation",
+          "employee": "wow",
+          "flavor": "yellow",
+          "posture": "exposed",
+          "dimension": "innovation",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The staffer may identify and use new AI drafting tools based on her own assessment. Formal county approval is not required.",
+          "file": "content/lexias/wow-yellow-innovation.md",
+          "stem": "wow-yellow-innovation"
+        }
+      ],
+      "memberIds": [
+        "wow-red-innovation",
+        "wow-blue-innovation",
+        "wow-yellow-innovation"
+      ],
+      "variantCount": 2,
+      "identical": false,
+      "variants": [
+        {
+          "text": "The staffer is encouraged to identify and pilot new AI drafting tools within defined parameters. Tools that meet county security and operational standards may be adopted.",
+          "flavors": [
+            "red",
+            "blue"
+          ],
+          "diffVsFirst": null,
+          "deltaVsFirst": null
+        },
+        {
+          "text": "The staffer may identify and use new AI drafting tools based on her own assessment. Formal county approval is not required.",
+          "flavors": [
+            "yellow"
+          ],
+          "diffVsFirst": [
+            {
+              "op": "same",
+              "text": "The staffer "
+            },
+            {
+              "op": "del",
+              "text": "is encouraged to "
+            },
+            {
+              "op": "ins",
+              "text": "may "
+            },
+            {
+              "op": "same",
+              "text": "identify and "
+            },
+            {
+              "op": "del",
+              "text": "pilot "
+            },
+            {
+              "op": "ins",
+              "text": "use "
+            },
+            {
+              "op": "same",
+              "text": "new AI drafting tools "
+            },
+            {
+              "op": "del",
+              "text": "within defined parameters. Tools that meet "
+            },
+            {
+              "op": "ins",
+              "text": "based on her own assessment. Formal "
+            },
+            {
+              "op": "same",
+              "text": "county "
+            },
+            {
+              "op": "del",
+              "text": "security and operational standards may be adopted."
+            },
+            {
+              "op": "ins",
+              "text": "approval is not required."
+            }
+          ],
+          "deltaVsFirst": "-17 +12 words"
+        }
+      ]
+    },
+    {
+      "id": "jam-efficiency-lo",
+      "employee": "jam",
+      "dimension": "efficiency",
+      "setting": "Lo",
+      "members": [
+        {
+          "id": "jam-green-efficiency",
+          "employee": "jam",
+          "flavor": "green",
+          "posture": "guardrails",
+          "dimension": "efficiency",
+          "setting": "Lo",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The nurse may not implement the AI-ranked schedule without first reviewing it with her supervisor. The supervisor confirms or adjusts the day's priorities before the nurse begins her rounds. The nurse documents that supervisor review occurred and notes any departures from the AI ranking.",
+          "file": "content/lexias/jam-green-efficiency.md",
+          "stem": "jam-green-efficiency"
+        }
+      ],
+      "memberIds": [
+        "jam-green-efficiency"
+      ],
+      "variantCount": 1,
+      "identical": true,
+      "variants": [
+        {
+          "text": "The nurse may not implement the AI-ranked schedule without first reviewing it with her supervisor. The supervisor confirms or adjusts the day's priorities before the nurse begins her rounds. The nurse documents that supervisor review occurred and notes any departures from the AI ranking.",
+          "flavors": [
+            "green"
+          ],
+          "diffVsFirst": null,
+          "deltaVsFirst": null
+        }
+      ]
+    },
+    {
+      "id": "jam-innovation-lo",
+      "employee": "jam",
+      "dimension": "innovation",
+      "setting": "Lo",
+      "members": [
+        {
+          "id": "jam-green-innovation",
+          "employee": "jam",
+          "flavor": "green",
+          "posture": "guardrails",
+          "dimension": "innovation",
+          "setting": "Lo",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The nurse may not adopt or pilot any AI tool not on the county's approved list. Tool selection is centralized.",
+          "file": "content/lexias/jam-green-innovation.md",
+          "stem": "jam-green-innovation"
+        }
+      ],
+      "memberIds": [
+        "jam-green-innovation"
+      ],
+      "variantCount": 1,
+      "identical": true,
+      "variants": [
+        {
+          "text": "The nurse may not adopt or pilot any AI tool not on the county's approved list. Tool selection is centralized.",
+          "flavors": [
+            "green"
+          ],
+          "diffVsFirst": null,
+          "deltaVsFirst": null
+        }
+      ]
+    },
+    {
+      "id": "jam-security-hi",
+      "employee": "jam",
+      "dimension": "security",
+      "setting": "Hi",
+      "members": [
+        {
+          "id": "jam-green-security",
+          "employee": "jam",
+          "flavor": "green",
+          "posture": "guardrails",
+          "dimension": "security",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The nurse may use the county's designated AI prioritization tool to receive a ranked caseload for the day. The tool must be county-procured and appear on the county's approved AI tool list. Resident health information processed by the tool must not leave county systems. All approved tools are auditable by IT.",
+          "file": "content/lexias/jam-green-security.md",
+          "stem": "jam-green-security"
+        },
+        {
+          "id": "jam-red-security",
+          "employee": "jam",
+          "flavor": "red",
+          "posture": "enable",
+          "dimension": "security",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The nurse may use the county's designated AI prioritization tool to receive a ranked caseload for the day. The tool must be county-procured and appear on the county's approved AI tool list. Resident health information processed by the tool must not leave county systems. All approved tools are auditable by IT.",
+          "file": "content/lexias/jam-red-security.md",
+          "stem": "jam-red-security"
+        },
+        {
+          "id": "jam-blue-security",
+          "employee": "jam",
+          "flavor": "blue",
+          "posture": "lighttouch",
+          "dimension": "security",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The nurse may use the county's designated AI prioritization tool to receive a ranked caseload for the day. The tool must be county-procured and appear on the county's approved AI tool list. Resident health information processed by the tool must not leave county systems. All approved tools are auditable by IT.",
+          "file": "content/lexias/jam-blue-security.md",
+          "stem": "jam-blue-security"
+        }
+      ],
+      "memberIds": [
+        "jam-green-security",
+        "jam-red-security",
+        "jam-blue-security"
+      ],
+      "variantCount": 1,
+      "identical": true,
+      "variants": [
+        {
+          "text": "The nurse may use the county's designated AI prioritization tool to receive a ranked caseload for the day. The tool must be county-procured and appear on the county's approved AI tool list. Resident health information processed by the tool must not leave county systems. All approved tools are auditable by IT.",
+          "flavors": [
+            "green",
+            "red",
+            "blue"
+          ],
+          "diffVsFirst": null,
+          "deltaVsFirst": null
+        }
+      ]
+    },
+    {
+      "id": "jam-security-lo",
+      "employee": "jam",
+      "dimension": "security",
+      "setting": "Lo",
+      "members": [
+        {
+          "id": "jam-yellow-security",
+          "employee": "jam",
+          "flavor": "yellow",
+          "posture": "exposed",
+          "dimension": "security",
+          "setting": "Lo",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The nurse may use any available AI prioritization tool, including commercially available tools, to assist with caseload management. The nurse is responsible for appropriate handling of any resident data entered into non-county tools.",
+          "file": "content/lexias/jam-yellow-security.md",
+          "stem": "jam-yellow-security"
+        }
+      ],
+      "memberIds": [
+        "jam-yellow-security"
+      ],
+      "variantCount": 1,
+      "identical": true,
+      "variants": [
+        {
+          "text": "The nurse may use any available AI prioritization tool, including commercially available tools, to assist with caseload management. The nurse is responsible for appropriate handling of any resident data entered into non-county tools.",
+          "flavors": [
+            "yellow"
+          ],
+          "diffVsFirst": null,
+          "deltaVsFirst": null
+        }
+      ]
+    },
+    {
+      "id": "lux-accountability-hi",
+      "employee": "lux",
+      "dimension": "accountability",
+      "setting": "Hi",
+      "members": [
+        {
+          "id": "lux-green-accountability",
+          "employee": "lux",
+          "flavor": "green",
+          "posture": "guardrails",
+          "dimension": "accountability",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "Every AI-assisted intake interaction is logged with the caseworker's staff ID, the tool name, and a timestamp. Logs are retained for a minimum of 90 days. A named caseworker is responsible for every determination. The AI assessment is an input to that determination; the caseworker, not the AI tool, makes the determination.",
+          "file": "content/lexias/lux-green-accountability.md",
+          "stem": "lux-green-accountability"
+        },
+        {
+          "id": "lux-red-accountability",
+          "employee": "lux",
+          "flavor": "red",
+          "posture": "enable",
+          "dimension": "accountability",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "Every AI-assisted intake interaction is logged with the caseworker's staff ID, the tool name, and a timestamp. Logs are retained for a minimum of 90 days. A named caseworker is responsible for every determination. The AI assessment is an input to that determination; the caseworker, not the AI tool, makes the determination.",
+          "file": "content/lexias/lux-red-accountability.md",
+          "stem": "lux-red-accountability"
+        }
+      ],
+      "memberIds": [
+        "lux-green-accountability",
+        "lux-red-accountability"
+      ],
+      "variantCount": 1,
+      "identical": true,
+      "variants": [
+        {
+          "text": "Every AI-assisted intake interaction is logged with the caseworker's staff ID, the tool name, and a timestamp. Logs are retained for a minimum of 90 days. A named caseworker is responsible for every determination. The AI assessment is an input to that determination; the caseworker, not the AI tool, makes the determination.",
+          "flavors": [
+            "green",
+            "red"
+          ],
+          "diffVsFirst": null,
+          "deltaVsFirst": null
+        }
+      ]
+    },
+    {
+      "id": "lux-efficiency-lo",
+      "employee": "lux",
+      "dimension": "efficiency",
+      "setting": "Lo",
+      "members": [
+        {
+          "id": "lux-green-efficiency",
+          "employee": "lux",
+          "flavor": "green",
+          "posture": "guardrails",
+          "dimension": "efficiency",
+          "setting": "Lo",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "Before any case is moved forward based on an AI-generated output, the assessment must be reviewed and confirmed by a supervisor or a second caseworker. The caseworker documents the AI tool used, the date, and the outcome of the supervisor review in the case record.",
+          "file": "content/lexias/lux-green-efficiency.md",
+          "stem": "lux-green-efficiency"
+        }
+      ],
+      "memberIds": [
+        "lux-green-efficiency"
+      ],
+      "variantCount": 1,
+      "identical": true,
+      "variants": [
+        {
+          "text": "Before any case is moved forward based on an AI-generated output, the assessment must be reviewed and confirmed by a supervisor or a second caseworker. The caseworker documents the AI tool used, the date, and the outcome of the supervisor review in the case record.",
+          "flavors": [
+            "green"
+          ],
+          "diffVsFirst": null,
+          "deltaVsFirst": null
+        }
+      ]
+    },
+    {
+      "id": "lux-innovation-lo",
+      "employee": "lux",
+      "dimension": "innovation",
+      "setting": "Lo",
+      "members": [
+        {
+          "id": "lux-green-innovation",
+          "employee": "lux",
+          "flavor": "green",
+          "posture": "guardrails",
+          "dimension": "innovation",
+          "setting": "Lo",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The caseworker may not adopt, download, or pilot any AI tool not on the county's approved list. Tool selection is centralized.",
+          "file": "content/lexias/lux-green-innovation.md",
+          "stem": "lux-green-innovation"
+        }
+      ],
+      "memberIds": [
+        "lux-green-innovation"
+      ],
+      "variantCount": 1,
+      "identical": true,
+      "variants": [
+        {
+          "text": "The caseworker may not adopt, download, or pilot any AI tool not on the county's approved list. Tool selection is centralized.",
+          "flavors": [
+            "green"
+          ],
+          "diffVsFirst": null,
+          "deltaVsFirst": null
+        }
+      ]
+    },
+    {
+      "id": "lux-security-hi",
+      "employee": "lux",
+      "dimension": "security",
+      "setting": "Hi",
+      "members": [
+        {
+          "id": "lux-green-security",
+          "employee": "lux",
+          "flavor": "green",
+          "posture": "guardrails",
+          "dimension": "security",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The caseworker may use the county's designated AI screening tool to generate a preliminary eligibility or risk assessment during a benefits intake. The tool must appear on the county's approved AI tool list. Client data entered into or generated by the tool must not leave county systems. The caseworker may not transmit client information -- including case summaries, household data, income records, or AI-generated assessments -- to any personal account, personal device, or outside server. All approved tools are auditable by IT.",
+          "file": "content/lexias/lux-green-security.md",
+          "stem": "lux-green-security"
+        },
+        {
+          "id": "lux-red-security",
+          "employee": "lux",
+          "flavor": "red",
+          "posture": "enable",
+          "dimension": "security",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The caseworker may use the county's designated AI screening tool to generate a preliminary eligibility or risk assessment during a benefits intake. The tool must appear on the county's approved AI tool list. Client data entered into or generated by the tool must not leave county systems. The caseworker may not transmit client information -- including case summaries, household data, income records, or AI-generated assessments -- to any personal account, personal device, or outside server. All approved tools are auditable by IT.",
+          "file": "content/lexias/lux-red-security.md",
+          "stem": "lux-red-security"
+        },
+        {
+          "id": "lux-blue-security",
+          "employee": "lux",
+          "flavor": "blue",
+          "posture": "lighttouch",
+          "dimension": "security",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The caseworker may use the county's designated AI screening tool to generate a preliminary eligibility or risk assessment during a benefits intake. The tool must appear on the county's approved AI tool list. Client data entered into or generated by the tool must not leave county systems. The caseworker may not transmit client information -- including case summaries, household data, income records, or AI-generated assessments -- to any personal account, personal device, or outside server. All approved tools are auditable by IT.",
+          "file": "content/lexias/lux-blue-security.md",
+          "stem": "lux-blue-security"
+        }
+      ],
+      "memberIds": [
+        "lux-green-security",
+        "lux-red-security",
+        "lux-blue-security"
+      ],
+      "variantCount": 1,
+      "identical": true,
+      "variants": [
+        {
+          "text": "The caseworker may use the county's designated AI screening tool to generate a preliminary eligibility or risk assessment during a benefits intake. The tool must appear on the county's approved AI tool list. Client data entered into or generated by the tool must not leave county systems. The caseworker may not transmit client information -- including case summaries, household data, income records, or AI-generated assessments -- to any personal account, personal device, or outside server. All approved tools are auditable by IT.",
+          "flavors": [
+            "green",
+            "red",
+            "blue"
+          ],
+          "diffVsFirst": null,
+          "deltaVsFirst": null
+        }
+      ]
+    },
+    {
+      "id": "lux-security-lo",
+      "employee": "lux",
+      "dimension": "security",
+      "setting": "Lo",
+      "members": [
+        {
+          "id": "lux-yellow-security",
+          "employee": "lux",
+          "flavor": "yellow",
+          "posture": "exposed",
+          "dimension": "security",
+          "setting": "Lo",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The caseworker may use any available AI screening tool, including commercially available tools, to assist with benefits intake. The caseworker is responsible for appropriate data handling when using tools that are not county-designated. Client data and case summaries may be transmitted to personal accounts or devices when necessary for the caseworker to complete work; the caseworker exercises professional judgment about what information to transmit and how it is handled.",
+          "file": "content/lexias/lux-yellow-security.md",
+          "stem": "lux-yellow-security"
+        }
+      ],
+      "memberIds": [
+        "lux-yellow-security"
+      ],
+      "variantCount": 1,
+      "identical": true,
+      "variants": [
+        {
+          "text": "The caseworker may use any available AI screening tool, including commercially available tools, to assist with benefits intake. The caseworker is responsible for appropriate data handling when using tools that are not county-designated. Client data and case summaries may be transmitted to personal accounts or devices when necessary for the caseworker to complete work; the caseworker exercises professional judgment about what information to transmit and how it is handled.",
+          "flavors": [
+            "yellow"
+          ],
+          "diffVsFirst": null,
+          "deltaVsFirst": null
+        }
+      ]
+    },
+    {
+      "id": "puk-accountability-hi",
+      "employee": "puk",
+      "dimension": "accountability",
+      "setting": "Hi",
+      "members": [
+        {
+          "id": "puk-green-accountability",
+          "employee": "puk",
+          "flavor": "green",
+          "posture": "guardrails",
+          "dimension": "accountability",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "Every AI-assisted field query is logged with the deputy's badge number, the tool name, and a timestamp. Logs are retained for a minimum of 90 days. The deputy is the named responsible officer for each stop. The AI tool result is an input to the deputy's field judgment; the deputy, not the AI tool, makes the determination.",
+          "file": "content/lexias/puk-green-accountability.md",
+          "stem": "puk-green-accountability"
+        },
+        {
+          "id": "puk-red-accountability",
+          "employee": "puk",
+          "flavor": "red",
+          "posture": "enable",
+          "dimension": "accountability",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "Every AI-assisted field query is logged with the deputy's badge number, the tool name, and a timestamp. Logs are retained for a minimum of 90 days. The deputy is the named responsible officer for each stop. The AI tool result is an input to the deputy's field judgment; the deputy, not the AI tool, makes the determination.",
+          "file": "content/lexias/puk-red-accountability.md",
+          "stem": "puk-red-accountability"
+        }
+      ],
+      "memberIds": [
+        "puk-green-accountability",
+        "puk-red-accountability"
+      ],
+      "variantCount": 1,
+      "identical": true,
+      "variants": [
+        {
+          "text": "Every AI-assisted field query is logged with the deputy's badge number, the tool name, and a timestamp. Logs are retained for a minimum of 90 days. The deputy is the named responsible officer for each stop. The AI tool result is an input to the deputy's field judgment; the deputy, not the AI tool, makes the determination.",
+          "flavors": [
+            "green",
+            "red"
+          ],
+          "diffVsFirst": null,
+          "deltaVsFirst": null
+        }
+      ]
+    },
+    {
+      "id": "puk-efficiency-lo",
+      "employee": "puk",
+      "dimension": "efficiency",
+      "setting": "Lo",
+      "members": [
+        {
+          "id": "puk-green-efficiency",
+          "employee": "puk",
+          "flavor": "green",
+          "posture": "guardrails",
+          "dimension": "efficiency",
+          "setting": "Lo",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The deputy may not act directly on an AI-generated record flag without first confirming the result through an independent channel -- dispatch, a backup terminal, or a second officer. The AI output is a preliminary indicator only. The deputy proceeds based on confirmed information, not the AI result alone.",
+          "file": "content/lexias/puk-green-efficiency.md",
+          "stem": "puk-green-efficiency"
+        }
+      ],
+      "memberIds": [
+        "puk-green-efficiency"
+      ],
+      "variantCount": 1,
+      "identical": true,
+      "variants": [
+        {
+          "text": "The deputy may not act directly on an AI-generated record flag without first confirming the result through an independent channel -- dispatch, a backup terminal, or a second officer. The AI output is a preliminary indicator only. The deputy proceeds based on confirmed information, not the AI result alone.",
+          "flavors": [
+            "green"
+          ],
+          "diffVsFirst": null,
+          "deltaVsFirst": null
+        }
+      ]
+    },
+    {
+      "id": "puk-innovation-lo",
+      "employee": "puk",
+      "dimension": "innovation",
+      "setting": "Lo",
+      "members": [
+        {
+          "id": "puk-green-innovation",
+          "employee": "puk",
+          "flavor": "green",
+          "posture": "guardrails",
+          "dimension": "innovation",
+          "setting": "Lo",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The deputy may not adopt, download, or pilot any AI tool not on the department's approved list. Tool selection is centralized.",
+          "file": "content/lexias/puk-green-innovation.md",
+          "stem": "puk-green-innovation"
+        }
+      ],
+      "memberIds": [
+        "puk-green-innovation"
+      ],
+      "variantCount": 1,
+      "identical": true,
+      "variants": [
+        {
+          "text": "The deputy may not adopt, download, or pilot any AI tool not on the department's approved list. Tool selection is centralized.",
+          "flavors": [
+            "green"
+          ],
+          "diffVsFirst": null,
+          "deltaVsFirst": null
+        }
+      ]
+    },
+    {
+      "id": "puk-security-hi",
+      "employee": "puk",
+      "dimension": "security",
+      "setting": "Hi",
+      "members": [
+        {
+          "id": "puk-green-security",
+          "employee": "puk",
+          "flavor": "green",
+          "posture": "guardrails",
+          "dimension": "security",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The deputy may use only department-issued, security-vetted AI tools for field identification tasks including plate recognition. The tool must appear on the department's approved list and must comply with CJIS security requirements. Criminal justice data processed by the tool must not leave county or state-authorized systems. All approved tools are auditable by IT.",
+          "file": "content/lexias/puk-green-security.md",
+          "stem": "puk-green-security"
+        },
+        {
+          "id": "puk-red-security",
+          "employee": "puk",
+          "flavor": "red",
+          "posture": "enable",
+          "dimension": "security",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The deputy may use only department-issued, security-vetted AI tools for field identification tasks including plate recognition. The tool must appear on the department's approved list and must comply with CJIS security requirements. Criminal justice data processed by the tool must not leave county or state-authorized systems. All approved tools are auditable by IT.",
+          "file": "content/lexias/puk-red-security.md",
+          "stem": "puk-red-security"
+        },
+        {
+          "id": "puk-blue-security",
+          "employee": "puk",
+          "flavor": "blue",
+          "posture": "lighttouch",
+          "dimension": "security",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The deputy may use only department-issued, security-vetted AI tools for field identification tasks including plate recognition. The tool must appear on the department's approved list and must comply with CJIS security requirements. Criminal justice data processed by the tool must not leave county or state-authorized systems. All approved tools are auditable by IT.",
+          "file": "content/lexias/puk-blue-security.md",
+          "stem": "puk-blue-security"
+        }
+      ],
+      "memberIds": [
+        "puk-green-security",
+        "puk-red-security",
+        "puk-blue-security"
+      ],
+      "variantCount": 1,
+      "identical": true,
+      "variants": [
+        {
+          "text": "The deputy may use only department-issued, security-vetted AI tools for field identification tasks including plate recognition. The tool must appear on the department's approved list and must comply with CJIS security requirements. Criminal justice data processed by the tool must not leave county or state-authorized systems. All approved tools are auditable by IT.",
+          "flavors": [
+            "green",
+            "red",
+            "blue"
+          ],
+          "diffVsFirst": null,
+          "deltaVsFirst": null
+        }
+      ]
+    },
+    {
+      "id": "puk-security-lo",
+      "employee": "puk",
+      "dimension": "security",
+      "setting": "Lo",
+      "members": [
+        {
+          "id": "puk-yellow-security",
+          "employee": "puk",
+          "flavor": "yellow",
+          "posture": "exposed",
+          "dimension": "security",
+          "setting": "Lo",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The deputy may use any available AI tool for field identification tasks, including personally owned devices and commercially available applications. The deputy is responsible for appropriate handling of any data entered into non-department tools. Criminal justice data entered into commercial tools may be processed outside county or state-authorized systems; the deputy exercises professional judgment about what information to enter.",
+          "file": "content/lexias/puk-yellow-security.md",
+          "stem": "puk-yellow-security"
+        }
+      ],
+      "memberIds": [
+        "puk-yellow-security"
+      ],
+      "variantCount": 1,
+      "identical": true,
+      "variants": [
+        {
+          "text": "The deputy may use any available AI tool for field identification tasks, including personally owned devices and commercially available applications. The deputy is responsible for appropriate handling of any data entered into non-department tools. Criminal justice data entered into commercial tools may be processed outside county or state-authorized systems; the deputy exercises professional judgment about what information to enter.",
+          "flavors": [
+            "yellow"
+          ],
+          "diffVsFirst": null,
+          "deltaVsFirst": null
+        }
+      ]
+    },
+    {
+      "id": "wow-accountability-hi",
+      "employee": "wow",
+      "dimension": "accountability",
+      "setting": "Hi",
+      "members": [
+        {
+          "id": "wow-green-accountability",
+          "employee": "wow",
+          "flavor": "green",
+          "posture": "guardrails",
+          "dimension": "accountability",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "Every AI-assisted drafting session is logged with the staffer's staff ID, the tool name, and a timestamp. The log is retained as part of the determination record. A named staffer is responsible for the accuracy of the notice. The AI draft is an input; the staffer, not the AI tool, is responsible for the determination.",
+          "file": "content/lexias/wow-green-accountability.md",
+          "stem": "wow-green-accountability"
+        },
+        {
+          "id": "wow-red-accountability",
+          "employee": "wow",
+          "flavor": "red",
+          "posture": "enable",
+          "dimension": "accountability",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "Every AI-assisted drafting session is logged with the staffer's staff ID, the tool name, and a timestamp. The log is retained as part of the determination record. A named staffer is responsible for the accuracy of the notice. The AI draft is an input; the staffer, not the AI tool, is responsible for the determination.",
+          "file": "content/lexias/wow-red-accountability.md",
+          "stem": "wow-red-accountability"
+        }
+      ],
+      "memberIds": [
+        "wow-green-accountability",
+        "wow-red-accountability"
+      ],
+      "variantCount": 1,
+      "identical": true,
+      "variants": [
+        {
+          "text": "Every AI-assisted drafting session is logged with the staffer's staff ID, the tool name, and a timestamp. The log is retained as part of the determination record. A named staffer is responsible for the accuracy of the notice. The AI draft is an input; the staffer, not the AI tool, is responsible for the determination.",
+          "flavors": [
+            "green",
+            "red"
+          ],
+          "diffVsFirst": null,
+          "deltaVsFirst": null
+        }
+      ]
+    },
+    {
+      "id": "wow-efficiency-lo",
+      "employee": "wow",
+      "dimension": "efficiency",
+      "setting": "Lo",
+      "members": [
+        {
+          "id": "wow-green-efficiency",
+          "employee": "wow",
+          "flavor": "green",
+          "posture": "guardrails",
+          "dimension": "efficiency",
+          "setting": "Lo",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The staffer may not route the draft notice for signature without supervisor sign-off. Before routing, the staffer verifies every factual claim, regulatory citation, deadline, and appeal rights statement against the source documents. The AI tool cannot supply facts, deadlines, or citations; the staffer confirms each element independently. The routing slip notes that AI was used in drafting and that verification is complete.",
+          "file": "content/lexias/wow-green-efficiency.md",
+          "stem": "wow-green-efficiency"
+        }
+      ],
+      "memberIds": [
+        "wow-green-efficiency"
+      ],
+      "variantCount": 1,
+      "identical": true,
+      "variants": [
+        {
+          "text": "The staffer may not route the draft notice for signature without supervisor sign-off. Before routing, the staffer verifies every factual claim, regulatory citation, deadline, and appeal rights statement against the source documents. The AI tool cannot supply facts, deadlines, or citations; the staffer confirms each element independently. The routing slip notes that AI was used in drafting and that verification is complete.",
+          "flavors": [
+            "green"
+          ],
+          "diffVsFirst": null,
+          "deltaVsFirst": null
+        }
+      ]
+    },
+    {
+      "id": "wow-innovation-lo",
+      "employee": "wow",
+      "dimension": "innovation",
+      "setting": "Lo",
+      "members": [
+        {
+          "id": "wow-green-innovation",
+          "employee": "wow",
+          "flavor": "green",
+          "posture": "guardrails",
+          "dimension": "innovation",
+          "setting": "Lo",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The staffer may not adopt or pilot any AI drafting tool not on the county's approved list. Tool selection is centralized.",
+          "file": "content/lexias/wow-green-innovation.md",
+          "stem": "wow-green-innovation"
+        }
+      ],
+      "memberIds": [
+        "wow-green-innovation"
+      ],
+      "variantCount": 1,
+      "identical": true,
+      "variants": [
+        {
+          "text": "The staffer may not adopt or pilot any AI drafting tool not on the county's approved list. Tool selection is centralized.",
+          "flavors": [
+            "green"
+          ],
+          "diffVsFirst": null,
+          "deltaVsFirst": null
+        }
+      ]
+    },
+    {
+      "id": "wow-security-hi",
+      "employee": "wow",
+      "dimension": "security",
+      "setting": "Hi",
+      "members": [
+        {
+          "id": "wow-green-security",
+          "employee": "wow",
+          "flavor": "green",
+          "posture": "guardrails",
+          "dimension": "security",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The staffer may use the county's designated AI drafting tool to generate a draft benefits denial notice. The tool must appear on the county's approved AI tool list. Applicant information and case data must not leave county systems; the staffer may not use any tool that transmits legal work product or applicant information to an outside server or third party. All approved tools are auditable by IT.",
+          "file": "content/lexias/wow-green-security.md",
+          "stem": "wow-green-security"
+        },
+        {
+          "id": "wow-red-security",
+          "employee": "wow",
+          "flavor": "red",
+          "posture": "enable",
+          "dimension": "security",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The staffer may use the county's designated AI drafting tool to generate a draft benefits denial notice. The tool must appear on the county's approved AI tool list. Applicant information and case data must not leave county systems; the staffer may not use any tool that transmits legal work product or applicant information to an outside server or third party. All approved tools are auditable by IT.",
+          "file": "content/lexias/wow-red-security.md",
+          "stem": "wow-red-security"
+        },
+        {
+          "id": "wow-blue-security",
+          "employee": "wow",
+          "flavor": "blue",
+          "posture": "lighttouch",
+          "dimension": "security",
+          "setting": "Hi",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The staffer may use the county's designated AI drafting tool to generate a draft benefits denial notice. The tool must appear on the county's approved AI tool list. Applicant information and case data must not leave county systems; the staffer may not use any tool that transmits legal work product or applicant information to an outside server or third party. All approved tools are auditable by IT.",
+          "file": "content/lexias/wow-blue-security.md",
+          "stem": "wow-blue-security"
+        }
+      ],
+      "memberIds": [
+        "wow-green-security",
+        "wow-red-security",
+        "wow-blue-security"
+      ],
+      "variantCount": 1,
+      "identical": true,
+      "variants": [
+        {
+          "text": "The staffer may use the county's designated AI drafting tool to generate a draft benefits denial notice. The tool must appear on the county's approved AI tool list. Applicant information and case data must not leave county systems; the staffer may not use any tool that transmits legal work product or applicant information to an outside server or third party. All approved tools are auditable by IT.",
+          "flavors": [
+            "green",
+            "red",
+            "blue"
+          ],
+          "diffVsFirst": null,
+          "deltaVsFirst": null
+        }
+      ]
+    },
+    {
+      "id": "wow-security-lo",
+      "employee": "wow",
+      "dimension": "security",
+      "setting": "Lo",
+      "members": [
+        {
+          "id": "wow-yellow-security",
+          "employee": "wow",
+          "flavor": "yellow",
+          "posture": "exposed",
+          "dimension": "security",
+          "setting": "Lo",
+          "status": "unreviewed",
+          "reviewer": "",
+          "reviewed": "",
+          "notes": "",
+          "tags": [],
+          "rationale": "",
+          "implementation_note": "",
+          "text": "The staffer may use any available AI drafting tool, including commercially available tools, to assist with drafting benefits denial notices. The staffer is responsible for appropriate handling of any applicant information entered into non-county tools. Legal work product and applicant information entered into commercial tools may be processed outside county systems; the staffer exercises professional judgment about what information to enter.",
+          "file": "content/lexias/wow-yellow-security.md",
+          "stem": "wow-yellow-security"
+        }
+      ],
+      "memberIds": [
+        "wow-yellow-security"
+      ],
+      "variantCount": 1,
+      "identical": true,
+      "variants": [
+        {
+          "text": "The staffer may use any available AI drafting tool, including commercially available tools, to assist with drafting benefits denial notices. The staffer is responsible for appropriate handling of any applicant information entered into non-county tools. Legal work product and applicant information entered into commercial tools may be processed outside county systems; the staffer exercises professional judgment about what information to enter.",
+          "flavors": [
+            "yellow"
+          ],
+          "diffVsFirst": null,
+          "deltaVsFirst": null
+        }
+      ]
+    }
+  ]
+}
