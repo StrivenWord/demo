@@ -1,0 +1,95 @@
+---
+pagination:
+  data: review.lexias
+  size: 1
+  alias: lexia
+eleventyComputed:
+  title: "{{ lexia.id }}"
+navSection: review
+permalink: "review/lexias/{{ lexia.id }}/index.html"
+layout: base.njk
+---
+{% from "macros.njk" import statusChip, driftChip, dimLabel, lexiaCoords with context %}
+
+{% set flavor = null %}
+{% for f in policy.flavors %}{% if f.id == lexia.flavor %}{% set flavor = f %}{% endif %}{% endfor %}
+{% set employee = null %}
+{% for e in policy.employees %}{% if e.id == lexia.employee %}{% set employee = e %}{% endif %}{% endfor %}
+{% set group = null %}
+{% for g in review.groups %}{% if g.id == lexia.groupId %}{% set group = g %}{% endif %}{% endfor %}
+
+<p><a href="{{ '/review/index.html' | rel }}">&larr; All lexias</a></p>
+
+<h1>{{ lexia.id }}</h1>
+
+<p class="chip-row">
+  {{ statusChip(lexia.status) }}
+  {{ driftChip(lexia.driftFromV5) }}
+</p>
+
+{{ lexiaCoords(lexia, flavor) }}
+
+<h2>Text</h2>
+
+<p class="policy-para">{{ lexia.text }}</p>
+
+<p class="meta-line">{{ lexia.words }} words &middot; <code>content/lexias/{{ lexia.id }}.md</code></p>
+
+{# The link back into the site proper is what makes this a review tool rather than a
+   second, parallel website: it lets a reviewer read the paragraph in the context the
+   reader will actually meet it in. #}
+<p>
+  <a href="{{ ('/jobs/' + lexia.employee + '/' + lexia.flavor + '/index.html') | rel }}">
+    See this paragraph in context: {{ employee.name }} under {{ flavor.name }} &rarr;
+  </a>
+</p>
+
+<h2>Review</h2>
+
+<dl class="coords">
+  <dt>Status</dt><dd>{{ statusChip(lexia.status) }}</dd>
+  <dt>Reviewer</dt><dd>{{ lexia.reviewer or "—" }}</dd>
+  <dt>Reviewed</dt><dd>{{ lexia.reviewed or "—" }}</dd>
+</dl>
+
+{% if lexia.notes %}
+<h3>Notes</h3>
+<p class="review-prose">{{ lexia.notes }}</p>
+{% endif %}
+
+<h3>Rationale</h3>
+{% if lexia.rationale %}
+<p class="review-prose">{{ lexia.rationale }}</p>
+{% else %}
+<p class="empty-field">Not yet written.</p>
+{% endif %}
+
+<h3>Implementation note</h3>
+{% if lexia.implementationNote %}
+<p class="review-prose">{{ lexia.implementationNote }}</p>
+{% else %}
+<p class="empty-field">Not yet written.</p>
+{% endif %}
+
+{% if lexia.tags.length %}
+<h3>Tags</h3>
+<ul class="tag-row">
+  {% for tag in lexia.tags %}
+  <li class="tag">{{ tag }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+{% if group %}
+<h2>Others at this setting</h2>
+<p>
+  {{ dimLabel(lexia.dimension) }} {{ lexia.setting }} for {{ employee.name }} appears in
+  {{ group.memberIds.length }} polic{{ "y" if group.memberIds.length == 1 else "ies" }}, with
+  {% if group.identical %}
+    the same wording in each.
+  {% else %}
+    <strong>{{ group.variantCount }} different wordings.</strong>
+  {% endif %}
+  <a href="{{ ('/review/variants/' + group.id + '/index.html') | rel }}">Compare them &rarr;</a>
+</p>
+{% endif %}

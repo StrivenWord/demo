@@ -1,0 +1,52 @@
+---
+title: Agreement between paragraphs
+navSection: review
+permalink: "review/variants/index.html"
+layout: base.njk
+---
+{% from "macros.njk" import dimLabel with context %}
+
+<p><a href="{{ '/review/index.html' | rel }}">&larr; All lexias</a></p>
+
+<h1>Agreement between paragraphs</h1>
+
+<p class="lede">
+  Each group below is one employee, one dimension, at one Hi/Lo setting, across every
+  policy that shares that setting. Within a group the paragraphs are saying the same rule,
+  so you would expect the same words.
+</p>
+
+<h2>{{ review.meta.divergentGroups }} groups disagree</h2>
+
+<p>
+  Same employee, same dimension, same setting, different wording. A difference may be
+  deliberate emphasis or it may be drafting drift; that judgement is the review.
+</p>
+
+<ul class="group-list">
+  {% for group in review.groups %}
+  {% if not group.identical %}
+  <li>
+    <a href="{{ ('/review/variants/' + group.id + '/index.html') | rel }}">
+      <strong>{{ group.employee }} &middot; {{ dimLabel(group.dimension) }} {{ group.setting }}</strong>
+    </a>
+    <span class="group-list__meta">{{ group.variantCount }} wordings across {{ group.memberIds.length }} policies</span>
+  </li>
+  {% endif %}
+  {% endfor %}
+</ul>
+
+<h2>{{ review.meta.identicalGroups }} groups agree</h2>
+
+<ul class="group-list group-list--quiet">
+  {% for group in review.groups %}
+  {% if group.identical %}
+  <li>
+    <a href="{{ ('/review/variants/' + group.id + '/index.html') | rel }}">
+      {{ group.employee }} &middot; {{ dimLabel(group.dimension) }} {{ group.setting }}
+    </a>
+    <span class="group-list__meta">{{ group.memberIds.length }} polic{{ "y" if group.memberIds.length == 1 else "ies" }}, one wording</span>
+  </li>
+  {% endif %}
+  {% endfor %}
+</ul>

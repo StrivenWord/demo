@@ -1,0 +1,75 @@
+---
+title: Review
+navSection: review
+permalink: "review/index.html"
+layout: base.njk
+---
+{% from "macros.njk" import statusChip, driftChip, dimLabel with context %}
+
+<h1>Lexia review</h1>
+
+<p class="lede">
+  Each of the {{ review.meta.lexiaCount }} policy paragraphs is one file under
+  <code>content/lexias/</code>. This is the editorial view of them: review status, how far
+  each has moved from the workshop text, and where paragraphs that ought to agree do not.
+</p>
+
+<h2>Status</h2>
+
+<ul class="facets">
+  {% for status in ["unreviewed", "in-review", "approved", "flagged"] %}
+  {% set count = review.statusCounts[status] or 0 %}
+  <li>
+    <a href="{{ ('/review/status/' + status + '/index.html') | rel }}">
+      {{ statusChip(status) }}
+      <span class="facets__count">{{ count }}</span>
+    </a>
+  </li>
+  {% endfor %}
+</ul>
+
+<h2>Agreement between paragraphs</h2>
+
+<p>
+  The {{ review.meta.lexiaCount }} paragraphs fall into {{ review.meta.groupCount }} groups
+  of the same employee, dimension and Hi/Lo setting. Within a group you would expect the
+  same sentence.
+  <strong>{{ review.meta.identicalGroups }} groups agree;
+  {{ review.meta.divergentGroups }} do not.</strong>
+</p>
+
+<p><a href="{{ '/review/variants/index.html' | rel }}">Compare all {{ review.meta.groupCount }} groups &rarr;</a></p>
+
+<h2>All paragraphs</h2>
+
+<div class="table-wrap">
+<table class="review-table">
+  <caption class="visually-hidden">Every lexia, with its coordinates and review state.</caption>
+  <thead>
+    <tr>
+      <th scope="col">Lexia</th>
+      <th scope="col">Dimension</th>
+      <th scope="col">Setting</th>
+      <th scope="col">Status</th>
+      <th scope="col">Since workshop</th>
+      <th scope="col">Group</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for lexia in review.lexias %}
+    <tr>
+      <td><a href="{{ ('/review/lexias/' + lexia.id + '/index.html') | rel }}">{{ lexia.id }}</a></td>
+      <td>{{ dimLabel(lexia.dimension) }}</td>
+      <td>{{ lexia.setting }}</td>
+      <td>{{ statusChip(lexia.status) }}</td>
+      <td>{{ driftChip(lexia.driftFromV5) }}</td>
+      <td>
+        {% if lexia.groupId %}
+        <a href="{{ ('/review/variants/' + lexia.groupId + '/index.html') | rel }}">{{ lexia.groupId }}</a>
+        {% endif %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>

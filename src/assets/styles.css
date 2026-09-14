@@ -565,3 +565,110 @@ body.print-page .compare-grid {
   a { color: inherit; text-decoration: none; }
   a[href]::after { content: none; }
 }
+
+/* ---------------------------------------------------------------------------
+   Review pages (/review/). Editorial surface, not part of the workshop material.
+
+   Deliberately monochrome: DESIGN-SYSTEM 2.2 reserves colour for the four policy
+   flavors, and a review UI that introduced its own palette would compete with the
+   thing it exists to review. Status and drift are distinguished by glyph, label
+   text and border weight instead, which also keeps them legible in grayscale and
+   to colour-blind readers (DESIGN-SYSTEM 2.4).
+   --------------------------------------------------------------------------- */
+
+.chip-row { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+
+.status-chip,
+.drift-chip {
+  display: inline-block;
+  padding: 0.1rem 0.5rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+.status-chip--approved   { border-width: 2px; border-color: var(--text-strong); }
+.status-chip--flagged    { border-style: dashed; border-width: 2px; }
+.status-chip--in-review  { border-style: dotted; }
+.status-chip--unreviewed { color: var(--text-muted); }
+
+.drift-chip--identical { color: var(--text-muted); }
+.drift-chip--changed   { border-width: 2px; font-weight: 600; }
+
+/* Coordinate lists: label/value pairs in two columns, stacking on narrow screens. */
+.coords {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.2rem 1rem;
+  margin: 1rem 0;
+  max-width: var(--measure);
+}
+.coords dt { color: var(--text-muted); }
+.coords dd { margin: 0; }
+
+.facets { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.facets a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-decoration: none;
+}
+.facets a:hover { border-color: var(--border-strong); background: var(--surface-raised); }
+.facets__count { font-variant-numeric: tabular-nums; font-weight: 600; }
+
+.table-wrap { overflow-x: auto; }
+.review-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+.review-table th,
+.review-table td {
+  text-align: left;
+  padding: 0.45rem 0.6rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.review-table th { color: var(--text-muted); font-weight: 600; white-space: nowrap; }
+
+.group-list { list-style: none; padding: 0; }
+.group-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  justify-content: space-between;
+}
+.group-list__meta { color: var(--text-muted); font-size: 0.9rem; }
+.group-list--quiet a { color: var(--text-muted); }
+
+.variant { margin: 1.5rem 0; padding-left: 0.9rem; border-left: 3px solid var(--border-strong); }
+.variant h2 { margin-bottom: 0.3rem; font-size: 1.05rem; }
+.variant__flavors { display: block; font-weight: 400; color: var(--text-muted); font-size: 0.9rem; }
+.variant__links { list-style: none; padding: 0; margin: 0.5rem 0 0; font-size: 0.85rem; }
+
+/* Word-level diff. ins/del carry visually-hidden labels in the markup, so the
+   styling here is reinforcement rather than the only signal. */
+.policy-para--diff ins {
+  text-decoration: none;
+  border-bottom: 2px solid var(--text-strong);
+  background: var(--surface-raised);
+}
+.policy-para--diff del { opacity: 0.65; }
+
+.meta-line { color: var(--text-muted); font-size: 0.88rem; }
+.empty-field { color: var(--text-muted); font-style: italic; }
+.review-prose { max-width: var(--measure); white-space: pre-wrap; }
+
+.tag-row { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.tag {
+  padding: 0.1rem 0.45rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+@media print {
+  .facets, .variant__links { display: none; }
+}
