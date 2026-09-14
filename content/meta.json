@@ -1,0 +1,5 @@
+{
+  "note": "Version and date of the policy material itself, not of the build. Releases are tagged against this (docs/TOOLING-AND-DEPLOYMENT.md 4.5), and it is what appears in the PDF footer. Seeded from the frontmatter of the frozen v5 workshop document.",
+  "version": "5",
+  "date": "2026-06-10"
+}

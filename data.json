@@ -1,9 +1,9 @@
 {
   "meta": {
     "version": "v5",
-    "sourceFile": "workshop-1-policy-texts-v5.md",
+    "sourceFile": "content/lexias/",
     "definitionsFile": "operational-dimension-definitions.md",
-    "generated": "2026-09-13"
+    "generated": "2026-06-10"
   },
   "dimensions": [
     {

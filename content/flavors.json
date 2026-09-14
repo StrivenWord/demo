@@ -1,0 +1,54 @@
+[
+  {
+    "id": "green",
+    "name": "Green",
+    "label": "Guardrails",
+    "posture": "guardrails",
+    "character": "Most restrictive; maximum oversight",
+    "dimensions": {
+      "security": "Hi",
+      "accountability": "Hi",
+      "efficiency": "Lo",
+      "innovation": "Lo"
+    }
+  },
+  {
+    "id": "red",
+    "name": "Red",
+    "label": "Enable",
+    "posture": "enable",
+    "character": "Fast and safe; strong logging, open tool adoption",
+    "dimensions": {
+      "security": "Hi",
+      "accountability": "Hi",
+      "efficiency": "Hi",
+      "innovation": "Hi"
+    }
+  },
+  {
+    "id": "blue",
+    "name": "Blue",
+    "label": "Light-touch",
+    "posture": "lighttouch",
+    "character": "Fast with minimal logging; data stays in county systems",
+    "dimensions": {
+      "security": "Hi",
+      "accountability": "Lo",
+      "efficiency": "Hi",
+      "innovation": "Hi"
+    }
+  },
+  {
+    "id": "yellow",
+    "name": "Yellow",
+    "label": "Exposed",
+    "posture": "exposed",
+    "character": "Least constrained; highest exposure",
+    "dimensions": {
+      "security": "Lo",
+      "accountability": "Lo",
+      "efficiency": "Hi",
+      "innovation": "Hi"
+    }
+  }
+]

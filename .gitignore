@@ -4,3 +4,6 @@ src/assets/data.js
 *.zip
 .cache/
 .DS_Store
+
+# generated review artifact is committed; build output is not
+dist/
