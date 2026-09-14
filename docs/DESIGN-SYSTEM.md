@@ -1,7 +1,7 @@
 ---
 title: Design System
 project: county-ai-roles
-date: 2026-09-13
+date: 2026-09-14
 status: Decided
 supersedes: COUNTY_AI_ROLES_DESIGN_SPEC.md sections 4.1, 4.2, 4.3
 ---
@@ -59,12 +59,12 @@ These supersede the spec's section 4.1 hex values. The originals were chosen for
 identity, not contrast, and three of the four failed AA for text on white (green 3.77,
 blue 3.68, yellow 3.19). These are the same hues moved to accessible steps.
 
-| Flavor | Label | Light | Ratio | Dark | Ratio |
+| Colour | Posture (since 2026-07-08) | Light | Ratio | Dark | Ratio |
 |---|---|---|---|---|---|
-| Green | Guardrails | `#047857` | 5.48 | `#34d399` | 9.29 |
-| Red | Enable | `#b91c1c` | 6.47 | `#f87171` | 6.45 |
+| Red | Guardrails | `#b91c1c` | 6.47 | `#f87171` | 6.45 |
+| Yellow | Enable | `#b45309` | 5.02 | `#fbbf24` | 10.69 |
 | Blue | Light-touch | `#0e7490` | 5.36 | `#22d3ee` | 9.88 |
-| Yellow | Exposed | `#b45309` | 5.02 | `#fbbf24` | 10.69 |
+| Green | Exposed | `#047857` | 5.48 | `#34d399` | 9.29 |
 
 All four clear AA for normal text in both themes. Exposed as
 `--flavor-green`, `--flavor-red`, `--flavor-blue`, `--flavor-yellow`, plus a
@@ -72,6 +72,17 @@ All four clear AA for normal text in both themes. Exposed as
 
 **Yellow is amber-700 / amber-400.** This is deliberate and is the palette's one
 warm note.
+
+**The Label column is a pairing, not an identity.** The four *postures* -- Guardrails,
+Enable, Light-touch, Exposed -- are fixed, and each is defined by its four Hi/Lo
+coordinates. Which colour labels which posture is a separate, movable fact: upstream
+reassigned it on 2026-07-08 to a restriction-to-autonomy gradient, and this repo will
+follow. `content/flavors.json` is the single place that pairing is written down.
+
+When it moved on 2026-07-08, **the hex values stayed with the colour name** --
+`--flavor-red` is still red. Only the pairing changed, and nothing here needed
+recalculating, because the contrast ratios belong to the hues rather than to the postures.
+The table is now listed in gradient order, most governed to least.
 
 ### 2.3 Dimension colors
 
@@ -263,6 +274,28 @@ Efficiency: Low. Innovation: Low."
 `--surface-sunken`, warning glyph inlined as SVG (not an icon font, not an external
 sprite). Heading is the word "Risk" plus the callout title, so the meaning survives
 grayscale.
+
+**Resolved at the colour reassignment.** The callout used to borrow `--flavor-red` as a
+generic danger accent. Once red came to mean Guardrails, the *most* governed posture, a
+red-bordered warning on the least governed page read backwards. `--accent-danger` is now
+a separate token, same hex, so the two meanings no longer share a variable.
+
+### 6.3a Review components
+
+Used only under `/review/`. **Deliberately monochrome.** Section 2.2 reserves colour for
+the four policy flavors, and an editorial layer with its own palette would compete with
+the material it exists to review.
+
+- **Status chip** — `unreviewed | in-review | approved | flagged`. Distinguished by a
+  leading glyph (`○ ◑ ● △`), the label word, and border weight or style. Never by fill
+  alone.
+- **Drift chip** — "As written at the workshop" or "Edited since the workshop". Wording
+  carries the meaning; weight reinforces it.
+- **Diff runs** — `<ins>` and `<del>`, each carrying a visually hidden "added: " or
+  "removed: " prefix, so the distinction survives without styling. Insertions take an
+  underline and a raised background rather than colour; deletions take reduced opacity.
+  The runs are computed at build time and baked into the HTML, so the comparison works
+  with JavaScript disabled (BUILD-SPEC section 0).
 
 ### 6.4 Diff highlight
 

@@ -1,8 +1,8 @@
 ---
 title: Build Specification
 project: county-ai-roles
-date: 2026-09-13
-status: Ready to implement
+date: 2026-09-14
+status: Built. Amended for the lexia authoring workflow.
 audience: implementer
 ---
 
@@ -18,9 +18,14 @@ Companion documents:
 - `DESIGN-SYSTEM.md` for colors, typography, components, accessibility
 - `TOOLING-AND-DEPLOYMENT.md` for rationale, git practice, deployment
 
-**Status:** the toolchain exists and works. `npm install`, `npm run dev`,
-`npm run build`, `npm test`, and `npm run check` are verified. Section 2 below records
-what was installed; read it for reference rather than executing it. Begin at phase 2.
+**Status: built.** All nine phases are complete and verified. Section 2 records what was
+installed; read it for reference rather than executing it.
+
+**Amended 2026-09-14.** The policy text no longer lives in a single vendored document
+parsed by `scripts/extract.mjs`. It lives in `content/`, one paragraph per file, and is
+authored in this repository. Sections 2.4, 4, 5 and 6.1 carry the change; section 4.4 is
+the new authoring format. `data.json` kept its exact shape through the migration, so no
+template changed and no rendered page moved.
 
 ## 0. The one hard requirement
 
@@ -37,17 +42,21 @@ If a technique would break that, do not use it. Section 3 lists what breaks.
 Follow these phases in order. Each has an acceptance check. Do not begin a phase until
 the previous one's check passes.
 
+All phases are complete. Retained as the record of the order they were built in, and of
+each one's acceptance check.
+
 | Phase | Produces | Check |
 |---|---|---|
 | ~~1~~ | ~~Repo scaffold~~ | **Done.** `npm run build` writes `site/index.html` |
-| 2 | `data.json` | `npm run validate` exits 0; 4 employees x 4 flavors present |
+| ~~2~~ | ~~`data.json`~~ | **Done.** `npm run validate` exits 0 |
 | ~~3~~ | ~~Relative URL filter~~ | **Done.** `npm test` passes 9/9 |
-| 4 | Layouts and CSS | Landing page opens from `file://` with styles applied |
-| 5 | 26 content pages | All pages reachable by clicking, from `file://` |
-| 6 | 21 print pages | Print preview shows no nav chrome |
-| 7 | PDF script | 21 PDFs in `site/pdf/` |
-| 8 | Client JS | Diff view works; site still works with JS disabled |
-| 9 | Accessibility pass | `DESIGN-SYSTEM.md` section 8 checklist |
+| ~~4~~ | ~~Layouts and CSS~~ | **Done.** |
+| ~~5~~ | ~~26 content pages~~ | **Done.** |
+| ~~6~~ | ~~21 print pages~~ | **Done.** |
+| ~~7~~ | ~~PDF script~~ | **Done.** 21 PDFs in `site/pdf/` |
+| ~~8~~ | ~~Client JS~~ | **Done.** |
+| ~~9~~ | ~~Accessibility pass~~ | **Done.** |
+| ~~10~~ | ~~`content/` authoring tree, 102 review pages~~ | **Done.** Section 4.4 |
 
 ## 2. Phase 1: Scaffold
 
@@ -60,7 +69,13 @@ mkdir -p src/{sources,_data,_includes,assets} scripts docs .github/workflows
 
 ### 2.1 `package.json`
 
-Replace the generated file's `scripts` and add `"type": "module"`:
+Replace the generated file's `scripts` and add `"type": "module"`. The review and
+provenance commands (`lint:lexias`, `drift`, `workshop-doc`, `scaffold`, `migrate`)
+came later; see COMMANDS.md section 1 for the full current set.
+
+Note `build` and `validate` both run `build-data.mjs` first. That is what lets the
+three CI workflows keep working unchanged: they call `validate && build && pdfs && check`
+and get a fresh `data.json` without naming the step.
 
 ```json
 {
@@ -69,16 +84,18 @@ Replace the generated file's `scripts` and add `"type": "module"`:
   "type": "module",
   "private": true,
   "scripts": {
-    "extract": "node scripts/extract.mjs",
-    "validate": "node scripts/validate.mjs",
-    "build": "eleventy",
+    "build:data": "node scripts/build-data.mjs",
+    "validate": "node scripts/build-data.mjs && node scripts/validate.mjs",
+    "build": "node scripts/build-data.mjs && eleventy",
+    "dev": "eleventy --serve --incremental",
     "pdfs": "node scripts/render-pdfs.mjs",
-    "all": "npm run validate && npm run build && npm run pdfs",
-    "serve": "eleventy --serve",
-    "portable": "npm run all && cd site && zip -r ../county-ai-roles.zip ."
+    "check": "node scripts/check-portable.mjs",
+    "all": "npm run build && npm run pdfs && npm run check",
+    "portable": "npm run all && node scripts/zip.mjs"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",
+    "gray-matter": "^4.0.3",
     "playwright": "^1.48.0"
   }
 }
@@ -115,19 +132,42 @@ src/assets/data.js
 *.zip
 .cache/
 .DS_Store
+dist/          # npm run workshop-doc output
 ```
 
-### 2.4 Vendor the sources
+Note what is **not** ignored: `content/`, `data.json` and `review.json` are all
+committed. See TOOLING-AND-DEPLOYMENT 3.
 
-Copy both files into `src/sources/`, preserving content byte for byte:
+### 2.4 The two files in `src/sources/`
 
 ```
-src/sources/workshop-1-policy-texts-v5.md
-src/sources/operational-dimension-definitions.md
+src/sources/workshop-1-policy-texts-v5.md          FROZEN. provenance only.
+src/sources/operational-dimension-definitions.md   live vendored input.
 ```
 
-Originals live in the private `herk` repo at
-`meetings/20260610 - june 10 workshop/v5/` and `definitions/2026-06-03-...` respectively.
+Both were copied byte for byte from the private `herk` repo, at
+`meetings/20260610 - june 10 workshop/v5/` and `definitions/2026-06-03-...`
+respectively. They are no longer the same kind of artifact as each other.
+
+**`workshop-1-policy-texts-v5.md` is frozen.** It is the record of what the June 10
+workshop produced, and nothing more. The policy text it contains now lives in
+`content/lexias/` (section 4.4), which is what the build reads. Three things still parse
+the frozen file, all deliberately:
+
+- `scripts/migrate-lexias.mjs`, once, to produce the lexia tree
+- `scripts/drift.mjs`, to report how far the lexias have moved from it
+- the orphaned-name check in `scripts/validate.mjs` (5.3.8, the `Zip` warning)
+
+Do not edit it. Editing it would not change the site, and would destroy the baseline
+`npm run drift` measures against.
+
+**`operational-dimension-definitions.md` is still a live vendored input**, parsed on
+every build. It is the county's generation standard, owned upstream; this repo does not
+own it and should not edit it in place. Update it by copying a newer version in from a
+`herk` checkout.
+
+Note that `docs/TOOLING-AND-DEPLOYMENT.md` has referred to a `npm run sync` /
+`scripts/sync-sources.mjs` for this. No such script has ever existed; the copy is manual.
 
 ## 3. Constraints that cannot be violated
 
@@ -148,7 +188,13 @@ build in similar projects.
 
 ## 4. Source document structure (verified)
 
-### 4.1 `workshop-1-policy-texts-v5.md`
+Sections 4.1 to 4.3 describe the **frozen** v5 document. It is no longer the authoring
+format -- see 4.4 for that -- but this remains an accurate description of it, and the
+structure still matters: it is what `scripts/migrate-lexias.mjs` consumed to build the
+lexia tree, what `scripts/drift.mjs` compares against, and what
+`scripts/render-workshop-doc.mjs` reproduces.
+
+### 4.1 `workshop-1-policy-texts-v5.md` (frozen)
 
 YAML frontmatter, then a `# Workshop 1 Policy Texts` heading, an intro line, then four
 employee blocks separated by `---` on its own line.
@@ -189,20 +235,37 @@ employee blocks separated by `---` on its own line.
 5. Exactly **4 body paragraphs** follow the config line, blank-line separated, always
    in this order: **Security, Efficiency, Innovation, Accountability.**
    This is a different order from the config line. Do not confuse them.
+   Both orders are now constants in `scripts/lib/taxonomy.mjs` (`CONFIG_LINE_ORDER` and
+   `PARAGRAPH_ORDER`), and the trap survives the migration: `PARAGRAPH_ORDER` is still
+   the emission order for `data.json` and is read positionally by
+   `src/assets/scripts.js`. Sorting lexia filenames alphabetically would put
+   `accountability` first and silently reorder every policy page. Check 5.3.3 guards it.
 6. The dimension configuration is **identical across all four employees** for a given
    flavor. There are four policy flavors, not sixteen combinations:
 
-   | Flavor | Label | Security | Accountability | Efficiency | Innovation |
+   | Posture | Colour (June 2026) | Security | Accountability | Efficiency | Innovation |
    |---|---|---|---|---|---|
-   | Green | Guardrails | Hi | Hi | Lo | Lo |
-   | Red | Enable | Hi | Hi | Hi | Hi |
-   | Blue | Light-touch | Hi | Lo | Hi | Hi |
-   | Yellow | Exposed | Lo | Lo | Hi | Hi |
+   | Guardrails | Green | Hi | Hi | Lo | Lo |
+   | Enable | Red | Hi | Hi | Hi | Hi |
+   | Light-touch | Blue | Hi | Lo | Hi | Hi |
+   | Exposed | Yellow | Lo | Lo | Hi | Hi |
+
+   **The posture is the stable identity; the colour is a label that has moved.** Upstream
+   reassigned the colours on 2026-07-08 to a restriction-to-autonomy gradient, leaving
+   postures and coordinates unchanged. This table records the June convention the frozen
+   document uses. `content/flavors.json` holds the convention the site currently renders,
+   and is the only place the mapping is written down. `scripts/validate.mjs` pins the
+   coordinates by **posture** so that a relabelling cannot quietly redefine what
+   Guardrails means.
 
 7. Employee roles as written: `DSS Caseworker`, `Sheriff's Deputy`,
    `Public Health Nurse`, `Administration Staffer`.
 8. The source uses ` -- ` (space, two hyphens, space) rather than em dashes. Preserve
    it exactly; do not normalize.
+   **Now enforced, not merely stated.** Check 5.3.15 rejects an em dash, en dash or
+   curly quote in any lexia body. This was prose guidance while the text sat in one
+   vendored file nobody edited; with 64 files edited by hand in editors that autocorrect,
+   it needed teeth.
 
 ### 4.2 The violation arc (important, and absent from the design spec)
 
@@ -230,6 +293,19 @@ Parsed to a per-employee verdict across all 16 combinations:
 
 **`Zip` has no employee block in the document.** It is a leftover from an earlier
 version. Section 12 records this; the validator must flag it rather than fail on it.
+It has no file in `content/employees/` either, so the warning is now the only thing
+carrying the fact that Zip ever existed. Keep it.
+
+**Where the arc lives now.** It is no longer parsed from frontmatter. Each employee file
+carries its own `violatedDimension` and `compliantUnder` (section 4.4), and
+`scripts/render-workshop-doc.mjs` reassembles the block above from them when it
+regenerates the document.
+
+`compliantUnder` is written in colour names and drives the Compliant/Violation banner on
+all 16 job pages, all 21 PDFs and the overview grid. A colour reassignment that remaps
+the flavors without remapping it inverts every verdict on the site, teaching the exact
+opposite lesson, while nothing looks broken. Check 5.3.16 pins these verdicts **by
+posture** precisely so that mistake cannot be silent.
 
 ### 4.3 `operational-dimension-definitions.md`
 
@@ -258,11 +334,119 @@ paragraphs are optional for the site; capture them but do not display them by de
 **This file uses real em dashes (`—`)**, unlike the policy texts file. Do not
 normalize either file; render what is there.
 
+### 4.4 `content/` -- the authoring format
+
+This is what the build reads. One paragraph per file.
+
+```
+content/
+  meta.json                  version and date of the material
+  flavors.json               the flavor / posture / Hi-Lo authority
+  employees/<id>.md          4 files
+  lexias/<employee>-<flavor>-<dimension>.md   64 files
+  variant-groups.lock.json   snapshot of which lexias agree
+```
+
+`content/` sits outside Eleventy's input directory, so it is never rendered as pages and
+needs no `ignores` entry. It does need `addWatchTarget`, which `eleventy.config.js` sets.
+
+**Lexia file.** Frontmatter, then the policy text and nothing else -- no headings, no
+trailing notes. That body contract is what keeps `npm run drift` a plain string compare
+and keeps the ` -- ` convention out of reach of a markdown renderer.
+
+```yaml
+---
+id: lux-green-security          # must equal the filename stem
+employee: lux
+flavor: green
+posture: guardrails             # derived from flavors.json, validated to agree
+dimension: security
+setting: Hi                     # derived from flavors.json, validated to agree
+
+status: unreviewed              # unreviewed | in-review | approved | flagged
+reviewer: ""
+reviewed: ""                    # YYYY-MM-DD
+notes: |
+
+tags:
+  - employee/lux
+  - flavor/green
+  - posture/guardrails
+  - dimension/security
+  - setting/hi
+  - arc/pivot                   # this dimension is the one the scenario turns on
+  - verdict/violation           # employee is not compliant under this flavor
+
+rationale: |
+implementation_note: |
+---
+The caseworker may use the county's designated AI screening tool to ...
+```
+
+`posture` and `setting` are written in for diff legibility but are never a second source
+of truth; on conflict `content/flavors.json` wins and validation fails.
+
+Tags in the seven derived namespaces are regenerated by `npm run scaffold`; tags outside
+them are preserved, so a hand-added `topic/pii` survives.
+
+`rationale` and `implementation_note` are intentionally empty. The only non-invented
+source for them is the Hi/Lo text in 4.3, which yields eight distinct paragraphs across
+64 files -- the Security-Hi text would appear verbatim in twelve. A populated `rationale`
+reads as reviewed content, so filling it with a restated definition would mean 64 files
+that look reviewed and are not.
+
+**Employee file.** The scenario is a body section rather than a YAML scalar because it
+contains ` -- `, and quoting that in YAML is how an em dash eventually gets in.
+
+```yaml
+---
+id: lux
+number: 1
+name: Lux
+role: DSS Caseworker
+violatedDimension: security
+compliantUnder: [yellow]
+---
+
+## Scenario
+
+Lux is a caseworker at ...
+
+## Violation question
+
+Did Lux violate the policy?
+```
+
+**Why 64 files and not 48.** The cells hold only 48 unique texts: 19 of the 32
+(employee, dimension, setting) groups are byte-identical across the flavors sharing that
+setting, and 13 diverge. Storing the deduplicated form would bake the current
+deduplication in as though it were intentional, and would mean editing one file silently
+changes up to three rendered policies. One file per cell keeps every cell independently
+addressable, keeps parallel reviewers off each other's merge conflicts, and turns the
+deduplication into a finding: `npm run lint:lexias` reports it, and
+`content/variant-groups.lock.json` guards its shape. Do not "optimise" the file count.
+
 ## 5. Phase 2: `data.json`
+
+Built by `scripts/build-data.mjs`, which reads `content/` (4.4) plus the vendored
+dimension definitions (4.3). It replaced `scripts/extract.mjs`, which parsed the
+monolithic v5 document; references to `extract.mjs` below are historical.
+
+`data.json` is the **only** coupling point between content and the templates:
+`src/_data/policy.js` and `src/_data/combos.js` are three-line re-exports of it. Holding
+its shape is what allowed the entire content pipeline to be replaced underneath without
+touching a single template or changing a single rendered page.
+
+`build-data.mjs` is a pure function of its inputs. `meta.generated` used to be
+`new Date()`, which dirtied `data.json` on every run and quietly undercut the "the
+data.json diff is the review artifact" workflow in TOOLING 4.4. Both `meta.version` and
+`meta.generated` now come from `content/meta.json` and track the **source material**,
+which is also what releases are tagged against (TOOLING 4.5). Purity is what makes the
+staleness check in 5.3.17 possible at all.
 
 ### 5.1 Schema
 
-Write `scripts/extract.mjs` to emit `data.json` at the repo root with exactly this
+`scripts/build-data.mjs` emits `data.json` at the repo root with exactly this
 shape. No additional top-level keys.
 
 ```json
@@ -327,46 +511,98 @@ shape. No additional top-level keys.
 
 Employee ids are the lowercased name: `lux`, `puk`, `jam`, `wow`.
 
-### 5.2 Parsing rules
+### 5.2 Reading the content tree
 
-1. Split frontmatter on the first two `---` lines. Parse `violation arc` by hand; it is
-   not strict YAML-friendly given the key contains a space. A line-by-line regex over
-   the block is sufficient and preferable to adding a YAML dependency.
-2. Split the body on lines matching `^## Employee (\d+): (.+?), (.+)$`.
-3. Within an employee block, scenario is the text after `**The scenario.** ` up to the
-   next blank line. Violation question is the text after `**The violation question:** `.
-4. Split on `^### Employee \d+ / (\w+): (.+)$` for flavors.
-5. The line immediately following a flavor header is the config line. Parse with
-   `/(\w+) (Hi|Lo)/g` and map names to lowercase ids.
-6. Remaining content up to the next `---` or `###`, split on blank lines, is the four
-   paragraphs. Assign dimensions positionally:
-   `["security", "efficiency", "innovation", "accountability"]`.
-7. Trim whitespace. Preserve all internal punctuation exactly, including ` -- `.
+1. `content/flavors.json` gives the flavors, in array order. That order drives nav tabs,
+   compare and matrix columns, print packet order, and PDF generation order.
+2. `content/employees/*.md` gives the four employees. Frontmatter is parsed with
+   `gray-matter`; `scenario` and `violationQuestion` come from the two `##` body
+   sections.
+3. `content/lexias/*.md` gives the 64 paragraphs. The body is the text, with leading and
+   trailing newlines stripped and nothing else touched.
+4. Paragraphs are emitted per flavor in `PARAGRAPH_ORDER`
+   (`["security", "efficiency", "innovation", "accountability"]`), **never** in
+   filesystem or alphabetical order. See 4.1.5.
+5. `posture` is read from `content/flavors.json` but is deliberately **not** emitted into
+   `data.json`: it exists to key lexia frontmatter and to survive a colour relabelling,
+   and `label` already carries the human-readable form.
+6. Preserve all internal punctuation exactly, including ` -- `.
+
+**On the YAML dependency.** The old rule here said to hand-parse frontmatter rather than
+add a YAML dependency, because the `violation arc` key contains a space. That construct
+no longer exists, so the constraint is retired: `gray-matter` is now a declared
+`devDependency`. It was already present transitively via Eleventy, so nothing new
+installs -- but relying on an undeclared transitive dependency is how a minor Eleventy
+bump breaks the build. The two frozen/vendored files are still hand-parsed, by
+`scripts/lib/frontmatter.mjs` and `scripts/lib/parse-v5.mjs`.
+
+### 5.4 `review.json`
+
+A second artifact, written by the same script, carrying everything the review pages need:
+per-lexia review state and tags, the 32 variant groups with precomputed word-level diffs,
+status counts, and a `driftFromV5` badge per lexia.
+
+**It exists because 5.1 forbids additional top-level keys in `data.json`.** Do not
+"simplify" by merging them. Keeping the rendering data and the editorial data apart is
+what lets `data.json` stay a stable contract while review state changes freely.
+
+Diffs are precomputed in Node (`scripts/lib/word-diff.mjs`) rather than in the browser,
+because section 0 requires the review pages to work with JavaScript disabled.
 
 ### 5.3 `scripts/validate.mjs`
 
-Exit non-zero with a clear message on any failure:
+Collects every failure before exiting non-zero, so one run surfaces everything wrong.
+
+Checks run against data **rebuilt from `content/`**, not against the committed
+`data.json`. The tree is the source of truth, and validating the artifact would let a
+stale artifact mask a real content error -- the checks would confirm yesterday's correct
+data while today's tree was broken. Staleness is a separate finding (17).
 
 1. Exactly 4 employees, ids `lux`, `puk`, `jam`, `wow`.
-2. Each employee has exactly 4 flavors: `green`, `red`, `blue`, `yellow`.
-3. Each flavor has exactly 4 paragraphs, dimensions in the order given in 5.2.6.
+2. Each employee has exactly 4 flavors.
+3. Each flavor has exactly 4 paragraphs, dimensions in `PARAGRAPH_ORDER`.
 4. Each paragraph text is non-empty and longer than 40 characters.
-5. All four employees share identical dimension configs per flavor, matching the table
-   in 4.1.6 exactly.
+5. `content/flavors.json` is coherent: four distinct postures, each matching the
+   coordinates in 4.1.6, and `data.json`'s copy agrees. Formerly a re-parse of the
+   source's 16 config lines; now checked against all 64 lexia settings by check 13.
 6. Exactly 4 dimensions, each with non-empty `hi`, `lo`, and an `operativeQuestion`
    ending in `?`.
-7. Every `Accountability Hi` paragraph (Green and Red only) contains the substring
-   `not the AI tool`. This was a known v5 fix; regression here is silent and serious.
-8. **Warn, do not fail**, if the violation arc names an employee with no block. This
-   catches the orphaned `Zip` entry without blocking the build.
+7. Every Accountability-Hi paragraph contains `not the AI tool`. A known v5 fix;
+   regression here is silent and serious. The flavor list is **derived** from which
+   flavors set Accountability Hi, not hard-coded to two colours.
+8. **Warn, do not fail**, if the frozen document's violation arc names an employee with
+   no file in `content/employees/`. Catches the orphaned `Zip` entry. This is the only
+   remaining intentional read of the frozen document.
 
-Print a summary: `16 policies, 4 dimensions, 0 errors, 1 warning`.
+The lexia tree (4.4):
+
+9. Exactly 64 files in `content/lexias/`, and nothing else in that directory.
+10. Every (employee, flavor, dimension) triple present exactly once. Missing and
+    duplicate are reported separately: a rename collision presents as *missing*, and
+    saying so points at the actual mistake.
+11. Frontmatter `id`, `employee`, `flavor` and `dimension` agree with the filename.
+12. Coordinates are in range.
+13. `posture` and `setting` agree with `content/flavors.json`.
+14. `status` is in the enum; `approved` and `flagged` require a non-empty `reviewer` and
+    a parseable `reviewed` date. Catches "marked approved, no idea by whom".
+15. Body is non-empty, contains no bare `---` line, and no em dash, en dash or curly
+    quote. See 4.1.8.
+16. Each employee's `compliantUnder` maps to the expected **postures**. See 4.2.
+17. The committed `data.json` matches what `build-data.mjs` would emit.
+
+**Expectations are keyed by posture, never by colour** (checks 5 and 16), and anything
+that varies by colour is derived from `content/flavors.json`. Postures and their
+coordinates are stable; the colour labelling them is not, and has already been reassigned
+once upstream. This is what stops a relabelling from quietly redefining Guardrails, and
+it means a colour migration needs no edit to this file.
+
+Print a summary: `64 lexias, 16 policies, 4 dimensions, 0 errors, 1 warning`.
 
 ## 6. Phase 3: Core mechanics
 
 ### 6.1 Page inventory
 
-26 content pages plus 21 print pages. Output paths are exact.
+26 content pages, 21 print pages, and 102 review pages. Output paths are exact.
 
 | Page | Output path | Count |
 |---|---|---|
@@ -378,8 +614,26 @@ Print a summary: `16 policies, 4 dimensions, 0 errors, 1 warning`.
 | Print, single | `site/print/<job>-<flavor>/index.html` | 16 |
 | Print, packet | `site/print/<job>/index.html` | 4 |
 | Print, compendium | `site/print/compendium/index.html` | 1 |
+| Review index | `site/review/index.html` | 1 |
+| Review, status facet | `site/review/status/<status>/index.html` | 4 |
+| Review, lexia detail | `site/review/lexias/<lexia>/index.html` | 64 |
+| Review, group index | `site/review/variants/index.html` | 1 |
+| Review, group detail | `site/review/variants/<group>/index.html` | 32 |
 
-`<job>` is `lux|puk|jam|wow`. `<flavor>` is `green|red|blue|yellow`.
+`<job>` is `lux|puk|jam|wow`. `<flavor>` is `green|red|blue|yellow`. `<status>` is
+`unreviewed|in-review|approved|flagged`. `<lexia>` is `<job>-<flavor>-<dimension>`.
+`<group>` is `<job>-<dimension>-<hi|lo>`.
+
+The review pages ship in every build, including the public deploy and the portable zip.
+**They publish review state**, reviewer names and notes included; the site sends
+`noindex` but is not access controlled.
+
+The four status facet pages *are* the status filter. Rendering each facet as its own page
+rather than filtering client-side is what keeps them working with JavaScript disabled
+(section 0). They add no client JS and no new asset.
+
+Review pages are excluded from PDF rendering, which only walks `site/print/*`, so the
+21-PDF count is unaffected.
 
 Generate the 16 with Eleventy pagination over a computed cross product. Create
 `src/_data/combos.js`:
@@ -594,10 +848,20 @@ search indexing; see TOOLING-AND-DEPLOYMENT.md section 5.4.3.
 The build is complete when all of these pass.
 
 **Content**
-- [ ] 16 policy texts render word for word identical to `src/sources/`, including ` -- `
+- [ ] 16 policy texts render word for word identical to `content/lexias/`, including ` -- `
 - [ ] All 4 dimension definitions render with operative questions
 - [ ] Every job x flavor page shows the compliance verdict from 4.2
 - [ ] Both risk callouts from 7.5 appear on the correct pages, and nowhere else
+
+**Round-trips** — the two properties that prove the content survived being split apart
+- [ ] `node scripts/migrate-lexias.mjs` rebuilds a `data.json` deep-equal to the
+      committed one, `meta` aside. A strict `JSON.stringify` comparison; a trimmed or
+      count-based check would pass while the text had silently changed.
+- [ ] `npm run workshop-doc -- --check` reproduces the frozen v5 document byte for byte,
+      apart from the `Zip` arc line. A lossy renderer would mean the printed packet is
+      not the same document as the website.
+- [ ] `npm run drift` reports every lexia identical to the frozen document, until someone
+      deliberately edits one
 
 **Portability, the primary requirement**
 - [ ] `site/` opened via `file://` works fully: every link, every page, the diff view
@@ -608,8 +872,12 @@ The build is complete when all of these pass.
 **Build**
 - [ ] `npm run all` succeeds from a clean checkout in under 2 minutes
 - [ ] `npm run validate` exits 0 with the orphaned-`Zip` warning shown
+- [ ] `npm test` passes: rel-filter units, workshop-doc round-trip, divergence lockfile,
+      derived-tag freshness
 - [ ] 21 PDFs in `site/pdf/`, each with a readable provenance footer and page numbers
-- [ ] `site/` is gitignored and absent from `git status`
+- [ ] `site/` and `dist/` are gitignored and absent from `git status`
+- [ ] `npm run build:data` twice in a row leaves `git status` clean; the build is a pure
+      function of `content/`
 
 **Accessibility** (DESIGN-SYSTEM.md section 8)
 - [ ] Site fully usable with JavaScript disabled

@@ -27,16 +27,24 @@ const data = JSON.parse(readFileSync("data.json", "utf8"));
 const employeeIds = data.employees.map((e) => e.id);
 const flavorIds = data.flavors.map((f) => f.id);
 
+// Each job carries its posture label so the footer can name it. A filename says
+// "lux-green"; what a reader needs to know is that they are holding Exposed.
+const labelByFlavor = new Map(data.flavors.map((f) => [f.id, f.label]));
+
 const jobs = [];
 for (const jobId of employeeIds) {
   for (const flavorId of flavorIds) {
-    jobs.push({ name: `${jobId}-${flavorId}`, printDir: `${jobId}-${flavorId}` });
+    jobs.push({
+      name: `${jobId}-${flavorId}`,
+      printDir: `${jobId}-${flavorId}`,
+      posture: labelByFlavor.get(flavorId)
+    });
   }
 }
 for (const jobId of employeeIds) {
-  jobs.push({ name: `${jobId}-packet`, printDir: jobId });
+  jobs.push({ name: `${jobId}-packet`, printDir: jobId, posture: "all four postures" });
 }
-jobs.push({ name: "compendium", printDir: "compendium" });
+jobs.push({ name: "compendium", printDir: "compendium", posture: "all four postures" });
 
 mkdirSync("site/pdf", { recursive: true });
 
@@ -45,11 +53,16 @@ mkdirSync("site/pdf", { recursive: true });
 // so @bottom-center and counter(page) silently render nothing. footerTemplate
 // needs an explicit font-size (its default is effectively zero, an invisible
 // footer that looks like a bug) and margin.bottom must reserve room for it.
-function footerTemplate() {
+// The posture is named explicitly because the colour in the filename is not stable:
+// it was reassigned on 2026-07-08, so a PDF saved before then and one saved after can
+// share a filename and mean opposite policies. A page photocopied out of context should
+// still say which posture it states.
+function footerTemplate(posture) {
+  const label = posture ? ` &middot; ${posture}` : "";
   return `<div style="font-size:8pt;width:100%;padding:0 0.75in;
     color:#475569;display:flex;justify-content:space-between;
     font-family:Arial,sans-serif;">
-    <span>Herkimer County AI Roles &middot; ${data.meta.version} &middot; ${data.meta.generated}</span>
+    <span>Herkimer County AI Roles${label} &middot; ${data.meta.version} &middot; ${data.meta.generated}</span>
     <span><span class="pageNumber"></span>/<span class="totalPages"></span></span>
   </div>`;
 }
@@ -73,7 +86,7 @@ for (const job of jobs) {
     margin: { top: "0.6in", bottom: "0.6in", left: "0.75in", right: "0.75in" },
     displayHeaderFooter: true,
     headerTemplate: "<span></span>",
-    footerTemplate: footerTemplate()
+    footerTemplate: footerTemplate(job.posture)
   });
   console.log(`Wrote site/pdf/${job.name}.pdf`);
 }

@@ -1,0 +1,72 @@
+---
+pagination:
+  data: reviewStatuses
+  size: 1
+  alias: status
+eleventyComputed:
+  title: "Review: {{ status }}"
+navSection: review
+permalink: "review/status/{{ status }}/index.html"
+layout: base.njk
+---
+{% from "macros.njk" import statusChip, driftChip, dimLabel, statusLabel with context %}
+
+{% set matching = [] %}
+{% for lexia in review.lexias %}
+  {% if lexia.status == status %}{% set matching = (matching.push(lexia), matching) %}{% endif %}
+{% endfor %}
+
+<p><a href="{{ '/review/index.html' | rel }}">&larr; All lexias</a></p>
+
+<h1>{{ statusChip(status) }} {{ matching.length }} lexia{{ "" if matching.length == 1 else "s" }}</h1>
+
+{# These four pages ARE the status filter. Rendering each facet as its own page rather
+   than filtering client-side is what keeps the review UI working with JavaScript
+   disabled, per BUILD-SPEC section 0. #}
+
+{% if not matching.length %}
+<p>No lexias currently have this status.</p>
+{% else %}
+<div class="table-wrap">
+<table class="review-table">
+  <caption class="visually-hidden">Lexias with status {{ status }}.</caption>
+  <thead>
+    <tr>
+      <th scope="col">Lexia</th>
+      <th scope="col">Dimension</th>
+      <th scope="col">Setting</th>
+      <th scope="col">Reviewer</th>
+      <th scope="col">Reviewed</th>
+      <th scope="col">Since workshop</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for lexia in matching %}
+    <tr>
+      <td><a href="{{ ('/review/lexias/' + lexia.id + '/index.html') | rel }}">{{ lexia.id }}</a></td>
+      <td>{{ dimLabel(lexia.dimension) }}</td>
+      <td>{{ lexia.setting }}</td>
+      <td>{{ lexia.reviewer or "—" }}</td>
+      <td>{{ lexia.reviewed or "—" }}</td>
+      <td>{{ driftChip(lexia.driftFromV5) }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endif %}
+
+<nav aria-label="Other statuses">
+  <ul class="facets">
+    {% for other in reviewStatuses %}
+    {% if other != status %}
+    <li>
+      <a href="{{ ('/review/status/' + other + '/index.html') | rel }}">
+        {{ statusChip(other) }}
+        <span class="facets__count">{{ review.statusCounts[other] or 0 }}</span>
+      </a>
+    </li>
+    {% endif %}
+    {% endfor %}
+  </ul>
+</nav>

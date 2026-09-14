@@ -1,0 +1,62 @@
+---
+pagination:
+  data: review.groups
+  size: 1
+  alias: group
+eleventyComputed:
+  title: "{{ group.id }}"
+navSection: review
+permalink: "review/variants/{{ group.id }}/index.html"
+layout: base.njk
+---
+{% from "macros.njk" import dimLabel, diffRuns with context %}
+
+{% set employee = null %}
+{% for e in policy.employees %}{% if e.id == group.employee %}{% set employee = e %}{% endif %}{% endfor %}
+
+<p><a href="{{ '/review/variants/index.html' | rel }}">&larr; All groups</a></p>
+
+<h1>{{ employee.name }} &middot; {{ dimLabel(group.dimension) }} {{ group.setting }}</h1>
+
+<p class="lede">
+  {% if group.identical %}
+    All {{ group.memberIds.length }} of these paragraphs carry the same wording.
+  {% else %}
+    These {{ group.memberIds.length }} paragraphs state the same rule at the same setting,
+    in <strong>{{ group.variantCount }} different wordings</strong>.
+  {% endif %}
+</p>
+
+{% for variant in group.variants %}
+<section class="variant">
+  <h2>
+    {% if group.variants.length > 1 %}Wording {{ loop.index }}{% else %}Wording{% endif %}
+    <span class="variant__flavors">
+      {%- for flavorId in variant.flavors -%}
+        {%- for f in policy.flavors -%}
+          {%- if f.id == flavorId %}{{ f.name }}: {{ f.label }}{% if not loop.last %}, {% endif %}{% endif -%}
+        {%- endfor -%}
+        {%- if not loop.last %}, {% endif -%}
+      {%- endfor -%}
+    </span>
+  </h2>
+
+  {% if loop.first %}
+  <p class="policy-para">{{ variant.text }}</p>
+  {% else %}
+  <p class="meta-line">Compared with wording 1: {{ variant.deltaVsFirst }}</p>
+  {# Diff runs are precomputed in review.json, so this renders without JavaScript. #}
+  <p class="policy-para policy-para--diff">{{ diffRuns(variant.diffVsFirst) | safe }}</p>
+  {% endif %}
+
+  <ul class="variant__links">
+    {% for flavorId in variant.flavors %}
+    <li>
+      <a href="{{ ('/review/lexias/' + group.employee + '-' + flavorId + '-' + group.dimension + '/index.html') | rel }}">
+        {{ group.employee }}-{{ flavorId }}-{{ group.dimension }}
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endfor %}

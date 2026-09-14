@@ -1,0 +1,389 @@
+{
+  "note": "Which lexias are byte-identical within each (employee, dimension, setting) group. `npm run lint:lexias -- --fail-on-change` fails when this shape moves. Regenerate deliberately with `npm run lint:lexias -- --write-lock`.",
+  "groups": [
+    {
+      "id": "jam-accountability-hi",
+      "variantCount": 2,
+      "identical": false,
+      "variants": [
+        [
+          "red"
+        ],
+        [
+          "yellow"
+        ]
+      ]
+    },
+    {
+      "id": "jam-accountability-lo",
+      "variantCount": 2,
+      "identical": false,
+      "variants": [
+        [
+          "blue"
+        ],
+        [
+          "green"
+        ]
+      ]
+    },
+    {
+      "id": "jam-efficiency-hi",
+      "variantCount": 3,
+      "identical": false,
+      "variants": [
+        [
+          "yellow"
+        ],
+        [
+          "blue"
+        ],
+        [
+          "green"
+        ]
+      ]
+    },
+    {
+      "id": "jam-efficiency-lo",
+      "variantCount": 1,
+      "identical": true,
+      "variants": [
+        [
+          "red"
+        ]
+      ]
+    },
+    {
+      "id": "jam-innovation-hi",
+      "variantCount": 2,
+      "identical": false,
+      "variants": [
+        [
+          "yellow",
+          "blue"
+        ],
+        [
+          "green"
+        ]
+      ]
+    },
+    {
+      "id": "jam-innovation-lo",
+      "variantCount": 1,
+      "identical": true,
+      "variants": [
+        [
+          "red"
+        ]
+      ]
+    },
+    {
+      "id": "jam-security-hi",
+      "variantCount": 1,
+      "identical": true,
+      "variants": [
+        [
+          "red",
+          "yellow",
+          "blue"
+        ]
+      ]
+    },
+    {
+      "id": "jam-security-lo",
+      "variantCount": 1,
+      "identical": true,
+      "variants": [
+        [
+          "green"
+        ]
+      ]
+    },
+    {
+      "id": "lux-accountability-hi",
+      "variantCount": 1,
+      "identical": true,
+      "variants": [
+        [
+          "red",
+          "yellow"
+        ]
+      ]
+    },
+    {
+      "id": "lux-accountability-lo",
+      "variantCount": 2,
+      "identical": false,
+      "variants": [
+        [
+          "blue"
+        ],
+        [
+          "green"
+        ]
+      ]
+    },
+    {
+      "id": "lux-efficiency-hi",
+      "variantCount": 3,
+      "identical": false,
+      "variants": [
+        [
+          "yellow"
+        ],
+        [
+          "blue"
+        ],
+        [
+          "green"
+        ]
+      ]
+    },
+    {
+      "id": "lux-efficiency-lo",
+      "variantCount": 1,
+      "identical": true,
+      "variants": [
+        [
+          "red"
+        ]
+      ]
+    },
+    {
+      "id": "lux-innovation-hi",
+      "variantCount": 2,
+      "identical": false,
+      "variants": [
+        [
+          "yellow",
+          "blue"
+        ],
+        [
+          "green"
+        ]
+      ]
+    },
+    {
+      "id": "lux-innovation-lo",
+      "variantCount": 1,
+      "identical": true,
+      "variants": [
+        [
+          "red"
+        ]
+      ]
+    },
+    {
+      "id": "lux-security-hi",
+      "variantCount": 1,
+      "identical": true,
+      "variants": [
+        [
+          "red",
+          "yellow",
+          "blue"
+        ]
+      ]
+    },
+    {
+      "id": "lux-security-lo",
+      "variantCount": 1,
+      "identical": true,
+      "variants": [
+        [
+          "green"
+        ]
+      ]
+    },
+    {
+      "id": "puk-accountability-hi",
+      "variantCount": 1,
+      "identical": true,
+      "variants": [
+        [
+          "red",
+          "yellow"
+        ]
+      ]
+    },
+    {
+      "id": "puk-accountability-lo",
+      "variantCount": 2,
+      "identical": false,
+      "variants": [
+        [
+          "blue"
+        ],
+        [
+          "green"
+        ]
+      ]
+    },
+    {
+      "id": "puk-efficiency-hi",
+      "variantCount": 3,
+      "identical": false,
+      "variants": [
+        [
+          "yellow"
+        ],
+        [
+          "blue"
+        ],
+        [
+          "green"
+        ]
+      ]
+    },
+    {
+      "id": "puk-efficiency-lo",
+      "variantCount": 1,
+      "identical": true,
+      "variants": [
+        [
+          "red"
+        ]
+      ]
+    },
+    {
+      "id": "puk-innovation-hi",
+      "variantCount": 2,
+      "identical": false,
+      "variants": [
+        [
+          "yellow",
+          "blue"
+        ],
+        [
+          "green"
+        ]
+      ]
+    },
+    {
+      "id": "puk-innovation-lo",
+      "variantCount": 1,
+      "identical": true,
+      "variants": [
+        [
+          "red"
+        ]
+      ]
+    },
+    {
+      "id": "puk-security-hi",
+      "variantCount": 1,
+      "identical": true,
+      "variants": [
+        [
+          "red",
+          "yellow",
+          "blue"
+        ]
+      ]
+    },
+    {
+      "id": "puk-security-lo",
+      "variantCount": 1,
+      "identical": true,
+      "variants": [
+        [
+          "green"
+        ]
+      ]
+    },
+    {
+      "id": "wow-accountability-hi",
+      "variantCount": 1,
+      "identical": true,
+      "variants": [
+        [
+          "red",
+          "yellow"
+        ]
+      ]
+    },
+    {
+      "id": "wow-accountability-lo",
+      "variantCount": 2,
+      "identical": false,
+      "variants": [
+        [
+          "blue"
+        ],
+        [
+          "green"
+        ]
+      ]
+    },
+    {
+      "id": "wow-efficiency-hi",
+      "variantCount": 2,
+      "identical": false,
+      "variants": [
+        [
+          "yellow",
+          "blue"
+        ],
+        [
+          "green"
+        ]
+      ]
+    },
+    {
+      "id": "wow-efficiency-lo",
+      "variantCount": 1,
+      "identical": true,
+      "variants": [
+        [
+          "red"
+        ]
+      ]
+    },
+    {
+      "id": "wow-innovation-hi",
+      "variantCount": 2,
+      "identical": false,
+      "variants": [
+        [
+          "yellow",
+          "blue"
+        ],
+        [
+          "green"
+        ]
+      ]
+    },
+    {
+      "id": "wow-innovation-lo",
+      "variantCount": 1,
+      "identical": true,
+      "variants": [
+        [
+          "red"
+        ]
+      ]
+    },
+    {
+      "id": "wow-security-hi",
+      "variantCount": 1,
+      "identical": true,
+      "variants": [
+        [
+          "red",
+          "yellow",
+          "blue"
+        ]
+      ]
+    },
+    {
+      "id": "wow-security-lo",
+      "variantCount": 1,
+      "identical": true,
+      "variants": [
+        [
+          "green"
+        ]
+      ]
+    }
+  ]
+}

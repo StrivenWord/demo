@@ -1,9 +1,9 @@
 {
   "meta": {
-    "version": "v5",
-    "sourceFile": "workshop-1-policy-texts-v5.md",
+    "version": "v6",
+    "sourceFile": "content/lexias/",
     "definitionsFile": "operational-dimension-definitions.md",
-    "generated": "2026-09-13"
+    "generated": "2026-07-08"
   },
   "dimensions": [
     {
@@ -45,8 +45,8 @@
   ],
   "flavors": [
     {
-      "id": "green",
-      "name": "Green",
+      "id": "red",
+      "name": "Red",
       "label": "Guardrails",
       "character": "Most restrictive; maximum oversight",
       "dimensions": {
@@ -57,8 +57,8 @@
       }
     },
     {
-      "id": "red",
-      "name": "Red",
+      "id": "yellow",
+      "name": "Yellow",
       "label": "Enable",
       "character": "Fast and safe; strong logging, open tool adoption",
       "dimensions": {
@@ -81,8 +81,8 @@
       }
     },
     {
-      "id": "yellow",
-      "name": "Yellow",
+      "id": "green",
+      "name": "Green",
       "label": "Exposed",
       "character": "Least constrained; highest exposure",
       "dimensions": {
@@ -103,10 +103,10 @@
       "violationQuestion": "Did Lux violate the policy?",
       "violatedDimension": "security",
       "compliantUnder": [
-        "yellow"
+        "green"
       ],
       "policies": {
-        "green": {
+        "red": {
           "paragraphs": [
             {
               "dimension": "security",
@@ -126,7 +126,7 @@
             }
           ]
         },
-        "red": {
+        "yellow": {
           "paragraphs": [
             {
               "dimension": "security",
@@ -166,7 +166,7 @@
             }
           ]
         },
-        "yellow": {
+        "green": {
           "paragraphs": [
             {
               "dimension": "security",
@@ -197,12 +197,12 @@
       "violationQuestion": "Did Puk violate the policy?",
       "violatedDimension": "efficiency",
       "compliantUnder": [
-        "red",
+        "yellow",
         "blue",
-        "yellow"
+        "green"
       ],
       "policies": {
-        "green": {
+        "red": {
           "paragraphs": [
             {
               "dimension": "security",
@@ -222,7 +222,7 @@
             }
           ]
         },
-        "red": {
+        "yellow": {
           "paragraphs": [
             {
               "dimension": "security",
@@ -262,7 +262,7 @@
             }
           ]
         },
-        "yellow": {
+        "green": {
           "paragraphs": [
             {
               "dimension": "security",
@@ -294,10 +294,10 @@
       "violatedDimension": "accountability",
       "compliantUnder": [
         "blue",
-        "yellow"
+        "green"
       ],
       "policies": {
-        "green": {
+        "red": {
           "paragraphs": [
             {
               "dimension": "security",
@@ -317,7 +317,7 @@
             }
           ]
         },
-        "red": {
+        "yellow": {
           "paragraphs": [
             {
               "dimension": "security",
@@ -357,7 +357,7 @@
             }
           ]
         },
-        "yellow": {
+        "green": {
           "paragraphs": [
             {
               "dimension": "security",
@@ -388,10 +388,10 @@
       "violationQuestion": "Did Wow violate the policy?",
       "violatedDimension": "all",
       "compliantUnder": [
-        "yellow"
+        "green"
       ],
       "policies": {
-        "green": {
+        "red": {
           "paragraphs": [
             {
               "dimension": "security",
@@ -411,7 +411,7 @@
             }
           ]
         },
-        "red": {
+        "yellow": {
           "paragraphs": [
             {
               "dimension": "security",
@@ -451,7 +451,7 @@
             }
           ]
         },
-        "yellow": {
+        "green": {
           "paragraphs": [
             {
               "dimension": "security",

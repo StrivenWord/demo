@@ -14,7 +14,7 @@ supersedes: COUNTY_AI_ROLES_DESIGN_SPEC.md section 5.3 (framework options) and s
 |---|---|---|
 | Site generator | Eleventy (11ty) v3 | Node-native, composes with the extraction scripts in one toolchain. Pre-renders every job x flavor state as a real page, which is required anyway because those pages are the PDF print source. |
 | Repository | New repo, `county-ai-roles` | The `herk` repo is private and holds personnel and budget material. It cannot be made public, and free-tier GitHub Pages publishes only from public repos. |
-| Source of truth | `herk` v5 markdown, vendored | The two source files are copied into this repo under `src/sources/`. They contain only material the website publishes anyway. |
+| Source of truth | `content/` in this repo | **Changed 2026-09-14.** Policy text is authored here, one paragraph per file. The v5 workshop document under `src/sources/` is frozen as provenance; only `operational-dimension-definitions.md` remains a live vendored input from `herk`. |
 | PDF rendering | Playwright (headless Chromium), post-build | Prints the same HTML the site serves, so "identically formatted" is structurally guaranteed rather than maintained by hand. |
 | PDF storage | Built in CI, never committed | Keeps binary churn out of git history. Distributed as a workflow artifact and release asset. |
 | PDF branding | Provenance footer only | Source file, version, generation date, page numbers. No county seal. |
@@ -91,13 +91,18 @@ county-ai-roles/
 │   ├── TOOLING-AND-DEPLOYMENT.md
 │   └── RUNBOOK.md             # how to re-extract, rebuild, redeploy
 ├── scripts/
-│   ├── sync-sources.mjs       # copy from a local herk checkout, report drift
-│   ├── extract.mjs            # spec steps 1-2 -> data.json
-│   ├── synthesize.mjs         # spec step 3: diff templates, callouts, index
-│   ├── validate.mjs           # spec section 7.2 checks, exits nonzero on failure
+│   ├── build-data.mjs         # content/ -> data.json + review.json
+│   ├── migrate-lexias.mjs     # one-shot: v5 document -> content/lexias/
+│   ├── validate.mjs           # 17 consistency checks, exits nonzero on failure
+│   ├── lint-lexias.mjs        # which lexias agree with each other
+│   ├── drift.mjs              # how far content/ has moved from the frozen v5 document
+│   ├── render-workshop-doc.mjs # content/ -> a single printable document
+│   ├── scaffold-template.mjs  # derived tags on every lexia
+│   ├── check-portable.mjs     # greps site/ for file:// hazards
 │   └── render-pdfs.mjs        # Playwright pass over the built HTML
 ├── src/
-│   ├── sources/               # vendored v5 markdown (read-only, synced)
+│   ├── sources/               # v5 document (frozen) + dimension definitions (vendored)
+│   ├── review/                # 102 review pages
 │   ├── _data/                 # data.json consumed by Eleventy
 │   ├── _includes/             # Nunjucks layouts and partials
 │   ├── assets/                # styles.css, scripts.js (no fonts, see 2.1)
@@ -105,6 +110,7 @@ county-ai-roles/
 │   ├── jobs/                  # job x flavor pages          (16 + 4)
 │   ├── policies/              # flavor matrix and details    (1 + 4)
 │   └── print/                 # 21 print-view pages, the PDF source
+├── content/                   # THE SOURCE OF TRUTH: 64 lexias, 4 employees, flavors
 ├── site/                      # build output (gitignored)
 ├── .gitignore
 ├── .nojekyll
@@ -123,15 +129,18 @@ export default function (eleventyConfig) {
 
 ### 3.1 What is committed
 
-**Commit:** `src/sources/` (vendored markdown), `data.json`, all templates, styles,
-scripts, fonts, configuration, workflows, docs.
+**Commit:** `content/` (the source of truth), `src/sources/` (frozen and vendored
+markdown), `data.json`, `review.json`, all templates, styles, scripts, configuration,
+workflows, docs.
 
-**Do not commit:** `site/`, `node_modules/`, generated PDFs, generated `assets/data.js`,
-zip archives, Playwright browser binaries.
+**Do not commit:** `site/`, `dist/`, `node_modules/`, generated PDFs, generated
+`assets/data.js`, zip archives, Playwright browser binaries.
 
 Committing `data.json` is deliberate. It means the site builds without a `herk`
-checkout, the extraction step is not on the critical path for a redeploy, and any
-change to policy content shows up as a reviewable diff in a pull request.
+checkout, the build step is not on the critical path for a redeploy, and any change to
+policy content shows up as a reviewable diff in a pull request. `build-data.mjs` is a
+pure function of `content/`, so that diff is signal rather than noise -- it used to
+stamp the build date and dirty the file on every run.
 
 ## 4. Git practices
 
@@ -184,26 +193,73 @@ silently resurrect the problem.
 
 ### 4.4 Content changes are code changes
 
-When a policy text changes in `herk`:
+**Upstream `herk` is no longer authoritative for policy paragraph text.** This repo is.
+That is the single change here most likely to surprise someone six months from now, so it
+is stated plainly rather than implied.
+
+The previous instruction was to edit the source document in `herk`, copy it back in with
+`npm run sync`, and re-extract. That workflow is gone. It was also never executable:
+`scripts/sync-sources.mjs` was documented in four places in this file but has never
+existed in the repository, so whoever last updated the sources did it with a manual file
+copy.
+
+To change a policy paragraph:
 
 ```bash
-npm run sync      # copies the 2 source files from a local herk checkout
-git diff src/sources/          # confirm only intended text changed
-npm run extract                # regenerates data.json
-git diff data.json             # the reviewable record of what changed
-npm run validate               # section 7.2 consistency checks
+# edit content/lexias/<employee>-<flavor>-<dimension>.md
+npm run build:data             # regenerates data.json and review.json
+git diff content/ data.json    # the reviewable record of what changed
+npm run validate               # 17 consistency checks
+npm run lint:lexias            # did paragraphs that should agree stop agreeing?
+npm run drift                  # how far is this from the workshop text now?
 ```
 
-Open a pull request. The `data.json` diff is the review artifact: it shows exactly
-which policy text moved, in structured form, without prose noise. Merging deploys.
+Open a pull request. Both diffs are review artifacts: `content/` shows the prose change
+in context, `data.json` shows it in structured form. Merging deploys.
+
+To change a **dimension definition**, the old workflow still applies, because
+`src/sources/operational-dimension-definitions.md` is still vendored from `herk`: copy
+the newer file in by hand, then `npm run build:data`.
 
 ### 4.5 Versioning and releases
 
 Tag releases as `v5.0`, `v5.1`, `v6.0`, tracking the *source material* version rather
-than a separate site version. The spec's section 7.1 update process maps onto this
+than a separate site version. The material's version and date live in
+`content/meta.json`, and flow into `data.json`'s `meta` block and the PDF footer;
+bump that file when you tag. The spec's section 7.1 update process maps onto this
 directly. Tagging triggers the portable zip workflow, so every tagged version has a
 downloadable offline archive permanently attached to it. That archive is the thing
 you send colleagues, and it is reproducible years later.
+
+### 4.5a The 2026-07-08 colour reassignment (v6.0)
+
+Upstream reassigned the flavor colours to a restriction-to-autonomy gradient, leaving the
+four postures and their Hi/Lo coordinates untouched. This repo followed at v6.0.
+
+| Posture | Colour before | Colour now |
+|---|---|---|
+| Guardrails | Green | **Red** |
+| Enable | Red | **Yellow** |
+| Light-touch | Blue | Blue |
+| Exposed | Yellow | **Green** |
+
+The mapping is a 3-cycle, not a swap, so `scripts/recolour.mjs` performs it through
+sentinels; a sequential find-and-replace carries green round to green and destroys the
+data.
+
+**The consequence to understand is that URLs did not break -- they changed meaning.**
+`jobs/lux/green/` resolved to Guardrails before and resolves to Exposed now. A stale
+bookmark, an emailed PDF or an old `#diff=` link does not 404; it silently shows the
+opposite policy. There is no code fix for that. The mitigations are:
+
+- every PDF footer names its posture, so a photocopied sheet identifies itself
+- `/transition/index.html` states the mapping, linked from the footer and the about page
+- the about page tells readers to go by the policy name, not the colour
+- the v5.0.0 archive is retained, so the June material stays retrievable
+
+Nothing in `scripts/validate.mjs` needed changing, because its expectations are keyed by
+posture rather than colour. That was deliberate groundwork, and it is why the migration
+touched content and presentation only.
 
 ### 4.6 .gitignore
 
@@ -434,14 +490,22 @@ enable "Enforce HTTPS". Because every URL in the build is relative, moving betwe
 
 ```
 herk/ (local checkout, private)
-  └─ npm run sync ──────────► src/sources/*.md        [manual, occasional]
+  └─ manual copy ───────────► src/sources/operational-dimension-definitions.md
+                                                      [rare; the only live vendored input]
 
-src/sources/*.md
-  └─ npm run extract ───────► data.json               [committed, reviewable]
+content/                                              [THE SOURCE OF TRUTH, committed]
+  ├─ npm run build:data ────► data.json               [committed, reviewable]
+  │                        └► review.json             [committed, review state]
+  ├─ npm run lint:lexias ───► agreement report        [+ lockfile guard]
+  ├─ npm run drift ─────────► distance from frozen v5 [report]
+  └─ npm run workshop-doc ──► dist/*.md               [printable document, gitignored]
 
-data.json
+src/sources/workshop-1-policy-texts-v5.md             [FROZEN: provenance only]
+  └─ read by drift.mjs and the Zip warning in validate.mjs
+
+data.json + review.json
   ├─ npm run validate ──────► pass/fail               [CI gate]
-  └─ npm run build ─────────► site/                  [11ty: site + 21 print pages]
+  └─ npm run build ─────────► site/                  [11ty: 26 + 21 print + 102 review]
 
 site/
   └─ npm run pdfs ──────────► site/pdf/*.pdf         [Playwright, 21 files]
@@ -455,19 +519,24 @@ site/  ──────────────────►  GitHub Pages  
 ```json
 {
   "scripts": {
-    "sync":     "node scripts/sync-sources.mjs",
-    "extract":  "node scripts/extract.mjs && node scripts/synthesize.mjs",
-    "validate": "node scripts/validate.mjs",
-    "build":    "eleventy",
-    "pdfs":     "node scripts/render-pdfs.mjs",
-    "all":      "npm run validate && npm run build && npm run pdfs",
-    "serve":    "eleventy --serve",
-    "portable": "npm run all && cd site && zip -r ../county-ai-roles.zip ."
+    "build:data":   "node scripts/build-data.mjs",
+    "validate":     "node scripts/build-data.mjs && node scripts/validate.mjs",
+    "build":        "node scripts/build-data.mjs && eleventy",
+    "test":         "rel units + workshop round-trip + lockfile + tag freshness",
+    "lint:lexias":  "node scripts/lint-lexias.mjs",
+    "drift":        "node scripts/drift.mjs",
+    "workshop-doc": "node scripts/render-workshop-doc.mjs",
+    "scaffold":     "node scripts/scaffold-template.mjs",
+    "migrate":      "node scripts/migrate-lexias.mjs",
+    "pdfs":         "node scripts/render-pdfs.mjs",
+    "check":        "node scripts/check-portable.mjs",
+    "all":          "npm run build && npm run pdfs && npm run check",
+    "portable":     "npm run all && node scripts/zip.mjs"
   }
 }
 ```
 
-`npm run serve` gives a live-reload dev server but produces no PDFs, so download links
+`npm run dev` gives a live-reload dev server but produces no PDFs, so download links
 404 during development. Use `npm run all` before any portability check.
 
 ### 6.2 PDF output set

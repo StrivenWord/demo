@@ -16,9 +16,10 @@ export default function (eleventyConfig) {
 
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
 
-  // The vendored markdown in src/sources/ is a data input for scripts/extract.mjs,
-  // not page content. Without this, Eleventy's default markdown template format
-  // renders it as two stray pages under site/sources/.
+  // The markdown in src/sources/ is provenance and a vendored data input, not page
+  // content. Without this, Eleventy's default markdown template format renders it as two
+  // stray pages under site/sources/. The authoring tree in content/ needs no equivalent
+  // guard because it sits outside the input directory entirely.
   eleventyConfig.ignores.add("src/sources/**");
 
   // PORTABILITY (BUILD-SPEC 6.2). Copy rather than serve-from-source during `dev`,
@@ -52,10 +53,13 @@ export default function (eleventyConfig) {
   // Watch targets
   // ---------------------------------------------------------------------------
 
-  // data.json lives at the repo root, outside the Eleventy input directory, so it
-  // is not watched automatically. Without this, `npm run dev` would not rebuild
-  // after `npm run extract`.
+  // data.json, review.json and the content/ authoring tree all live outside the
+  // Eleventy input directory, so none are watched automatically. Without these,
+  // `npm run dev` would not rebuild after editing a lexia and running
+  // `npm run build:data`.
   eleventyConfig.addWatchTarget("./data.json");
+  eleventyConfig.addWatchTarget("./review.json");
+  eleventyConfig.addWatchTarget("./content");
 
   // ---------------------------------------------------------------------------
   // Dev server

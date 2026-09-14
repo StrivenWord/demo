@@ -75,3 +75,61 @@
   </a>
 </p>
 {% endmacro %}
+
+{# ---------------------------------------------------------------------------
+   Review macros. Used only by the pages under /review/.
+   --------------------------------------------------------------------------- #}
+
+{% set statusLabel = {
+  "unreviewed": "Unreviewed",
+  "in-review": "In review",
+  "approved": "Approved",
+  "flagged": "Flagged"
+} %}
+
+{# Review status. Distinguished by a leading glyph and the label word as well as
+   fill, so it survives grayscale printing and colour-blind reading
+   (DESIGN-SYSTEM 2.4). #}
+{% macro statusChip(status) %}
+{%- set glyph = { "unreviewed": "○", "in-review": "◑", "approved": "●", "flagged": "△" } -%}
+<span class="status-chip status-chip--{{ status }}">
+  <span aria-hidden="true">{{ glyph[status] }}</span> {{ statusLabel[status] or status }}
+</span>
+{% endmacro %}
+
+{# Whether a lexia still matches the frozen v5 workshop document. #}
+{% macro driftChip(drift) %}
+{%- if drift == "changed" -%}
+<span class="drift-chip drift-chip--changed">Edited since the workshop</span>
+{%- elif drift == "identical" -%}
+<span class="drift-chip drift-chip--identical">As written at the workshop</span>
+{%- elif drift == "added" -%}
+<span class="drift-chip drift-chip--changed">Not in the workshop document</span>
+{%- endif -%}
+{% endmacro %}
+
+{# Word-level diff of one variant against the group's first variant.
+
+   The runs are precomputed in Node (scripts/lib/word-diff.mjs) and carried in
+   review.json. Rendering them as markup rather than computing them in the browser
+   is what lets the variant pages work with JavaScript disabled, which BUILD-SPEC
+   section 0 requires. Additions and removals carry a visually hidden label as well
+   as ins/del semantics, so the difference is not conveyed by styling alone. #}
+{% macro diffRuns(runs) %}
+{%- for run in runs -%}
+{%- if run.op == "same" -%}{{ run.text }}
+{%- elif run.op == "del" -%}<del><span class="visually-hidden">removed: </span>{{ run.text }}</del>
+{%- else -%}<ins><span class="visually-hidden">added: </span>{{ run.text }}</ins>
+{%- endif -%}
+{%- endfor -%}
+{% endmacro %}
+
+{# Coordinates of a single lexia, as a definition list. #}
+{% macro lexiaCoords(lexia, flavor) %}
+<dl class="coords">
+  <dt>Employee</dt><dd>{{ lexia.employee }}</dd>
+  <dt>Policy</dt><dd>{{ flavor.name }}: {{ flavor.label }}</dd>
+  <dt>Dimension</dt><dd>{{ dimFull[lexia.dimension] }}</dd>
+  <dt>Setting</dt><dd>{{ lexia.setting }}</dd>
+</dl>
+{% endmacro %}

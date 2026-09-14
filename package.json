@@ -1,6 +1,6 @@
 {
   "name": "county-ai-roles",
-  "version": "5.0.0",
+  "version": "6.0.0",
   "description": "Herkimer County AI Roles: a fully static, offline-capable policy explorer",
   "type": "module",
   "private": true,
@@ -11,21 +11,26 @@
   "scripts": {
     "dev": "eleventy --serve --incremental",
     "watch": "eleventy --watch",
-    "build": "eleventy",
+    "build": "node scripts/build-data.mjs && eleventy",
     "clean": "node -e \"require('node:fs').rmSync('site',{recursive:true,force:true})\"",
-
-    "extract": "node scripts/extract.mjs",
-    "validate": "node scripts/validate.mjs",
+    "extract": "node -e \"console.warn('npm run extract is deprecated; use npm run build:data')\" && node scripts/build-data.mjs",
+    "validate": "node scripts/build-data.mjs && node scripts/validate.mjs",
     "pdfs": "node scripts/render-pdfs.mjs",
     "check": "node scripts/check-portable.mjs",
-    "test": "node scripts/test-rel.mjs",
-
+    "test": "node scripts/test-rel.mjs && node scripts/render-workshop-doc.mjs --check && node scripts/lint-lexias.mjs --fail-on-change && node scripts/scaffold-template.mjs --check",
     "all": "npm run build && npm run pdfs && npm run check",
     "preview": "node scripts/preview.mjs",
-    "portable": "npm run all && node scripts/zip.mjs"
+    "portable": "npm run all && node scripts/zip.mjs",
+    "build:data": "node scripts/build-data.mjs",
+    "migrate": "node scripts/migrate-lexias.mjs",
+    "lint:lexias": "node scripts/lint-lexias.mjs",
+    "drift": "node scripts/drift.mjs",
+    "workshop-doc": "node scripts/render-workshop-doc.mjs",
+    "scaffold": "node scripts/scaffold-template.mjs"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",
+    "gray-matter": "^4.0.3",
     "playwright": "^1.48.0"
   }
 }

@@ -1,0 +1,5 @@
+{
+  "note": "Version and date of the policy material itself, not of the build. Releases are tagged against this (docs/TOOLING-AND-DEPLOYMENT.md 4.5), and it is what appears in the PDF footer. v6 is the July 2026 colour reassignment: postures and coordinates unchanged from v5, colour labels moved.",
+  "version": "6",
+  "date": "2026-07-08"
+}

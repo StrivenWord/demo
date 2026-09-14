@@ -16,7 +16,8 @@
 (function () {
   "use strict";
 
-  var FLAVOR_IDS = ["green", "red", "blue", "yellow"];
+  // Gradient order, most governed to least: Guardrails, Enable, Light-touch, Exposed.
+  var FLAVOR_IDS = ["red", "yellow", "blue", "green"];
 
   function init() {
     var grid = document.querySelector(".compare-grid[data-job]");
